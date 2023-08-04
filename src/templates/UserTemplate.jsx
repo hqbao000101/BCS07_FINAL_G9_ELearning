@@ -2,7 +2,7 @@ import React from 'react'
 
 const UserTemplate = () => {
   return (
-    <div className='bg-black text-white'>UserTemplate</div>
+    <div className='text-white bg-black'>UserTemplate</div>
   )
 }
 
