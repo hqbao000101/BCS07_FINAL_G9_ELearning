@@ -20,3 +20,6 @@
 # Other Supports
   - animation: LottieFiles --> npm install --save react-lottie (--force)
   - format Datetime: Moment --> npm i moment (--force)
+
+# Comment ESLint React Hook - useEffect
+- // eslint-disable-next-line react-hooks/exhaustive-deps
