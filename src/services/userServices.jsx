@@ -26,8 +26,8 @@ export const userService = {
   getUsersPagination: (
     tuKhoa = "",
     maNhom = "GP09",
-    page = "1",
-    pageSize = "10"
+    page = 1,
+    pageSize = 10
   ) => {
     if (tuKhoa.trim() !== "") {
       return https.get(
