@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
 import UserTemplate from "./templates/UserTemplate";
 import Home from "./pages/Home/Home";
 import Page404 from "./pages/Page404/Page404";
