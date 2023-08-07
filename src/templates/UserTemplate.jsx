@@ -1,20 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { userService } from "../services/userServices";
+import React from "react";
+import { Outlet } from "react-router-dom";
+import Header from "../Components/Header/Header";
+import Footer from "../Components/Footer/Footer";
 
 const UserTemplate = () => {
-  const [user, setUser] = useState([]);
-  const getAllUsers = async () => {
-    const userData = await userService.getUsersPagination();   
-    setUser(userData);
-    console.log(user); 
-  }; 
-
-  useEffect(() => {
-    getAllUsers();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  return <div className="text-white bg-black p-8">UserTemplate</div>;
+  return (
+    <div className="flex flex-col justify-between min-h-screen">
+      <Header />
+      <Outlet />
+      <Footer />
+    </div>
+  );
 };
 
 export default UserTemplate;
