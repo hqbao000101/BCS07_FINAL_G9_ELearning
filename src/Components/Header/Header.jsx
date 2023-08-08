@@ -1,23 +1,119 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
   BarsOutlined,
   CaretLeftOutlined,
   CaretRightOutlined,
 } from "@ant-design/icons";
+import { Dropdown } from "antd";
 
 const Header = () => {
+  const [category, setCategory] = useState(false);
+
+  const items = [
+    {
+      key: "1",
+      label: (
+        <NavLink
+          to="/category/TuDuy"
+          style={({ isActive }) => (isActive ? { color: "orange" } : {})}
+          onClick={() => {
+            setCategory(true);
+          }}
+        >
+          Tư Duy Lập Trình
+        </NavLink>
+      ),
+    },
+    {
+      key: "2",
+      label: (
+        <NavLink
+          to="/category/DiDong"
+          style={({ isActive }) => (isActive ? { color: "orange" } : {})}
+          onClick={() => {
+            setCategory(true);
+          }}
+        >
+          Lập Trình Mobile
+        </NavLink>
+      ),
+    },
+    {
+      key: "3",
+      label: (
+        <NavLink
+          to="/category/Design"
+          style={({ isActive }) => (isActive ? { color: "orange" } : {})}
+          onClick={() => {
+            setCategory(true);
+          }}
+        >
+          Thiết Kế Website
+        </NavLink>
+      ),
+    },
+    {
+      key: "4",
+      label: (
+        <NavLink
+          to="/category/FrontEnd"
+          style={({ isActive }) => (isActive ? { color: "orange" } : {})}
+          onClick={() => {
+            setCategory(true);
+          }}
+        >
+          Lập Trình Front-end
+        </NavLink>
+      ),
+    },
+    {
+      key: "5",
+      label: (
+        <NavLink
+          to="/category/BackEnd"
+          style={({ isActive }) => (isActive ? { color: "orange" } : {})}
+          onClick={() => {
+            setCategory(true);
+          }}
+        >
+          Lập Trình Back-end
+        </NavLink>
+      ),
+    },
+    {
+      key: "6",
+      label: (
+        <NavLink
+          to="/category/FullStack"
+          style={({ isActive }) => (isActive ? { color: "orange" } : {})}
+          onClick={() => {
+            setCategory(true);
+          }}
+        >
+          Lập Trình Fullstack
+        </NavLink>
+      ),
+    },
+  ];
+
   return (
     <header>
       <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5">
         <div className="flex flex-wrap items-center justify-between mx-auto max-w-screen-2xl">
-          <NavLink to="/" className="flex items-center">
+          <NavLink
+            to="/"
+            className="flex items-center"
+            onClick={() => {
+              setCategory(false);
+            }}
+          >
             <img src="./favicon.png" className="h-20" alt="ELearning Logo" />
-            <div className="text-center">
-              <span className="self-center text-2xl font-semibold tracking-wide uppercase whitespace-nowrap">
-                Cyber ELearning
+            <div>
+              <span className="self-center text-2xl font-semibold tracking-wide uppercase whitespace-nowrap hover:scale-105 inline-block duration-300">
+                Cyber E-Learning
               </span>
-              <p className="flex items-center text-xs text-orange-400 uppercase">
+              <p className="flex items-center text-xs text-orange-400 uppercase justify-center">
                 <CaretRightOutlined />
                 The Best Online Education
                 <CaretLeftOutlined />
@@ -28,6 +124,9 @@ const Header = () => {
             <NavLink
               to="/login"
               className="text-white hover:bg-orange-500 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none bg-orange-400 duration-300 hover:shadow-md"
+              onClick={() => {
+                setCategory(false);
+              }}
             >
               Đăng nhập
             </NavLink>
@@ -77,6 +176,9 @@ const Header = () => {
                   style={({ isActive }) =>
                     isActive ? { color: "orange" } : {}
                   }
+                  onClick={() => {
+                    setCategory(false);
+                  }}
                 >
                   Trang chủ
                 </NavLink>
@@ -88,18 +190,28 @@ const Header = () => {
                   style={({ isActive }) =>
                     isActive ? { color: "orange" } : {}
                   }
+                  onClick={() => {
+                    setCategory(false);
+                  }}
                 >
                   Thông tin
                 </NavLink>
               </li>
               <li>
-                <NavLink
-                  to="/"
-                  className="flex items-center py-2 pl-3 pr-4 uppercase duration-300 border-b border-gray-100 nav-link hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-orange-400 lg:p-0"
+                <Dropdown
+                  menu={{
+                    items,
+                  }}
                 >
-                  <BarsOutlined className="me-2" />
-                  Danh mục
-                </NavLink>
+                  <NavLink
+                    className={`flex items-center py-2 pl-3 pr-4 uppercase duration-300 border-b border-gray-100 nav-link hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-orange-400 lg:p-0 ${
+                      category ? "text-orange-400" : ""
+                    }`}
+                  >
+                    <BarsOutlined className="me-2" />
+                    Danh mục
+                  </NavLink>
+                </Dropdown>
               </li>
               <li>
                 <NavLink
@@ -108,6 +220,9 @@ const Header = () => {
                   style={({ isActive }) =>
                     isActive ? { color: "orange" } : {}
                   }
+                  onClick={() => {
+                    setCategory(false);
+                  }}
                 >
                   Khóa học
                 </NavLink>
@@ -119,6 +234,9 @@ const Header = () => {
                   style={({ isActive }) =>
                     isActive ? { color: "orange" } : {}
                   }
+                  onClick={() => {
+                    setCategory(false);
+                  }}
                 >
                   Blog
                 </NavLink>
@@ -130,6 +248,9 @@ const Header = () => {
                   style={({ isActive }) =>
                     isActive ? { color: "orange" } : {}
                   }
+                  onClick={() => {
+                    setCategory(false);
+                  }}
                 >
                   Sự kiện
                 </NavLink>
