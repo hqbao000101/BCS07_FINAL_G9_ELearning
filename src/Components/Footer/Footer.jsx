@@ -147,7 +147,7 @@ const Footer = () => {
                     dispatch(setNavbarActive(true));
                   }}
                 >
-                  {">"} Fullstack
+                  {">"} FullStack
                 </NavLink>
               </li>
             </ul>
