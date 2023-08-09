@@ -209,7 +209,7 @@ const CollapsedMenu = () => {
       <Drawer
         title={
           <div className="flex items-center">
-            <img src={favicon} alt="Favicon" className="w-20 sm:block hidden" />
+            <img src={favicon} alt="Favicon" className="hidden w-20 sm:block" />
             <div>
               <p>Cyber E-Learning</p>
               <p className="text-sm text-orange-400">
@@ -224,7 +224,7 @@ const CollapsedMenu = () => {
       >
         <div className="flex flex-col justify-between h-full">
           <div>
-            <div className="relative block duration-500 border-b-2 border-b-gray-400 pe-3 focus-within:border-b-orange-400 group md:hidden mb-6 mx-2">
+            <div className="relative block mx-2 mb-6 duration-500 border-b-2 border-b-gray-400 pe-3 focus-within:border-b-orange-400 group md:hidden">
               <input
                 id="search"
                 type="text"
@@ -252,26 +252,26 @@ const CollapsedMenu = () => {
           </div>
           <div>
             <Divider />
-            <div className="flex justify-between items-center">
+            <div className="flex items-center justify-between">
               <p>CyberSoft © 2023 by BCS07 - G9</p>
               <div>
                 <NavLink
                   to="https://www.facebook.com/lophocviet/"
                   target="_blank"
                 >
-                  <i className="fa-brands fa-facebook-f hover:text-blue-500 duration-300 text-gray-500 ms-2 cursor-pointer"></i>
+                  <i className="text-gray-500 duration-300 cursor-pointer fa-brands fa-facebook-f hover:text-blue-500 ms-2"></i>
                 </NavLink>
                 <NavLink
                   to="https://github.com/hqbao000101/BCS07_FINAL_G9_ELearning.git"
                   target="_blank"
                 >
-                  <i className="fa-brands fa-github duration-300 text-gray-500 hover:text-black ms-2 cursor-pointer"></i>
+                  <i className="text-gray-500 duration-300 cursor-pointer fa-brands fa-github hover:text-black ms-2"></i>
                 </NavLink>
                 <NavLink
                   to="https://www.youtube.com/channel/UCQDXgEguMerxvCh_2dcxmtQ"
                   target="_blank"
                 >
-                  <i className="fa-brands fa-youtube duration-300 text-gray-500 hover:text-red-500 ms-2 cursor-pointer"></i>
+                  <i className="text-gray-500 duration-300 cursor-pointer fa-brands fa-youtube hover:text-red-500 ms-2"></i>
                 </NavLink>
               </div>
             </div>
