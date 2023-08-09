@@ -8,6 +8,7 @@ import {
 import { Dropdown } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { setNavbarActive } from "../../redux/slices/navbarSlice";
+import CollapsedMenu from "../CollapsedMenu/CollapsedMenu";
 
 const Header = () => {
   const { isActive } = useSelector((state) => state.navbar);
@@ -111,7 +112,7 @@ const Header = () => {
               dispatch(setNavbarActive(false));
             }}
           >
-            <img src="./favicon.png" className="h-20" alt="ELearning Logo" />
+            <img src="./favicon.png" className="h-20" alt="Logo" />
             <div>
               <span className="self-center text-2xl font-semibold tracking-wide uppercase whitespace-nowrap hover:scale-105 inline-block duration-300">
                 Cyber E-Learning
@@ -130,39 +131,7 @@ const Header = () => {
             >
               Đăng nhập
             </NavLink>
-            <button
-              data-collapse-toggle="mobile-menu-2"
-              type="button"
-              className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg xl:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
-              aria-controls="mobile-menu-2"
-              aria-expanded="false"
-            >
-              <span className="sr-only">Open main menu</span>
-              <svg
-                className="w-6 h-6"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <svg
-                className="hidden w-6 h-6"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </button>
+            <CollapsedMenu />
           </div>
           <div
             className="items-center justify-between hidden w-full xl:flex xl:w-auto xl:order-1"

@@ -33,27 +33,27 @@ const Footer = () => {
                 />
               </span>
             </NavLink>
-            <ul className="font-medium text-gray-500">
+            <ul className="font-medium text-gray-500 w-2/3 md:w-full mx-auto">
               <NavLink to="https://cybersoft.edu.vn/" target="_blank">
                 <li className="flex items-center mb-4 cursor-pointer group">
-                  <PhoneFilled className="p-3 rounded-full bg-[#41b294] text-white group-hover:-translate-y-1 duration-300 inline-block" />
-                  <span className="inline-block duration-300 ms-2 group-hover:-translate-y-1 group-hover:text-[#41b294]">
+                  <PhoneFilled className="p-3 rounded-full bg-[#41b294] text-white group-hover:-translate-y-1 duration-300 md:inline-block hidden" />
+                  <span className="inline-block duration-300 ms-2 group-hover:-translate-y-1 group-hover:text-[#41b294] flex-grow">
                     096-105-1014
                   </span>
                 </li>
               </NavLink>
               <NavLink to="https://cybersoft.edu.vn/" target="_blank">
                 <li className="flex items-center mb-4 cursor-pointer group">
-                  <MailFilled className="p-3 rounded-full bg-[#41b294] text-white group-hover:-translate-y-1 duration-300 inline-block" />
-                  <span className="inline-block duration-300 ms-2 group-hover:-translate-y-1 group-hover:text-[#41b294]">
+                  <MailFilled className="p-3 rounded-full bg-[#41b294] text-white group-hover:-translate-y-1 duration-300 md:inline-block hidden" />
+                  <span className="inline-block duration-300 ms-2 group-hover:-translate-y-1 group-hover:text-[#41b294] flex-grow">
                     info@cybersoft.edu.vn
                   </span>
                 </li>
               </NavLink>
               <NavLink to="https://cybersoft.edu.vn/" target="_blank">
                 <li className="flex items-center mb-4 cursor-pointer group">
-                  <HomeFilled className="p-3 rounded-full bg-[#41b294] text-white group-hover:-translate-y-1 duration-300 inline-block" />
-                  <span className="inline-block duration-300 ms-2 group-hover:-translate-y-1 group-hover:text-[#41b294]">
+                  <HomeFilled className="p-3 rounded-full bg-[#41b294] text-white group-hover:-translate-y-1 duration-300 md:inline-block hidden" />
+                  <span className="inline-block duration-300 ms-2 group-hover:-translate-y-1 group-hover:text-[#41b294] flex-grow">
                     Tầng 5, toà nhà Suri, 112 Cao Thắng, Quận 3, TPHCM
                   </span>
                 </li>
