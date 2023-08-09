@@ -12,6 +12,7 @@ import Blog from "./pages/Blog/Blog";
 import Event from "./pages/Event/Event";
 import Intro from "./pages/Intro/Intro";
 import Detail from "./pages/Detail/Detail";
+import Info from "./pages/Info/Info";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<UserTemplate />}>
           <Route index element={<Home />} />
+          <Route path="/info" element={<Info />} />
           <Route path="/search/:tuKhoa" element={<Search />} />
           <Route path="/category/:maDanhMuc" element={<Category />} />
           <Route path="/course" element={<Course />} />
