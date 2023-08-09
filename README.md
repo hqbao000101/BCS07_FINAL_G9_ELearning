@@ -1,27 +1,27 @@
 # Ghi chú về dự án React - ELearning
 - Duration: 1 month (01/08/2023 - 31/08/2023)
 - Deadline: 27/08/2023 !!!
-- 28/08 -> 31/08: Merge code -> Fix bugs -> Video Demo -> Deliver / Submit 
+- 28/08 -> 31/08: Merge code -> Fix bugs -> Video Demo -> Deliver / Submit
 - Member: 3
   + Huynh Quang Bao
   + Nguyen Dinh Anh Hao
   + Dang Thuy Linh
 
 # Pages are intended to be done (if we can):
-  + Login - Register (MUST) -> Bao
-  + Home - Trang chủ (MUST) -> Bao
-  + Info - Thông tin người dùng (MUST) -> Bao
-  + Intro - Thông tin / Giới thiệu
-  + Category - Danh mục
-  + Course - Khóa học
-  + Detail - Chi tiết khóa học (MUST)
-  + Blog - Blog
-  + Event - Sự kiện
-  + Search - Tìm kiếm -> Bao
-  + Admin: -> Bao
-    a. User Management - Quản lý người dùng (MUST)
-    b. Course Management - Quản lý khóa học (MUST)
-    c. Enrollment Management - Quản lý ghi danh (optional)
+- Login - Register (MUST) -> Bao
+- Home - Trang chủ (MUST) -> Bao
+- Info - Thông tin người dùng (MUST) -> Bao
+- Intro - Thông tin / Giới thiệu
+- Category - Danh mục
+- Course - Khóa học
+- Detail - Chi tiết khóa học (MUST)
+- Blog - Blog
+- Event - Sự kiện
+- Search - Tìm kiếm -> Bao
+- Admin: -> Bao
+  + User Management - Quản lý người dùng (MUST)
+  + Course Management - Quản lý khóa học (MUST)
+  + Enrollment Management - Quản lý ghi danh (optional)
 
 # Project Relevant Sources
 - Google Drive: https://drive.google.com/drive/folders/1ACHSwsRRtpHIydXv8VKoz9-kkzQ6saZ9?usp=sharing
@@ -53,8 +53,8 @@
 - sass - sass-loader
 
 # Other Supports
-  - animation: LottieFiles --> npm install --save react-lottie (--force)
-  - format Datetime: Moment --> npm i moment (--force)
+- animation: LottieFiles --> npm install --save react-lottie (--force)
+- format Datetime: Moment --> npm i moment (--force)
 
 # Comment ESLint React Hook - useEffect
-- // eslint-disable-next-line react-hooks/exhaustive-deps
+- eslint-disable-next-line react-hooks/exhaustive-deps
