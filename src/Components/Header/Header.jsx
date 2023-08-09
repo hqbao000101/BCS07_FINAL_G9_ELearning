@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import {
   BarsOutlined,
@@ -6,9 +6,12 @@ import {
   CaretRightOutlined,
 } from "@ant-design/icons";
 import { Dropdown } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { setNavbarActive } from "../../redux/slices/navbarSlice";
 
 const Header = () => {
-  const [category, setCategory] = useState(false);
+  const { isActive } = useSelector((state) => state.navbar);
+  const dispatch = useDispatch();
 
   const items = [
     {
@@ -18,7 +21,7 @@ const Header = () => {
           to="/category/TuDuy"
           style={({ isActive }) => (isActive ? { color: "orange" } : {})}
           onClick={() => {
-            setCategory(true);
+            dispatch(setNavbarActive(true));
           }}
         >
           Tư Duy Lập Trình
@@ -32,7 +35,7 @@ const Header = () => {
           to="/category/DiDong"
           style={({ isActive }) => (isActive ? { color: "orange" } : {})}
           onClick={() => {
-            setCategory(true);
+            dispatch(setNavbarActive(true));
           }}
         >
           Lập Trình Mobile
@@ -46,7 +49,7 @@ const Header = () => {
           to="/category/Design"
           style={({ isActive }) => (isActive ? { color: "orange" } : {})}
           onClick={() => {
-            setCategory(true);
+            dispatch(setNavbarActive(true));
           }}
         >
           Thiết Kế Website
@@ -60,7 +63,7 @@ const Header = () => {
           to="/category/FrontEnd"
           style={({ isActive }) => (isActive ? { color: "orange" } : {})}
           onClick={() => {
-            setCategory(true);
+            dispatch(setNavbarActive(true));
           }}
         >
           Lập Trình Front-end
@@ -74,7 +77,7 @@ const Header = () => {
           to="/category/BackEnd"
           style={({ isActive }) => (isActive ? { color: "orange" } : {})}
           onClick={() => {
-            setCategory(true);
+            dispatch(setNavbarActive(true));
           }}
         >
           Lập Trình Back-end
@@ -88,7 +91,7 @@ const Header = () => {
           to="/category/FullStack"
           style={({ isActive }) => (isActive ? { color: "orange" } : {})}
           onClick={() => {
-            setCategory(true);
+            dispatch(setNavbarActive(true));
           }}
         >
           Lập Trình Fullstack
@@ -105,7 +108,7 @@ const Header = () => {
             to="/"
             className="flex items-center"
             onClick={() => {
-              setCategory(false);
+              dispatch(setNavbarActive(false));
             }}
           >
             <img src="./favicon.png" className="h-20" alt="ELearning Logo" />
@@ -125,7 +128,7 @@ const Header = () => {
               to="/login"
               className="text-white hover:bg-orange-500 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none bg-orange-400 duration-300 hover:shadow-md"
               onClick={() => {
-                setCategory(false);
+                dispatch(setNavbarActive(false));
               }}
             >
               Đăng nhập
@@ -177,7 +180,7 @@ const Header = () => {
                     isActive ? { color: "orange" } : {}
                   }
                   onClick={() => {
-                    setCategory(false);
+                    dispatch(setNavbarActive(false));
                   }}
                 >
                   Trang chủ
@@ -191,7 +194,7 @@ const Header = () => {
                     isActive ? { color: "orange" } : {}
                   }
                   onClick={() => {
-                    setCategory(false);
+                    dispatch(setNavbarActive(false));
                   }}
                 >
                   Thông tin
@@ -205,7 +208,7 @@ const Header = () => {
                 >
                   <NavLink
                     className={`flex items-center py-2 pl-3 pr-4 uppercase duration-300 border-b border-gray-100 nav-link hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-orange-400 lg:p-0 ${
-                      category ? "text-orange-400" : ""
+                      isActive ? "text-orange-400" : ""
                     }`}
                   >
                     <BarsOutlined className="me-2" />
@@ -221,7 +224,7 @@ const Header = () => {
                     isActive ? { color: "orange" } : {}
                   }
                   onClick={() => {
-                    setCategory(false);
+                    dispatch(setNavbarActive(false));
                   }}
                 >
                   Khóa học
@@ -235,7 +238,7 @@ const Header = () => {
                     isActive ? { color: "orange" } : {}
                   }
                   onClick={() => {
-                    setCategory(false);
+                    dispatch(setNavbarActive(false));
                   }}
                 >
                   Blog
@@ -249,7 +252,7 @@ const Header = () => {
                     isActive ? { color: "orange" } : {}
                   }
                   onClick={() => {
-                    setCategory(false);
+                    dispatch(setNavbarActive(false));
                   }}
                 >
                   Sự kiện

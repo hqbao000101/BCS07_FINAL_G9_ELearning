@@ -1,8 +1,12 @@
 import { HomeFilled, MailFilled, PhoneFilled } from "@ant-design/icons";
 import React from "react";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { setNavbarActive } from "../../redux/slices/navbarSlice";
 
 const Footer = () => {
+  const dispatch = useDispatch();
+
   return (
     <footer className="bg-[#f0f8ff]">
       <div className="w-full p-4 py-6 mx-auto max-w-screen-2xl lg:py-8">
@@ -11,6 +15,9 @@ const Footer = () => {
             <NavLink
               to="/"
               className="flex items-center justify-center mb-4 md:justify-start"
+              onClick={() => {
+                dispatch(setNavbarActive(false));
+              }}
             >
               <span className="relative self-center text-2xl font-bold whitespace-nowrap group">
                 <span className="text-[#41b294] drop-shadow-[5px_-2px_3px_#54d2c0] text-5xl me-2 group-hover:scale-105 inline-block duration-300">
@@ -62,6 +69,9 @@ const Footer = () => {
                 <NavLink
                   to="/"
                   className="inline-block duration-300 hover:-translate-y-1 hover:text-[#41b294]"
+                  onClick={() => {
+                    dispatch(setNavbarActive(false));
+                  }}
                 >
                   {">"} Trang chủ
                 </NavLink>
@@ -70,6 +80,9 @@ const Footer = () => {
                 <NavLink
                   to="/intro"
                   className="inline-block duration-300 hover:-translate-y-1 hover:text-[#41b294]"
+                  onClick={() => {
+                    dispatch(setNavbarActive(false));
+                  }}
                 >
                   {">"} Thông tin
                 </NavLink>
@@ -78,6 +91,9 @@ const Footer = () => {
                 <NavLink
                   to="/blog"
                   className="inline-block duration-300 hover:-translate-y-1 hover:text-[#41b294]"
+                  onClick={() => {
+                    dispatch(setNavbarActive(false));
+                  }}
                 >
                   {">"} Blog
                 </NavLink>
@@ -86,6 +102,9 @@ const Footer = () => {
                 <NavLink
                   to="/event"
                   className="inline-block duration-300 hover:-translate-y-1 hover:text-[#41b294]"
+                  onClick={() => {
+                    dispatch(setNavbarActive(false));
+                  }}
                 >
                   {">"} Sự kiện
                 </NavLink>
@@ -101,6 +120,9 @@ const Footer = () => {
                 <NavLink
                   to="/category/FrontEnd"
                   className="inline-block duration-300 hover:-translate-y-1 hover:text-[#41b294]"
+                  onClick={() => {
+                    dispatch(setNavbarActive(true));
+                  }}
                 >
                   {">"} ReactJS
                 </NavLink>
@@ -109,6 +131,9 @@ const Footer = () => {
                 <NavLink
                   to="/category/BackEnd"
                   className="inline-block duration-300 hover:-translate-y-1 hover:text-[#41b294]"
+                  onClick={() => {
+                    dispatch(setNavbarActive(true));
+                  }}
                 >
                   {">"} NodeJS
                 </NavLink>
@@ -117,6 +142,9 @@ const Footer = () => {
                 <NavLink
                   to="/category/FullStack"
                   className="inline-block duration-300 hover:-translate-y-1 hover:text-[#41b294]"
+                  onClick={() => {
+                    dispatch(setNavbarActive(true));
+                  }}
                 >
                   {">"} Fullstack
                 </NavLink>
