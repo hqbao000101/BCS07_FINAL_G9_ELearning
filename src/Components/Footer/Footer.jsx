@@ -183,7 +183,13 @@ const Footer = () => {
         <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm text-black sm:text-center">
-            <NavLink to="/" className="hover:underline">
+            <NavLink
+              to="/"
+              className="hover:underline"
+              onClick={() => {
+                dispatch(setNavbarActive(false));
+              }}
+            >
               Cyber E-Learning
             </NavLink>{" "}
             © 2023 by BCS07 | G9. All Rights Reserved.
