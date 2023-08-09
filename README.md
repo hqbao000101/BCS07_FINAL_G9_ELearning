@@ -1,5 +1,7 @@
 # Ghi chú về dự án React - ELearning
 - Duration: 1 month (01/08/2023 - 31/08/2023)
+- Deadline: 27/08/2023 !!!
+- 28/08 -> 31/08: Merge code -> Fix bugs -> Video Demo -> Deliver / Submit 
 - Member: 3
   + Huynh Quang Bao
   + Nguyen Dinh Anh Hao
