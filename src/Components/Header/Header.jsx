@@ -1,18 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
   BarsOutlined,
   CaretLeftOutlined,
   CaretRightOutlined,
+  LoginOutlined,
 } from "@ant-design/icons";
 import { Dropdown } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { setNavbarActive } from "../../redux/slices/navbarSlice";
 import CollapsedMenu from "../CollapsedMenu/CollapsedMenu";
 
+function getWindowSize() {
+  const { innerWidth, innerHeight } = window;
+  return { innerWidth, innerHeight };
+}
+
 const Header = () => {
   const { isActive } = useSelector((state) => state.navbar);
   const dispatch = useDispatch();
+  const [windowSize, setWindowSize] = useState(getWindowSize());
+
+  useEffect(() => {
+    function handleWindowResize() {
+      setWindowSize(getWindowSize());
+    }
+    window.addEventListener("resize", handleWindowResize);
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
 
   const items = [
     {
@@ -114,10 +131,10 @@ const Header = () => {
           >
             <img src="./favicon.png" className="h-20" alt="Logo" />
             <div>
-              <span className="self-center text-2xl font-semibold tracking-wide uppercase whitespace-nowrap hover:scale-105 inline-block duration-300">
+              <span className="self-center hidden text-2xl font-semibold tracking-wide uppercase duration-300 sm:inline-block whitespace-nowrap hover:scale-105">
                 Cyber E-Learning
               </span>
-              <p className="flex items-center text-xs text-orange-400 uppercase justify-center">
+              <p className="items-center justify-center hidden text-xs text-orange-400 uppercase sm:flex">
                 <CaretRightOutlined />
                 The Best Online Education
                 <CaretLeftOutlined />
@@ -127,9 +144,9 @@ const Header = () => {
           <div className="flex items-center lg:order-2">
             <NavLink
               to="/login"
-              className="text-white hover:bg-orange-500 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none bg-orange-400 duration-300 hover:shadow-md"
+              className="text-white hover:bg-orange-500 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none bg-orange-400 duration-300 hover:shadow-md flex justify-center items-center"
             >
-              Đăng nhập
+              {windowSize.innerWidth <= 342 ? <LoginOutlined /> : "Đăng nhập"}
             </NavLink>
             <CollapsedMenu />
           </div>

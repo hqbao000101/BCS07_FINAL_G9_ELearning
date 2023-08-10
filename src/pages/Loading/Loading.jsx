@@ -12,7 +12,7 @@ const Loading = () => {
     },
   };
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gradient-to-r from-yellow-500 to-orange-500">
+    <div className="fixed z-50 flex items-center justify-center w-full min-h-screen bg-white bg-opacity-80">
       <Lottie options={defaultOptions} width={"50%"} />;
     </div>
   );

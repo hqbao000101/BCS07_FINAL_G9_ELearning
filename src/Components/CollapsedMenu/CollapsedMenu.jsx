@@ -177,7 +177,12 @@ const CollapsedMenu = () => {
         <MenuOutlined />
       </button>
       <Drawer
-        title="Cyber E-Learning"
+        title={
+          <div>
+            <p>Cyber E-Learning</p>
+            <p className="text-sm text-orange-400">The Best Online Education</p>
+          </div>
+        }
         placement="right"
         onClose={onClose}
         open={open}
