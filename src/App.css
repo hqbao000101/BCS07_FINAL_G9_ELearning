@@ -2,3 +2,7 @@ body {
   font-family: 'Roboto', sans-serif !important;
   scroll-behavior: smooth;
 }
+
+body::-webkit-scrollbar {
+  display: none;
+}
