@@ -1,0 +1,30 @@
+#cloud1 {
+  top: 0;
+  left: 0;
+  width: 10%;
+}
+
+#cloud2 {
+  top: 15%;
+  left: 0;
+  width: 20%;
+}
+
+#cloud3 {
+  top: 40%;
+  left: 0;
+  width: 15%;
+}
+
+#code {
+  bottom: 36%;
+  left: 20%;
+  animation: floatTop 5s ease-out 1s infinite;
+}
+
+#thought {
+  bottom: 43%;
+  left: 39%;
+  animation: slightSpin 4s linear 1s infinite;
+  transform-origin: bottom;
+}
