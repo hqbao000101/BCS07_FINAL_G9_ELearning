@@ -47,3 +47,14 @@ body::-webkit-scrollbar {
     opacity: 1;
   }
 }
+
+@keyframes floatRight {
+  from {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(10vw) scale(1.5);
+    opacity: 0;
+  }
+}
