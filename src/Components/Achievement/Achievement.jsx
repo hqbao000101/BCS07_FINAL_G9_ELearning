@@ -1,6 +1,11 @@
 import React from "react";
 import { CheckOutlined } from "@ant-design/icons";
 import astronaut from "../../assets/imgs/astronaut.png";
+import course from "../../assets/imgs/achievement_course.png";
+import route from "../../assets/imgs/achievement_route.png";
+import system from "../../assets/imgs/achievement_system.png";
+import mentor from "../../assets/imgs/achievement_mentor.png";
+import certification from "../../assets/imgs/achievement_certification.png";
 import "./Achievement.scss";
 
 const Achievement = () => {
@@ -14,7 +19,16 @@ const Achievement = () => {
             className="absolute bottom-0 right-0 w-72"
           />
           <div className="relative">
-            <h3 className="text-xl font-bold sm:text-2xl md:text-3xl">KHÓA HỌC</h3>
+            <div className="flex items-center">
+              <img
+                src={course}
+                alt="course"
+                className="object-cover w-14 me-2"
+              />
+              <h3 className="text-xl font-bold sm:text-2xl md:text-3xl">
+                KHÓA HỌC
+              </h3>
+            </div>
             <p className="my-3">
               <span className="font-bold">Học qua dự án thực tế</span>, học đi
               đôi với hành, không lý thuyết lan man, phân tích cội nguồn của vấn
@@ -54,7 +68,12 @@ const Achievement = () => {
         </div>
         <div className="relative p-5 text-white duration-300 bg-orange-400 achievement-card">
           <div className="relative">
-            <h3 className="text-xl font-bold sm:text-2xl md:text-3xl">LỘ TRÌNH PHÙ HỢP</h3>
+            <div className="flex items-center">
+              <img src={route} alt="route" className="object-cover w-14 me-2" />
+              <h3 className="text-xl font-bold sm:text-2xl md:text-3xl">
+                LỘ TRÌNH
+              </h3>
+            </div>
             <ul>
               <li className="flex my-3">
                 <CheckOutlined className="mt-1 me-2" />
@@ -75,7 +94,16 @@ const Achievement = () => {
         </div>
         <div className="relative p-5 text-white duration-300 bg-blue-400 achievement-card">
           <div className="relative">
-            <h3 className="text-xl font-bold sm:text-2xl md:text-3xl">HỆ THỐNG HỌC TẬP</h3>
+            <div className="flex items-center">
+              <img
+                src={system}
+                alt="system"
+                className="object-cover w-14 me-2"
+              />
+              <h3 className="text-xl font-bold sm:text-2xl md:text-3xl">
+                HỆ THỐNG
+              </h3>
+            </div>
             <ul>
               <li className="flex my-3">
                 <CheckOutlined className="mt-1 me-2" />
@@ -100,7 +128,16 @@ const Achievement = () => {
         </div>
         <div className="relative p-5 text-white duration-300 bg-purple-400 achievement-card">
           <div className="relative">
-            <h3 className="text-xl font-bold sm:text-2xl md:text-3xl">GIẢNG VIÊN</h3>
+            <div className="flex items-center">
+              <img
+                src={mentor}
+                alt="mentor"
+                className="object-cover w-14 me-2"
+              />
+              <h3 className="text-xl font-bold sm:text-2xl md:text-3xl">
+                GIẢNG VIÊN
+              </h3>
+            </div>
             <ul>
               <li className="flex my-3">
                 <CheckOutlined className="mt-1 me-2" />
@@ -119,7 +156,16 @@ const Achievement = () => {
         </div>
         <div className="relative p-5 text-white duration-300 bg-red-400 achievement-card">
           <div className="relative">
-            <h3 className="text-xl font-bold sm:text-2xl md:text-3xl">CHỨNG NHẬN</h3>
+            <div className="flex items-center">
+              <img
+                src={certification}
+                alt="certification"
+                className="object-cover w-14 me-2"
+              />
+              <h3 className="text-xl font-bold sm:text-2xl md:text-3xl">
+                CHỨNG NHẬN
+              </h3>
+            </div>
             <ul>
               <li className="flex my-3">
                 <CheckOutlined className="mt-1 me-2" />
