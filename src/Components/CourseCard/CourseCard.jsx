@@ -6,7 +6,7 @@ import ReactSample from "../../assets/imgs/card_react_sample.jpg";
 import { BellOutlined } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 
-const CourseCard = () => {
+const CourseCard = ({ isPopular = true }) => {
   return (
     <div className="duration-300 shadow-md hover:shadow-xl group">
       <div className="relative">
@@ -17,12 +17,16 @@ const CourseCard = () => {
             className="object-cover w-full aspect-[3/2] group-hover:scale-110 duration-300"
           />
         </div>
-        <span
-          id="like__tag"
-          className="absolute top-0 -left-2 px-3 py-1 text-white bg-red-600 translate-y-[50%]"
-        >
-          Yêu thích
-        </span>
+        {isPopular ? (
+          <span
+            id="like__tag"
+            className="absolute top-0 -left-2 px-3 py-1 text-white bg-red-600 translate-y-[50%]"
+          >
+            Yêu thích
+          </span>
+        ) : (
+          <></>
+        )}
         <span className="absolute bottom-0 left-0 px-3 py-1 text-white bg-main translate-y-[50%] shadow-lg">
           Lập trình Frontend
         </span>
@@ -32,10 +36,11 @@ const CourseCard = () => {
           to="/detail/react"
           className="font-medium duration-500 line-clamp-2 hover:text-orange-400"
         >
-          Lorem ipsum dolor sit amet consetur adipisicing elit. Minus accusamus
-          nesciunt error facere perspiciatis quibusdam maiores libero. Sit
-          ipsum, quam repellat sunt neque totam ad incidunt, similique ut ullam
-          laborum?
+          Lập trình Frontend là công việc sử dụng các ngôn ngữ HTML, CSS và
+          JavaScript để thiết kế và xây dựng giao diện cho một trang web hoặc
+          ứng dụng web mà người dùng có thể xem và tương tác trực tiếp. Người
+          dùng có thể "chạm", "lướt" và đối thoại trên giao diện web là kết quả
+          của lập trình Frontend.
         </NavLink>
         <div className="flex flex-wrap items-center justify-between pt-3 text-gray-500">
           <div>
