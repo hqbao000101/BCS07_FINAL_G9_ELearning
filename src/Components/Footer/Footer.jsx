@@ -8,7 +8,7 @@ const Footer = () => {
   const dispatch = useDispatch();
 
   return (
-    <footer className="bg-[#f0f8ff]">
+    <footer className="bg-[#f0f8ff] mt-6">
       <div className="w-full p-4 py-6 mx-auto max-w-screen-2xl lg:py-8">
         <div className="grid grid-cols-1 gap-10 text-center lg:grid-cols-5 md:grid-cols-2 lg:gap-0 md:text-left">
           <div className="col-span-1 mb-6 lg:col-span-2 md:mb-0">
@@ -33,7 +33,7 @@ const Footer = () => {
                 />
               </span>
             </NavLink>
-            <ul className="font-medium text-gray-500 w-2/3 md:w-full mx-auto">
+            <ul className="w-2/3 mx-auto font-medium text-gray-500 md:w-full">
               <NavLink to="https://cybersoft.edu.vn/" target="_blank">
                 <li className="flex items-center mb-4 cursor-pointer group">
                   <PhoneFilled className="p-3 rounded-full bg-[#41b294] text-white group-hover:-translate-y-1 duration-300 md:inline-block hidden" />
