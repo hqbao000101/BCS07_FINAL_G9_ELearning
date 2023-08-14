@@ -2,7 +2,7 @@ import React from "react";
 import Banner from "../../Components/Banner/Banner";
 import Achievement from "../../Components/Achievement/Achievement";
 import CourseCard from "../../Components/CourseCard/CourseCard";
-import HomeCountUp from "../../Components/CountUp/CountUp";
+import HomeCountUp from "../../Components/HomeCountUp/HomeCountUp";
 
 const Home = () => {
   return (
