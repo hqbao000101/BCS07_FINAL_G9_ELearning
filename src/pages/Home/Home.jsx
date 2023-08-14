@@ -11,23 +11,31 @@ const Home = () => {
     <div>
       <div className="flex flex-col items-center p-4 py-6 mx-auto max-w-screen-2xl md:flex-row">
         <div className="relative order-2 w-full text-center md:order-1 md:w-1/2 ps-0 lg:ps-20 md:text-left">
-          <p className="text-4xl font-bold leading-snug xl:leading-snug md:leading-snug md:text-4xl xl:text-5xl">
-            Chào mừng
-          </p>
-          <p className="text-4xl font-bold leading-snug xl:leading-snug md:leading-snug md:text-4xl xl:text-5xl">
-            đến nền tảng trực tuyến
-          </p>
-          <p className="text-5xl font-bold lg:leading-normal md:text-5xl xl:text-6xl text-main">
-            E Learning
-          </p>
-          <button className="px-5 py-3 mt-5 text-sm text-white duration-500 bg-orange-400 rounded-md shadow-lg xl:text-xl hover:bg-orange-500 hover:scale-90 lg:text-lg md:text-md">
-            Bắt đầu nào
-          </button>
+          <div className="box-decor box-decor__1 absolute"></div>
+          <div className="box-decor box-decor__2 absolute"></div>
+          <div className="box-decor box-decor__3 absolute"></div>
+          <div
+            id="triangle"
+            className="absolute top-0 left-[10vw] md:-top-[10vw] md:-left-[2vw]"
+          ></div>
           <img
             src={HomeBanner2}
             alt="Home Banner 2"
-            className="absolute object-cover w-1/5 right-[30%] -top-[30%]"
+            className="absolute object-cover w-1/5 md:right-[35%] right-[15%]"
+            id="fly-and-cloud"
           />
+          <p className="text-2xl sm:text-3xl font-bold leading-snug xl:leading-snug md:leading-snug sm:leading-snug md:text-4xl xl:text-5xl">
+            Chào mừng
+          </p>
+          <p className="text-2xl sm:text-3xl font-bold leading-snug xl:leading-snug md:leading-snug sm:leading-snug md:text-4xl xl:text-5xl">
+            đến nền tảng trực tuyến
+          </p>
+          <p className="text-3xl font-bold leading-normal xl:leading-normal md:leading-normal sm:leading-normal md:text-5xl xl:text-6xl text-main sm:text-4xl">
+            E Learning
+          </p>
+          <button className="px-5 py-3 mt-5 text-xs sm:text-sm text-white duration-500 bg-orange-400 rounded-md shadow-lg xl:text-xl hover:bg-orange-500 hover:scale-90 lg:text-lg md:text-md">
+            Bắt đầu nào
+          </button>
         </div>
         <div className="relative order-1 w-full md:w-1/2 md:order-2">
           <img
