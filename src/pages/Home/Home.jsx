@@ -5,6 +5,7 @@ import HomeBanner3 from "../../assets/imgs/home_banner_03.png";
 import HomeBanner4 from "../../assets/imgs/home_banner_04.png";
 import HomeBanner5 from "../../assets/imgs/home_banner_05.png";
 import "./Home.scss";
+import { TypeAnimation } from "react-type-animation";
 
 const Home = () => {
   return (
@@ -30,9 +31,27 @@ const Home = () => {
           <p className="text-2xl sm:text-3xl font-bold leading-snug xl:leading-snug md:leading-snug sm:leading-snug md:text-4xl xl:text-5xl">
             đến nền tảng trực tuyến
           </p>
-          <p className="text-3xl font-bold leading-normal xl:leading-normal md:leading-normal sm:leading-normal md:text-5xl xl:text-6xl text-main sm:text-4xl">
-            E Learning
-          </p>
+          <TypeAnimation
+            preRenderFirstString={true}
+            sequence={[
+              "E Learning",
+              1000,
+              "Efficient & Flexible",
+              1000,
+              "Education unlimited",
+              1000,
+              "Expand knowledge",
+              1000,
+              "Embrace future",
+              1000,
+            ]}
+            wrapper="span"
+            speed={50}
+            repeat={Infinity}
+            className="text-3xl font-bold leading-normal xl:leading-normal md:leading-normal sm:leading-normal md:text-5xl xl:text-6xl text-main sm:text-4xl block"
+            deletionSpeed={25}
+            cursor={false}
+          />
           <button className="px-5 py-3 mt-5 text-xs sm:text-sm text-white duration-500 bg-orange-400 rounded-md shadow-lg xl:text-xl hover:bg-orange-500 hover:scale-90 lg:text-lg md:text-md">
             Bắt đầu nào
           </button>
