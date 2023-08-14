@@ -12,7 +12,7 @@ const Home = () => {
         <h3 className="text-2xl font-bold text-orange-400">
           Khóa học phổ biến
         </h3>
-        <div className="grid grid-cols-4 gap-16 mt-8">
+        <div className="grid gap-12 mt-8 sm:grid-cols-2 xl:grid-cols-4">
           <CourseCard />
           <CourseCard />
           <CourseCard />

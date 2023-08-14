@@ -23,7 +23,7 @@ const CourseCard = () => {
         >
           Yêu thích
         </span>
-        <span className="absolute bottom-0 left-0 px-3 py-1 text-white bg-main translate-y-[50%] shadow-md">
+        <span className="absolute bottom-0 left-0 px-3 py-1 text-white bg-main translate-y-[50%] shadow-lg">
           Lập trình Frontend
         </span>
       </div>
@@ -37,7 +37,7 @@ const CourseCard = () => {
           ipsum, quam repellat sunt neque totam ad incidunt, similique ut ullam
           laborum?
         </NavLink>
-        <div className="flex items-center justify-between pt-3 text-gray-500">
+        <div className="flex flex-wrap items-center justify-between pt-3 text-gray-500">
           <div>
             <i className="text-red-400 fa-regular fa-clock me-2"></i>
             <span>8 giờ</span>
@@ -53,21 +53,21 @@ const CourseCard = () => {
         </div>
       </div>
       <Divider className="m-0" />
-      <div className="flex items-center justify-between px-5 py-3">
+      <div className="flex flex-wrap items-center justify-between px-5 py-3">
         <div className="flex items-center">
           <img src={user} alt="User" className="object-cover w-10 me-2" />
-          <span className="text-gray-500">Elon Musk</span>
+          <span className="text-xs text-gray-500 sm:text-base">Elon Musk</span>
         </div>
-        <div>
-          <p className="text-sm text-gray-400 line-through">
+        <div className="text-right">
+          <p className="text-xs text-gray-400 line-through sm:text-sm">
             800.000<sup>đ</sup>
           </p>
           <div className="flex items-center">
             <BellOutlined
               id="sale-off"
-              className="text-[#e55039] text-md me-1"
+              className="text-[#e55039] sm:text-base me-1 text-sm"
             />
-            <p className="text-lg font-medium">
+            <p className="text-sm font-medium sm:text-lg">
               400.000<sup>đ</sup>
             </p>
           </div>
