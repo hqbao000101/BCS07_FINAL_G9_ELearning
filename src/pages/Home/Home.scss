@@ -1,25 +1,31 @@
 #cloud1 {
   top: 0;
   left: 0;
-  width: 10%;
+  width: 12%;
+  opacity: 0;
+  animation: floatRight 5s linear infinite;
 }
 
 #cloud2 {
-  top: 15%;
-  left: 0;
+  top: 10%;
+  left: 10%;
   width: 20%;
+  opacity: 0;
+  animation: floatRight 7s linear 4s infinite;
 }
 
 #cloud3 {
-  top: 40%;
-  left: 0;
+  top: 32%;
+  left: 20%;
   width: 15%;
+  opacity: 0;
+  animation: floatRight 5s linear 2s infinite;
 }
 
 #code {
   bottom: 36%;
   left: 20%;
-  animation: floatTop 5s ease-out 1s infinite;
+  animation: floatTop 3s ease-out 1s infinite;
 }
 
 #thought {
