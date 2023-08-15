@@ -6,6 +6,7 @@ import HomeBanner4 from "../../assets/imgs/home_banner_04.png";
 import HomeBanner5 from "../../assets/imgs/home_banner_05.png";
 import "./Banner.scss";
 import { TypeAnimation } from "react-type-animation";
+import { NavLink } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -51,9 +52,11 @@ const Banner = () => {
           deletionSpeed={25}
           cursor={false}
         />
-        <button className="px-5 py-3 mt-5 text-xs text-white duration-500 bg-orange-400 rounded-md shadow-lg sm:text-sm xl:text-xl hover:bg-orange-500 hover:scale-90 lg:text-lg md:text-md">
-          Bắt đầu nào
-        </button>
+        <NavLink to="/course">
+          <button className="px-5 py-3 mt-5 text-xs text-white duration-500 bg-orange-400 rounded-md shadow-lg sm:text-sm xl:text-xl hover:bg-orange-500 hover:scale-90 lg:text-lg md:text-md">
+            Bắt đầu nào
+          </button>
+        </NavLink>
       </div>
       <div className="relative order-1 w-full md:w-1/2 md:order-2">
         <img

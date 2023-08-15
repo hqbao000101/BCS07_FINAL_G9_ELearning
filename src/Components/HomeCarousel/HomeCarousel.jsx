@@ -45,12 +45,11 @@ const HomeCarousel = () => {
       <div>
         <Carousel
           responsive={responsive}
-          showDots={true}
           arrows={false}
           autoPlay={true}
           infinite={true}
-          renderDotsOutside={true}
           autoPlaySpeed={2000}
+          showDots={false}
         >
           <div className="p-5 text-center">
             <div className="px-5 py-10 duration-300 hover:shadow-xl group">
