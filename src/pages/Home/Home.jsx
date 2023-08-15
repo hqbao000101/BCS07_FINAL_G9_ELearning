@@ -1,12 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Banner from "../../Components/Banner/Banner";
 import Achievement from "../../Components/Achievement/Achievement";
 import CourseCard from "../../Components/CourseCard/CourseCard";
 import HomeCountUp from "../../Components/HomeCountUp/HomeCountUp";
 import HomeCarousel from "../../Components/HomeCarousel/HomeCarousel";
 import UserComment from "../../assets/imgs/user_feedback.png";
+import { courseService } from "../../services/courseServices";
+import { message } from "antd";
+import { useDispatch } from "react-redux";
+import {
+  set_loading_end,
+  set_loading_start,
+} from "../../redux/slices/loadingSlice";
 
 const Home = () => {
+  const [course, setCourse] = useState([]);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(set_loading_start());
+    courseService
+      .getAllCourses()
+      .then((res) => {
+        setCourse(res.data);
+        dispatch(set_loading_end());
+      })
+      .catch(() => {
+        message.error("Không thể lấy dữ liệu khóa học!");
+        dispatch(set_loading_end());
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div>
       <Banner />
@@ -16,10 +39,21 @@ const Home = () => {
           Khóa Học Phổ Biến
         </h3>
         <div className="grid gap-20 mt-8 xl:gap-12 sm:grid-cols-2 xl:grid-cols-4">
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
+          {course.map((item, index) => {
+            return item.luotXem > 4500 ? (
+              <CourseCard
+                key={index}
+                tenDanhMucKhoaHoc={item.danhMucKhoaHoc.tenDanhMucKhoaHoc}
+                hinhAnh={item.hinhAnh}
+                maKhoaHoc={item.maKhoaHoc}
+                moTa={item.moTa}
+                luotXem={item.luotXem}
+                isPopular={item.luotXem >= 1000 ? true : false}
+              />
+            ) : (
+              ""
+            );
+          })}
         </div>
       </div>
       <div className="px-4 py-10 mx-auto max-w-screen-2xl 2xl:px-0">
@@ -27,10 +61,21 @@ const Home = () => {
           Khóa Học Tham Khảo
         </h3>
         <div className="grid gap-20 mt-8 xl:gap-12 sm:grid-cols-2 xl:grid-cols-4">
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
+          {course.map((item, index) => {
+            return index <= 3 ? (
+              <CourseCard
+                key={index}
+                tenDanhMucKhoaHoc={item.danhMucKhoaHoc.tenDanhMucKhoaHoc}
+                hinhAnh={item.hinhAnh}
+                maKhoaHoc={item.maKhoaHoc}
+                moTa={item.moTa}
+                luotXem={item.luotXem}
+                isPopular={item.luotXem >= 1000 ? true : false}
+              />
+            ) : (
+              ""
+            );
+          })}
         </div>
       </div>
       <div className="px-4 py-10 mx-auto max-w-screen-2xl 2xl:px-0">
@@ -38,10 +83,21 @@ const Home = () => {
           Khóa Học Front-end
         </h3>
         <div className="grid gap-20 mt-8 xl:gap-12 sm:grid-cols-2 xl:grid-cols-4">
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
+          {course.map((item, index) => {
+            return item.danhMucKhoaHoc.maDanhMucKhoahoc === "FrontEnd" ? (
+              <CourseCard
+                key={index}
+                tenDanhMucKhoaHoc={item.danhMucKhoaHoc.tenDanhMucKhoaHoc}
+                hinhAnh={item.hinhAnh}
+                maKhoaHoc={item.maKhoaHoc}
+                moTa={item.moTa}
+                luotXem={item.luotXem}
+                isPopular={item.luotXem >= 1000 ? true : false}
+              />
+            ) : (
+              ""
+            );
+          })}
         </div>
       </div>
       <HomeCountUp />
