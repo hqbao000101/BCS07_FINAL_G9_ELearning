@@ -11,12 +11,12 @@
 - Login - Register (MUST) -> Bao
 - Home - Trang chủ (MUST) -> Bao
 - Info - Thông tin người dùng (MUST) -> Bao
-- Intro - Thông tin / Giới thiệu
-- Category - Danh mục
-- Course - Khóa học
-- Detail - Chi tiết khóa học (MUST)
-- Blog - Blog
-- Event - Sự kiện
+- Intro - Thông tin / Giới thiệu -> Hao
+- Category - Danh mục -> Hao
+- Course - Khóa học -> Hao
+- Detail - Chi tiết khóa học (MUST) -> Linh
+- Blog - Blog -> Linh
+- Event - Sự kiện -> Linh
 - Search - Tìm kiếm -> Bao
 - Admin: -> Bao
   + User Management - Quản lý người dùng (MUST)
