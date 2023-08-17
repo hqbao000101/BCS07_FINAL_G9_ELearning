@@ -9,7 +9,7 @@ import "./HorizontalCourseCard.scss";
 const HorizontalCourseCard = ({ item }) => {
   const { maKhoaHoc, tenKhoaHoc, moTa, luotXem, hinhAnh } = item;
   return (
-    <div className="flex flex-col items-center mb-10 shadow-lg sm:flex-row sm:h-64 group sm:pe-3 pe-0 relative">
+    <div className="relative flex flex-col items-center mb-10 shadow-lg sm:flex-row sm:h-64 group sm:pe-3 pe-0">
       <div className="w-full h-full overflow-hidden sm:w-2/5">
         <img
           src={hinhAnh}
