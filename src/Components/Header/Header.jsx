@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   BarsOutlined,
   CaretLeftOutlined,
   CaretRightOutlined,
   LoginOutlined,
+  SearchOutlined,
 } from "@ant-design/icons";
 import { Dropdown } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { setNavbarActive } from "../../redux/slices/navbarSlice";
 import CollapsedMenu from "../CollapsedMenu/CollapsedMenu";
+import "./Header.scss";
 
 function getWindowSize() {
   const { innerWidth, innerHeight } = window;
@@ -20,6 +22,7 @@ const Header = () => {
   const { isActive } = useSelector((state) => state.navbar);
   const dispatch = useDispatch();
   const [windowSize, setWindowSize] = useState(getWindowSize());
+  const navigate = useNavigate();
 
   useEffect(() => {
     function handleWindowResize() {
@@ -118,10 +121,33 @@ const Header = () => {
     },
   ];
 
+  const handleOnFocus = (e) => {
+    e.target.select();
+  };
+
+  const searchCourse = (e, searchKey) => {
+    if (e.code === "Enter" && e.target.value) {
+      navigate(`/search/${e.target.value}`);
+      e.target.value = "";
+    }
+    if (e.code === "SearchIcon" && searchKey) {
+      navigate(`/search/${searchKey}`);
+    }
+  };
+
+  const clickSearch = () => {
+    const searchKey = document.getElementById("search").value;
+    const e = {
+      code: "SearchIcon",
+    };
+    searchCourse(e, searchKey);
+    document.getElementById("search").value = "";
+  };
+
   return (
     <header>
       <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5">
-        <div className="flex flex-wrap items-center justify-between mx-auto max-w-screen-2xl">
+        <div className="flex items-center justify-between mx-auto max-w-screen-2xl">
           <NavLink
             to="/"
             className="flex items-center"
@@ -141,7 +167,21 @@ const Header = () => {
               </p>
             </div>
           </NavLink>
-          <div className="flex items-center lg:order-2">
+          <div className="flex items-center justify-end lg:order-2">
+            <div className="relative hidden duration-500 border-b-2 border-b-black me-3 pe-3 focus-within:border-b-orange-400 group md:block">
+              <input
+                id="search"
+                type="text"
+                placeholder="Search course"
+                onFocus={handleOnFocus}
+                onKeyDown={searchCourse}
+                className="w-44 xl:w-32 lg:w-56"
+              />
+              <SearchOutlined
+                className="absolute right-0 text-gray-300 duration-500 -translate-y-1/2 top-1/2 group-focus-within:text-black hover:scale-150 hover:text-black"
+                onClick={clickSearch}
+              />
+            </div>
             <NavLink
               to="/login"
               className="text-white hover:bg-orange-500 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none bg-orange-400 duration-300 hover:shadow-md flex justify-center items-center"
