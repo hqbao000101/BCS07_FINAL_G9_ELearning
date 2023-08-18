@@ -318,7 +318,7 @@ const Search = () => {
             {error === "" ? (
               <>
                 <div className="flex items-center justify-between mb-8">
-                  <p className="text-xl font-medium sm:text-2xl flex items-center">
+                  <div className="text-xl font-medium sm:text-2xl flex items-center">
                     Trang
                     <span className="text-orange-400 ms-2">{pagination}</span>
                     <i className="fas fa-angle-double-right text-sm ms-2"></i>
@@ -329,7 +329,7 @@ const Search = () => {
                       </span>
                       <span className="text-base">{`/${searchList.totalCount}`}</span>
                     </div>
-                  </p>
+                  </div>
                   <ControlFilled className="block text-2xl text-black duration-500 cursor-pointer sm:text-4xl lg:hidden hover:text-orange-400" />
                 </div>
                 <div>
