@@ -12,6 +12,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setNavbarActive } from "../../redux/slices/navbarSlice";
 import CollapsedMenu from "../CollapsedMenu/CollapsedMenu";
 import "./Header.scss";
+import { setPagination } from "../../redux/slices/courseSlice";
+import favicon from "../../assets/imgs/favicon.png";
 
 function getWindowSize() {
   const { innerWidth, innerHeight } = window;
@@ -129,9 +131,11 @@ const Header = () => {
     if (e.code === "Enter" && e.target.value) {
       navigate(`/search/${e.target.value}`);
       e.target.value = "";
+      dispatch(setPagination(1));
     }
     if (e.code === "SearchIcon" && searchKey) {
       navigate(`/search/${searchKey}`);
+      dispatch(setPagination(1));
     }
   };
 
@@ -155,7 +159,7 @@ const Header = () => {
               dispatch(setNavbarActive(false));
             }}
           >
-            <img src="./favicon.png" className="h-20" alt="Logo" />
+            <img src={favicon} className="h-20" alt="Logo" />
             <div>
               <span className="self-center hidden text-2xl font-semibold tracking-wide uppercase duration-300 sm:inline-block whitespace-nowrap hover:scale-105">
                 Cyber E-Learning
@@ -168,7 +172,7 @@ const Header = () => {
             </div>
           </NavLink>
           <div className="flex items-center justify-end lg:order-2">
-            <div className="relative hidden duration-500 border-b-2 border-b-black me-3 pe-3 focus-within:border-b-orange-400 group md:block">
+            <div className="relative hidden duration-500 border-b-2 border-b-gray-500 me-3 pe-3 focus-within:border-b-orange-400 group md:block">
               <input
                 id="search"
                 type="text"

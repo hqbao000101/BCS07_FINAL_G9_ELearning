@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   CaretRightOutlined,
   ControlFilled,
@@ -8,11 +8,42 @@ import "./Search.scss";
 import HorizontalCourseCard from "../../Components/HorizontalCourseCard/HorizontalCourseCard";
 import { Pagination } from "antd";
 import { useParams } from "react-router-dom";
+import { courseService } from "../../services/courseServices";
+import { useDispatch, useSelector } from "react-redux";
+import { setPagination } from "../../redux/slices/courseSlice";
+import Lottie from "react-lottie";
+import * as animationNoData from "../../assets/animations/no_data.json";
 
 const Search = () => {
   const { tuKhoa } = useParams();
-  const [searchList, setSearchList] = useState([]);
-  
+  const [searchList, setSearchList] = useState({});
+  const [total, setTotal] = useState(0);
+  const [error, setError] = useState("");
+  const pagination = useSelector((state) => state.course.pagination);
+  const dispatch = useDispatch();
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationNoData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
+  useEffect(() => {
+    courseService
+      .getCoursesPagination(tuKhoa, pagination)
+      .then((res) => {
+        setError("");
+        setSearchList(res.data);
+        setTotal(res.data.totalCount);
+      })
+      .catch((err) => {
+        setError(err.response.data);
+      });
+  }, [tuKhoa, pagination]);
+
   return (
     <div>
       <div className="py-16 text-white bg-orange-400">
@@ -28,7 +59,7 @@ const Search = () => {
       </div>
       <div className="py-10 mx-auto max-w-screen-2xl">
         <div className="flex items-start">
-          <div className="hidden w-1/4 px-4 lg:block">
+          <div className="hidden w-1/4 px-4 lg:block sticky top-5">
             <div className="flex items-center text-4xl font-semibold text-black">
               <ControlFilled className="text-orange-400 me-2" />
               <h2>Lọc</h2>
@@ -284,28 +315,48 @@ const Search = () => {
             </ul>
           </div>
           <div className="w-full lg:w-3/4 pe-5 lg:ps-0 ps-5">
-            <div className="flex items-center justify-between mb-8">
-              <p className="text-xl font-medium sm:text-2xl">
-                Hiển thị <span className="text-orange-400">15</span> kết quả
-              </p>
-              <ControlFilled className="block text-2xl text-black duration-500 cursor-pointer sm:text-4xl lg:hidden hover:text-orange-400" />
-            </div>
-            <div>
-              <HorizontalCourseCard />
-              <HorizontalCourseCard />
-              <HorizontalCourseCard />
-              <HorizontalCourseCard />
-              <HorizontalCourseCard />
-            </div>
-            <div className="text-right">
-              <Pagination
-                defaultCurrent={1}
-                total={50}
-                onChange={(page) => {
-                  console.log(page);
-                }}
-              />
-            </div>
+            {error === "" ? (
+              <>
+                <div className="flex items-center justify-between mb-8">
+                  <p className="text-xl font-medium sm:text-2xl flex items-center">
+                    Trang
+                    <span className="text-orange-400 ms-2">{pagination}</span>
+                    <i className="fas fa-angle-double-right text-sm ms-2"></i>
+                    <span className="ms-2 sm:inline hidden">Hiển thị</span>
+                    <div>
+                      <span className="text-orange-400 ms-2">
+                        {searchList.count}
+                      </span>
+                      <span className="text-base">{`/${searchList.totalCount}`}</span>
+                    </div>
+                  </p>
+                  <ControlFilled className="block text-2xl text-black duration-500 cursor-pointer sm:text-4xl lg:hidden hover:text-orange-400" />
+                </div>
+                <div>
+                  {searchList.items?.map((item, index) => {
+                    return <HorizontalCourseCard key={index} item={item} />;
+                  })}
+                </div>
+                <div className="text-right">
+                  <Pagination
+                    current={pagination}
+                    total={total}
+                    onChange={(page) => {
+                      dispatch(setPagination(page));
+                      window.scrollTo({ top: 0, left: 0 });
+                    }}
+                    pageSize={10}
+                  />
+                </div>
+              </>
+            ) : (
+              <div>
+                <p className="text-xl font-medium sm:text-2xl">{error}</p>
+                <div className="flex items-center justify-center">
+                  <Lottie options={defaultOptions} width={"70%"} />
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

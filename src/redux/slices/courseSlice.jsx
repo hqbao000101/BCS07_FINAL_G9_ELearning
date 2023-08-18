@@ -4,6 +4,7 @@ import { courseService } from "../../services/courseServices";
 const initialState = {
   courses: [],
   selectedCourse: {},
+  pagination: 1,
 };
 
 export const getAllCourses = createAsyncThunk(
@@ -21,6 +22,9 @@ export const courseSlice = createSlice({
     setSelectedCourse: (state, action) => {
       state.selectedCourse = action.payload;
     },
+    setPagination: (state, action) => {
+      state.pagination = action.payload;
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(getAllCourses.fulfilled, (state, action) => {
@@ -29,5 +33,5 @@ export const courseSlice = createSlice({
   },
 });
 
-export const { setSelectedCourse } = courseSlice.actions;
+export const { setSelectedCourse, setPagination } = courseSlice.actions;
 export default courseSlice.reducer;

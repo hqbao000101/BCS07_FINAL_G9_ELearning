@@ -48,7 +48,7 @@ const Home = () => {
                 maKhoaHoc={item.maKhoaHoc}
                 moTa={item.moTa}
                 luotXem={item.luotXem}
-                isPopular={item.luotXem >= 1000 ? true : false}
+                isPopular={item.luotXem >= 3000 ? true : false}
               />
             ) : (
               ""
@@ -70,7 +70,7 @@ const Home = () => {
                 maKhoaHoc={item.maKhoaHoc}
                 moTa={item.moTa}
                 luotXem={item.luotXem}
-                isPopular={item.luotXem >= 1000 ? true : false}
+                isPopular={item.luotXem >= 3000 ? true : false}
               />
             ) : (
               ""
@@ -92,7 +92,7 @@ const Home = () => {
                 maKhoaHoc={item.maKhoaHoc}
                 moTa={item.moTa}
                 luotXem={item.luotXem}
-                isPopular={item.luotXem >= 1000 ? true : false}
+                isPopular={item.luotXem >= 3000 ? true : false}
               />
             ) : (
               ""
