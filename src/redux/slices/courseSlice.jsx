@@ -31,11 +31,6 @@ export const courseSlice = createSlice({
       state.courses = action.payload;
     });
   },
-  extraReducers: (builder) => {
-    builder.addCase(getAllCourses.fulfilled, (state, action) => {
-      state.courses = action.payload;
-    });
-  },
 });
 
 export const { setSelectedCourse, setPagination } = courseSlice.actions;
