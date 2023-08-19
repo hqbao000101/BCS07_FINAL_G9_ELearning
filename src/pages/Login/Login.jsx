@@ -12,7 +12,7 @@ const Login = () => {
       className="flex items-center justify-center w-screen h-screen"
       style={{ backgroundImage: `url(${loginBG})` }}
     >
-      <div className="relative flex w-4/5 bg-white rounded-lg shadow-2xl">
+      <div className="relative flex w-4/5 gap-24 px-16 py-24 bg-white rounded-lg shadow-2xl">
         <LoginForm />
         <RegisterForm />
         <div id="overlay" className="absolute"></div>
