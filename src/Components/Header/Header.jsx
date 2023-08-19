@@ -154,14 +154,14 @@ const Header = () => {
         <div className="flex items-center justify-between mx-auto max-w-screen-2xl">
           <NavLink
             to="/"
-            className="flex items-center"
+            className="flex items-center group"
             onClick={() => {
               dispatch(setNavbarActive(false));
             }}
           >
             <img src={favicon} className="h-20" alt="Logo" />
             <div>
-              <span className="self-center hidden text-2xl font-semibold tracking-wide uppercase duration-300 sm:inline-block whitespace-nowrap hover:scale-105">
+              <span className="self-center hidden text-2xl font-semibold tracking-wide uppercase duration-300 sm:inline-block whitespace-nowrap group-hover:scale-105">
                 Cyber E-Learning
               </span>
               <p className="items-center justify-center hidden text-xs text-orange-400 uppercase sm:flex">
