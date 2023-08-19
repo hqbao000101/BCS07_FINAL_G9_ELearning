@@ -15,7 +15,7 @@ const CourseCard = ({
   hinhAnh = ReactSample,
   maKhoaHoc = "1636364364967",
   moTa = tempContent,
-  luotXem = "100"
+  luotXem = "100",
 }) => {
   return (
     <div className="duration-300 shadow-md hover:shadow-xl group">
@@ -33,8 +33,8 @@ const CourseCard = ({
         </div>
         {isPopular ? (
           <span
-            id="like__tag"
-            className="absolute top-0 -left-2 px-3 py-1 text-white bg-red-600 translate-y-[50%]"
+            id="like__tag--home"
+            className="absolute top-0 -left-2 px-3 py-1 text-white bg-red-600 translate-y-[50%] shadow-[6px_5px_10px_black]"
           >
             Yêu thích
           </span>

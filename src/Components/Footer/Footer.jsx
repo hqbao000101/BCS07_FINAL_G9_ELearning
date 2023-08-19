@@ -3,6 +3,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { setNavbarActive } from "../../redux/slices/navbarSlice";
+import favicon from "../../assets/imgs/favicon.png";
 
 const Footer = () => {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ const Footer = () => {
                   Learning
                 </span>
                 <img
-                  src="./favicon.png"
+                  src={favicon}
                   alt="Logo"
                   className="absolute h-10 duration-300 -right-4 -top-3 group-hover:-top-4 group-hover:-right-5"
                 />
