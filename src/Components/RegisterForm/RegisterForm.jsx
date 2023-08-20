@@ -13,7 +13,7 @@ const RegisterForm = () => {
       <FormInput type="text" placeholder="Số điện thoại" name="soDT" />
       <FormInput type="text" placeholder="Tài Khoản" name="taiKhoan" />
       <FormInput type="password" placeholder="Mật Khẩu" name="matKhau" />
-      <label className="flex items-center text-left">
+      <label className="flex items-center justify-center text-left lg:justify-start">
         <input id="receiveNotification" type="checkbox" />
         <span
           className="text-sm text-gray-500 ms-2"

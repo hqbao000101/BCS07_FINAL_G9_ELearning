@@ -4,6 +4,8 @@ import loginOverlay from "../../assets/imgs/login_overlay.png";
 import "./Login.scss";
 import LoginForm from "../../Components/LoginForm/LoginForm";
 import RegisterForm from "../../Components/RegisterForm/RegisterForm";
+import { NavLink } from "react-router-dom";
+import { AuditOutlined, HomeOutlined } from "@ant-design/icons";
 
 const Login = () => {
   const [form, setForm] = useState("login");
@@ -14,20 +16,28 @@ const Login = () => {
       className="flex items-center justify-center w-screen h-screen"
       style={{ backgroundImage: `url(${loginBG})` }}
     >
-      <div className="relative flex w-4/5 px-16 bg-white rounded-lg shadow-2xl">
-        <div className="w-1/2 overflow-hidden flex items-center justify-center pe-16 py-24">
+      <div className="relative flex w-4/5 px-5 bg-white rounded-lg shadow-2xl sm:px-16">
+        <div
+          className={`items-center justify-center w-full py-24 overflow-hidden lg:flex lg:w-1/2 lg:pe-16 ${
+            form === "login" ? "block" : "hidden"
+          }`}
+        >
           <div
             className={`relative duration-1000 w-full ${
-              form === "login" ? "translate-x-0" : "translate-x-full"
+              form === "login" ? "lg:translate-x-0" : "lg:translate-x-full"
             }`}
           >
             <LoginForm />
           </div>
         </div>
-        <div className="w-1/2 overflow-hidden flex items-center justify-center ps-16 py-24">
+        <div
+          className={`items-center justify-center w-full py-24 overflow-hidden lg:flex lg:w-1/2 lg:ps-16 ${
+            form === "login" ? "hidden" : "block"
+          }`}
+        >
           <div
             className={`relative duration-1000 w-full ${
-              form === "login" ? "-translate-x-full" : "translate-x-0"
+              form === "login" ? "lg:-translate-x-full" : "lg:translate-x-0"
             }`}
           >
             <RegisterForm />
@@ -35,7 +45,7 @@ const Login = () => {
         </div>
         <div
           id="overlay"
-          className={`absolute block w-1/2 h-full top-0 duration-1000 overflow-hidden ${
+          className={`absolute hidden lg:block w-1/2 h-full top-0 duration-1000 overflow-hidden ${
             form === "login"
               ? "right-0 rounded-tr-lg rounded-br-lg shadow-[-10px_0_5px_-2px_#aaa]"
               : "right-0 -translate-x-full rounded-tl-lg rounded-bl-lg shadow-[10px_0_5px_-2px_#aaa]"
@@ -87,6 +97,34 @@ const Login = () => {
                 Đăng nhập
               </button>
             </div>
+          </div>
+        </div>
+        <div
+          className={`absolute ${
+            form === "login" ? "" : "lg:text-white"
+          } left-5 bottom-5 group`}
+          title="Back to Home"
+        >
+          <NavLink
+            to="/"
+            className="flex items-center duration-500 group-hover:text-orange-400 group-hover:scale-110"
+          >
+            <i className="text-sm fa-solid fa-arrow-left-long me-2"></i>
+            <HomeOutlined />
+          </NavLink>
+        </div>
+        <div
+          className="absolute block cursor-pointer lg:hidden right-5 bottom-5 group"
+          title={`${form === "login" ? "Register Now" : "Login Now"}`}
+        >
+          <div
+            className="flex items-center duration-500 group-hover:text-orange-400 group-hover:scale-110"
+            onClick={() => {
+              form === "login" ? setForm("register") : setForm("login");
+            }}
+          >
+            <AuditOutlined />
+            <i class="fa-solid fa-arrow-right-long text-sm ms-2"></i>
           </div>
         </div>
       </div>

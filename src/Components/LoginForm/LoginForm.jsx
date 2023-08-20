@@ -11,7 +11,7 @@ const LoginForm = () => {
       </p>
       <FormInput type="text" placeholder="Tài Khoản" name="taiKhoan" />
       <FormInput type="password" placeholder="Mật Khẩu" name="matKhau" />
-      <div className="mt-8 mb-2">
+      <div className="mt-8 mb-3">
         <NavLink to="/login-forget">
           <span className="text-sm italic duration-300 cursor-pointer hover:text-orange-400 hover:underline">
             Quên mật khẩu?
