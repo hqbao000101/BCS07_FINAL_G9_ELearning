@@ -1,6 +1,6 @@
 import React from "react";
 import FormInput from "../FormInput/FormInput";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { userService } from "../../services/userServices";
@@ -8,7 +8,6 @@ import { message } from "antd";
 import { saveLocal } from "../../utils/localStorage";
 
 const LoginForm = () => {
-  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       taiKhoan: "",
