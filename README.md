@@ -53,6 +53,7 @@
 - sass - sass-loader
 
 # Other Supports
+- formik: npm i formik (--force) + npm i yup (--force)
 - animation: LottieFiles --> npm install --save react-lottie (--force)
 - format Datetime: Moment --> npm i moment (--force)
 

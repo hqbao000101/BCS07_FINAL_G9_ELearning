@@ -18,7 +18,7 @@ const Login = () => {
     >
       <div className="relative flex w-4/5 px-5 bg-white rounded-lg shadow-2xl sm:px-16">
         <div
-          className={`items-center justify-center w-full py-24 overflow-hidden lg:flex lg:w-1/2 lg:pe-16 ${
+          className={`items-center justify-center w-full py-12 sm:py-24 overflow-hidden lg:flex lg:w-1/2 lg:pe-16 ${
             form === "login" ? "block" : "hidden"
           }`}
         >
@@ -31,7 +31,7 @@ const Login = () => {
           </div>
         </div>
         <div
-          className={`items-center justify-center w-full py-24 overflow-hidden lg:flex lg:w-1/2 lg:ps-16 ${
+          className={`items-center justify-center w-full py-12 sm:py-24 overflow-hidden lg:flex lg:w-1/2 lg:ps-16 ${
             form === "login" ? "hidden" : "block"
           }`}
         >
@@ -124,7 +124,7 @@ const Login = () => {
             }}
           >
             <AuditOutlined />
-            <i class="fa-solid fa-arrow-right-long text-sm ms-2"></i>
+            <i className="text-sm fa-solid fa-arrow-right-long ms-2"></i>
           </div>
         </div>
       </div>
