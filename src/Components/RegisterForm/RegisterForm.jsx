@@ -4,12 +4,9 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { userService } from "../../services/userServices";
 import { message } from "antd";
-import { useNavigate } from "react-router-dom";
 import { saveLocal } from "../../utils/localStorage";
 
 const RegisterForm = () => {
-  const navigate = useNavigate();
-
   const formik = useFormik({
     initialValues: {
       hoTen: "",
@@ -32,7 +29,7 @@ const RegisterForm = () => {
             .then((res) => {
               saveLocal("user", res.data);
               setTimeout(() => {
-                navigate("/");
+                window.location.href = "/";
               }, [1000]);
             })
             .catch(() => {

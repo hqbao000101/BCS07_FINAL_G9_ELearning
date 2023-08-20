@@ -62,7 +62,7 @@ const LoginForm = () => {
         value={formik.values.matKhau}
       />
       <div className="mb-3 sm:mt-8">
-        <NavLink to="/login-forget">
+        <NavLink to="/login">
           <span className="text-sm italic duration-300 cursor-pointer hover:text-orange-400 hover:underline">
             Quên mật khẩu?
           </span>
