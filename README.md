@@ -53,8 +53,13 @@
 - sass - sass-loader
 
 # Other Supports
+- formik: npm i formik (--force) + npm i yup (--force)
 - animation: LottieFiles --> npm install --save react-lottie (--force)
 - format Datetime: Moment --> npm i moment (--force)
 
 # Comment ESLint React Hook - useEffect
 - eslint-disable-next-line react-hooks/exhaustive-deps
+
+# Accounts for testing
+- GV: { "taiKhoan": "huycan4mat", "matKhau": "123456" }
+- HV: { "taiKhoan": "user0001", "matKhau": "123" }

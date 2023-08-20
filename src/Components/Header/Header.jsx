@@ -6,6 +6,9 @@ import {
   CaretRightOutlined,
   LoginOutlined,
   SearchOutlined,
+  UserOutlined,
+  SettingOutlined,
+  LogoutOutlined,
 } from "@ant-design/icons";
 import { Dropdown } from "antd";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,6 +17,7 @@ import CollapsedMenu from "../CollapsedMenu/CollapsedMenu";
 import "./Header.scss";
 import { setPagination } from "../../redux/slices/courseSlice";
 import favicon from "../../assets/imgs/favicon.png";
+import { removeLocal } from "../../utils/localStorage";
 
 function getWindowSize() {
   const { innerWidth, innerHeight } = window;
@@ -25,6 +29,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const [windowSize, setWindowSize] = useState(getWindowSize());
   const navigate = useNavigate();
+  const loggedUser = useSelector((state) => state.user.loggedUser);
 
   useEffect(() => {
     function handleWindowResize() {
@@ -123,6 +128,45 @@ const Header = () => {
     },
   ];
 
+  const userOptions = [
+    {
+      key: "1",
+      label: (
+        <div>
+          <NavLink
+            to="/info"
+            className="flex items-center duration-300 hover:text-orange-400"
+            style={({ isActive }) => (isActive ? { color: "orange" } : {})}
+            onClick={() => {
+              dispatch(setNavbarActive(false));
+            }}
+          >
+            <SettingOutlined className="me-2" />
+            <span>Tài khoản</span>
+          </NavLink>
+        </div>
+      ),
+    },
+    {
+      type: "divider",
+    },
+    {
+      key: "2",
+      label: (
+        <div
+          className="flex items-center duration-300 hover:text-orange-400"
+          onClick={() => {
+            removeLocal("user");
+            window.location.href = "/";
+          }}
+        >
+          <LogoutOutlined className="rotate-180 me-2" />
+          <span>Đăng xuất</span>
+        </div>
+      ),
+    },
+  ];
+
   const handleOnFocus = (e) => {
     e.target.select();
   };
@@ -154,14 +198,14 @@ const Header = () => {
         <div className="flex items-center justify-between mx-auto max-w-screen-2xl">
           <NavLink
             to="/"
-            className="flex items-center"
+            className="flex items-center group"
             onClick={() => {
               dispatch(setNavbarActive(false));
             }}
           >
             <img src={favicon} className="h-20" alt="Logo" />
             <div>
-              <span className="self-center hidden text-2xl font-semibold tracking-wide uppercase duration-300 sm:inline-block whitespace-nowrap hover:scale-105">
+              <span className="self-center hidden text-2xl font-semibold tracking-wide uppercase duration-300 sm:inline-block whitespace-nowrap group-hover:scale-105">
                 Cyber E-Learning
               </span>
               <p className="items-center justify-center hidden text-xs text-orange-400 uppercase sm:flex">
@@ -186,12 +230,27 @@ const Header = () => {
                 onClick={clickSearch}
               />
             </div>
-            <NavLink
-              to="/login"
-              className="text-white hover:bg-orange-500 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none bg-orange-400 duration-300 hover:shadow-md flex justify-center items-center"
-            >
-              {windowSize.innerWidth <= 342 ? <LoginOutlined /> : "Đăng nhập"}
-            </NavLink>
+            {loggedUser ? (
+              <Dropdown
+                menu={{
+                  items: userOptions,
+                }}
+                trigger={["click"]}
+                placement="bottomRight"
+                arrow={true}
+              >
+                <div className="flex items-center justify-center p-3 text-white duration-300 bg-orange-400 rounded-full shadow-[2px_2px_5px_#999] hover:bg-orange-500">
+                  <UserOutlined />
+                </div>
+              </Dropdown>
+            ) : (
+              <NavLink
+                to="/login"
+                className="text-white hover:bg-orange-500 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none bg-orange-400 duration-300 hover:shadow-md flex justify-center items-center"
+              >
+                {windowSize.innerWidth <= 342 ? <LoginOutlined /> : "Đăng nhập"}
+              </NavLink>
+            )}
             <CollapsedMenu />
           </div>
           <div
