@@ -1,7 +1,7 @@
 import React from "react";
 import "./FormInput.scss";
 
-const FormInput = ({ id, type, placeholder, formik, errors, touched }) => {
+const FormInput = ({ id, type, placeholder, formik, errors, touched, value }) => {
   const { handleChange, handleBlur } = formik;
   const handleFocus = (e) => {
     e.target.select();
@@ -18,6 +18,7 @@ const FormInput = ({ id, type, placeholder, formik, errors, touched }) => {
           onFocus={handleFocus}
           onChange={handleChange}
           onBlur={handleBlur}
+          value={value}
         />
         <label className={`${errors && touched ? "bg-error" : ""}`}></label>
       </div>

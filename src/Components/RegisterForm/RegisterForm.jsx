@@ -2,8 +2,14 @@ import React from "react";
 import FormInput from "../FormInput/FormInput";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { userService } from "../../services/userServices";
+import { message } from "antd";
+import { useNavigate } from "react-router-dom";
+import { saveLocal } from "../../utils/localStorage";
 
 const RegisterForm = () => {
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       hoTen: "",
@@ -11,15 +17,42 @@ const RegisterForm = () => {
       soDT: "",
       taiKhoan: "",
       matKhau: "",
+      maNhom: "GP09",
     },
     onSubmit: (values) => {
-      console.log(values);
+      userService
+        .register(values)
+        .then((res) => {
+          message.success("Đăng ký thành công");
+          userService
+            .login({
+              taiKhoan: res.data.taiKhoan,
+              matKhau: res.data.matKhau,
+            })
+            .then((res) => {
+              saveLocal("user", res.data);
+              setTimeout(() => {
+                navigate("/");
+              }, [1000]);
+            })
+            .catch(() => {
+              message.error("Tự động đăng nhập bị lỗi!");
+              formik.resetForm();
+            });
+        })
+        .catch((err) => {
+          message.error(err.response.data);
+          formik.resetForm();
+        });
     },
     validationSchema: yup.object({
       hoTen: yup
         .string()
         .required("Trường này không dược để trống!")
-        .matches(/^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$/, "Họ tên chỉ được chứa các kí tự!"),
+        .matches(
+          /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$/,
+          "Họ tên chỉ được chứa các kí tự!"
+        ),
       email: yup
         .string()
         .required("Trường này không dược để trống!")
@@ -49,6 +82,7 @@ const RegisterForm = () => {
         formik={formik}
         errors={formik.errors.hoTen}
         touched={formik.touched.hoTen}
+        value={formik.values.hoTen}
       />
       <FormInput
         id="email"
@@ -57,6 +91,7 @@ const RegisterForm = () => {
         formik={formik}
         errors={formik.errors.email}
         touched={formik.touched.email}
+        value={formik.values.email}
       />
       <FormInput
         id="soDT"
@@ -65,6 +100,7 @@ const RegisterForm = () => {
         formik={formik}
         errors={formik.errors.soDT}
         touched={formik.touched.soDT}
+        value={formik.values.soDT}
       />
       <FormInput
         id="taiKhoan"
@@ -73,6 +109,7 @@ const RegisterForm = () => {
         formik={formik}
         errors={formik.errors.taiKhoan}
         touched={formik.touched.taiKhoan}
+        value={formik.values.taiKhoan}
       />
       <FormInput
         id="matKhau"
@@ -81,6 +118,7 @@ const RegisterForm = () => {
         formik={formik}
         errors={formik.errors.matKhau}
         touched={formik.touched.matKhau}
+        value={formik.values.matKhau}
       />
       <label className="flex items-center justify-center text-left lg:justify-start">
         <input id="receiveNotification" type="checkbox" />

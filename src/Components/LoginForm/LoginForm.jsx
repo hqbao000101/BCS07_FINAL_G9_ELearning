@@ -1,17 +1,33 @@
 import React from "react";
 import FormInput from "../FormInput/FormInput";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { userService } from "../../services/userServices";
+import { message } from "antd";
+import { saveLocal } from "../../utils/localStorage";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       taiKhoan: "",
       matKhau: "",
     },
     onSubmit: (values) => {
-      console.log(values);
+      userService
+        .login(values)
+        .then((res) => {
+          saveLocal("user", res.data);
+          message.success("Đăng nhập thành công!");
+          setTimeout(() => {
+            navigate("/");
+          }, [1000]);
+        })
+        .catch((err) => {
+          message.error(err.response.data);
+          formik.resetForm();
+        });
     },
     validationSchema: yup.object({
       taiKhoan: yup.string().required("Trường này không dược để trống!"),
@@ -35,6 +51,7 @@ const LoginForm = () => {
         formik={formik}
         errors={formik.errors.taiKhoan}
         touched={formik.touched.taiKhoan}
+        value={formik.values.taiKhoan}
       />
       <FormInput
         id="matKhau"
@@ -43,6 +60,7 @@ const LoginForm = () => {
         formik={formik}
         errors={formik.errors.matKhau}
         touched={formik.touched.matKhau}
+        value={formik.values.matKhau}
       />
       <div className="mb-3 sm:mt-8">
         <NavLink to="/login-forget">
