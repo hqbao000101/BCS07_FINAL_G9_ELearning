@@ -1,17 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   CaretRightOutlined,
   EditOutlined,
+  SafetyCertificateOutlined,
   ScheduleOutlined,
   SolutionOutlined,
 } from "@ant-design/icons";
-import { Tabs } from "antd";
+import { Tabs, message, notification } from "antd";
 import "./Info.scss";
 import avatar from "../../assets/imgs/home_carousel_06.jpg";
 import InfoDetail from "../../Components/InfoDetail/InfoDetail";
 import InfoCourse from "../../Components/InfoCourse/InfoCourse";
+import { userService } from "../../services/userServices";
+import { useFormik } from "formik";
+import * as yup from "yup";
+import { useSelector } from "react-redux";
 
 const Info = () => {
+  const [account, setAccount] = useState({});
+  const [card, setCard] = useState(false);
+  const [api, contextHolder] = notification.useNotification();
+  const loggedUser = useSelector((state) => state.user.loggedUser);
+
+  useEffect(() => {
+    userService
+      .accountInfo()
+      .then((res) => {
+        setAccount(res.data);
+        formik.values.matKhau = res.data.matKhau;
+      })
+      .catch(() => {
+        message.error("Không tìm thấy thông tin tài khoản!");
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const items = [
     {
       key: 1,
@@ -35,8 +58,50 @@ const Info = () => {
     },
   ];
 
+  const formik = useFormik({
+    initialValues: {
+      hoTen: loggedUser.hoTen,
+      email: loggedUser.email,
+      soDT: loggedUser.soDT,
+      taiKhoan: loggedUser.taiKhoan,
+      matKhau: "",
+      maNhom: loggedUser.maNhom,
+      maLoaiNguoiDung: loggedUser.maLoaiNguoiDung,
+    },
+    onSubmit: (values) => {
+      userService
+        .updateUsers(values)
+        .then(() => {
+          setCard(false);
+          api.open({
+            message: <h1 className="text-lg font-semibold">Đổi mật khẩu</h1>,
+            description:
+              "Thành công thay đổi mật khẩu. Mật khẩu mới sẽ được áp dụng ngay lập tức!",
+            icon: (
+              <SafetyCertificateOutlined
+                style={{
+                  color: "#41b294",
+                }}
+              />
+            ),
+            className: "border-l-8 border-[#41b294]",
+          });
+        })
+        .catch(() => {
+          message.error("Cập nhật thất bại!");
+        });
+    },
+    validationSchema: yup.object({
+      matKhau: yup
+        .string()
+        .required("Trường này không dược để trống!")
+        .min(3, "Mật khẩu cần có ít nhất 3 ký tự"),
+    }),
+  });
+
   return (
     <div>
+      {contextHolder}
       <div className="py-16 text-white bg-orange-400">
         <div className="px-4 mx-auto max-w-screen-2xl">
           <h1 className="mb-2 text-4xl font-bold uppercase sm:text-5xl">
@@ -51,7 +116,10 @@ const Info = () => {
       <div className="mx-auto py-14 max-w-screen-2xl">
         <div className="flex gap-10 px-4 lg:px-0">
           <div className="w-2/5 ">
-            <form className="sticky px-20 py-10 shadow-2xl top-5 rounded-2xl">
+            <form
+              className="sticky px-20 py-10 shadow-2xl top-5 rounded-2xl"
+              onSubmit={formik.handleSubmit}
+            >
               <div className="relative">
                 <img
                   src={avatar}
@@ -65,24 +133,57 @@ const Info = () => {
               </h3>
               <div className="flex items-center justify-between py-3 my-5 border-b-2">
                 <div className="font-medium">Tài khoản</div>
-                <div>Belgor</div>
+                <div>{account.taiKhoan}</div>
               </div>
-              <div className="flex items-center justify-between py-3 my-5 border-b-2">
+              <div className="flex items-center justify-between my-5 border-b-2">
                 <div className="font-medium">Mật khẩu</div>
-                <div>********56</div>
+                <input
+                  id="matKhau"
+                  type="password"
+                  className={`py-3 text-right outline-none ${
+                    card
+                      ? "bg-gray-100 border-b-2 border-orange-400 duration-300"
+                      : "cursor-default"
+                  }`}
+                  value={formik.values.matKhau}
+                  readOnly={card ? "" : "readonly"}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
               </div>
+              {formik.errors.matKhau && formik.touched.matKhau ? (
+                <p className="mt-2 text-xs italic text-right text-red-500 sm:text-sm">
+                  * {formik.errors.matKhau}
+                </p>
+              ) : (
+                ""
+              )}
               <div className="flex items-center justify-between py-3 my-5 border-b-2">
                 <div className="font-medium">Loại người dùng</div>
-                <div>Học viên</div>
+                <div>
+                  {account.maLoaiNguoiDung === "HV" ? "Học viên" : "Giáo vụ"}
+                </div>
               </div>
               <div className="flex items-center justify-between py-3 my-5 border-b-2">
                 <div className="font-medium">Mã nhóm</div>
-                <div>GP09</div>
+                <div className="uppercase">{account.maNhom}</div>
               </div>
               <div className="text-center">
-                <button className="px-3 py-2 text-white duration-300 bg-orange-400 rounded-lg hover:bg-orange-500 hover:scale-90">
-                  Cập nhật
-                </button>
+                {card ? (
+                  <button className="px-3 py-2 text-white duration-300 bg-orange-400 rounded-lg hover:bg-orange-500 hover:scale-90">
+                    Lưu thay đổi
+                  </button>
+                ) : (
+                  <span
+                    className="px-3 py-2 text-white duration-300 bg-orange-400 rounded-lg cursor-pointer hover:bg-orange-500 hover:scale-90"
+                    onClick={() => {
+                      setCard(true);
+                      document.getElementById("matKhau").focus();
+                    }}
+                  >
+                    Cập nhật
+                  </span>
+                )}
               </div>
             </form>
           </div>

@@ -9,15 +9,15 @@ const InfoDetail = () => {
           Chi tiết
         </h3>
         <div className="flex items-center justify-between py-3 my-5">
-          <div className="font-medium">Họ tên</div>
+          <div className="font-bold">Họ tên</div>
           <div>User 0001</div>
         </div>
         <div className="flex items-center justify-between py-3 my-5">
-          <div className="font-medium">Địa chỉ email</div>
+          <div className="font-bold">Địa chỉ email</div>
           <div>user0001@gmail.com</div>
         </div>
         <div className="flex items-center justify-between py-3 my-5">
-          <div className="font-medium">Số điện thoại</div>
+          <div className="font-bold">Số điện thoại</div>
           <div>023124457989</div>
         </div>
         <div className="text-right">
