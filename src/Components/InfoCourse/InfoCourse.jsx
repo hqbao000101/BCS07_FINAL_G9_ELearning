@@ -1,23 +1,27 @@
 import React from "react";
 import HorizontalCourseCard from "../HorizontalCourseCard/HorizontalCourseCard";
 import { Pagination } from "antd";
+import { useSelector } from "react-redux";
 
 const InfoCourse = () => {
-  const item = {
-    maKhoaHoc: "ABC",
-    tenKhoaHoc: "Lap trinh suong suong",
-    moTa: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius porro deserunt ut ipsam perspiciatis reiciendis eos est vero, culpa ad?",
-    luotXem: "4399",
-    hinhAnh: "https://photos.picsum/200",
-  };
+  const accountInfo = useSelector((state) => state.user.accountInfo);
+
   return (
     <div>
-      <HorizontalCourseCard item={item} />
-      <HorizontalCourseCard item={item} />
-      <HorizontalCourseCard item={item} />
-      <div className="text-right">
-        <Pagination defaultCurrent={1} total={50} />
-      </div>
+      {accountInfo.chiTietKhoaHocGhiDanh?.map((item, index) => {
+        return <HorizontalCourseCard item={item} flag={true} key={index} />;
+      })}
+      {accountInfo.chiTietKhoaHocGhiDanh?.length > 0 ? (
+        <div className="text-right">
+          <Pagination
+            defaultCurrent={1}
+            total={accountInfo.chiTietKhoaHocGhiDanh?.length}
+            pageSize={1}
+          />
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

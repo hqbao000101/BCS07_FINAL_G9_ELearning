@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   CaretRightOutlined,
   EditOutlined,
+  FileExcelOutlined,
   SafetyCertificateOutlined,
   ScheduleOutlined,
   SolutionOutlined,
@@ -14,13 +15,78 @@ import InfoCourse from "../../Components/InfoCourse/InfoCourse";
 import { userService } from "../../services/userServices";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getAccountInfo } from "../../redux/slices/userSlice";
 
 const Info = () => {
   const [account, setAccount] = useState({});
   const [card, setCard] = useState(false);
   const [api, contextHolder] = notification.useNotification();
-  const loggedUser = useSelector((state) => state.user.loggedUser);
+  const accountInfo = useSelector((state) => state.user.accountInfo);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const formik = useFormik({
+    initialValues: {
+      hoTen: accountInfo.hoTen,
+      email: accountInfo.email,
+      soDT: accountInfo.soDT,
+      taiKhoan: accountInfo.taiKhoan,
+      matKhau: accountInfo.matKhau,
+      maNhom: accountInfo.maNhom,
+      maLoaiNguoiDung: accountInfo.maLoaiNguoiDung,
+    },
+    onSubmit: (values) => {
+      userService
+        .updateUsers({
+          ...values,
+          hoTen: accountInfo.hoTen,
+          email: accountInfo.email,
+          soDT: accountInfo.soDT,
+        })
+        .then(() => {
+          dispatch(getAccountInfo());
+          setCard(false);
+          api.open({
+            message: <h1 className="text-lg font-semibold">Đổi mật khẩu</h1>,
+            description:
+              "Thành công thay đổi mật khẩu. Mật khẩu mới sẽ được áp dụng ngay lập tức!",
+            icon: (
+              <SafetyCertificateOutlined
+                style={{
+                  color: "#41b294",
+                }}
+              />
+            ),
+            className: "border-l-8 border-[#41b294]",
+          });
+        })
+        .catch(() => {
+          setCard(false);
+          formik.values.matKhau = accountInfo.matKhau;
+          api.open({
+            message: <h1 className="text-lg font-semibold">Đổi mật khẩu</h1>,
+            description:
+              "Thay đổi mật khẩu thất bại. Hệ thống đã xảy ra lỗi khi cập nhật!",
+            icon: (
+              <FileExcelOutlined
+                style={{
+                  color: "red",
+                }}
+              />
+            ),
+            className: "border-l-8 border-red-500",
+          });
+        });
+    },
+    validationSchema: yup.object({
+      matKhau: yup
+        .string()
+        .required("Trường này không dược để trống!")
+        .min(3, "Mật khẩu cần có ít nhất 3 ký tự"),
+    }),
+  });
 
   useEffect(() => {
     userService
@@ -30,7 +96,8 @@ const Info = () => {
         formik.values.matKhau = res.data.matKhau;
       })
       .catch(() => {
-        message.error("Không tìm thấy thông tin tài khoản!");
+        message.info("Vui lòng đăng nhập tài khoản của bạn!");
+        navigate("/login");
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -57,47 +124,6 @@ const Info = () => {
       children: <InfoCourse />,
     },
   ];
-
-  const formik = useFormik({
-    initialValues: {
-      hoTen: loggedUser.hoTen,
-      email: loggedUser.email,
-      soDT: loggedUser.soDT,
-      taiKhoan: loggedUser.taiKhoan,
-      matKhau: "",
-      maNhom: loggedUser.maNhom,
-      maLoaiNguoiDung: loggedUser.maLoaiNguoiDung,
-    },
-    onSubmit: (values) => {
-      userService
-        .updateUsers(values)
-        .then(() => {
-          setCard(false);
-          api.open({
-            message: <h1 className="text-lg font-semibold">Đổi mật khẩu</h1>,
-            description:
-              "Thành công thay đổi mật khẩu. Mật khẩu mới sẽ được áp dụng ngay lập tức!",
-            icon: (
-              <SafetyCertificateOutlined
-                style={{
-                  color: "#41b294",
-                }}
-              />
-            ),
-            className: "border-l-8 border-[#41b294]",
-          });
-        })
-        .catch(() => {
-          message.error("Cập nhật thất bại!");
-        });
-    },
-    validationSchema: yup.object({
-      matKhau: yup
-        .string()
-        .required("Trường này không dược để trống!")
-        .min(3, "Mật khẩu cần có ít nhất 3 ký tự"),
-    }),
-  });
 
   return (
     <div>

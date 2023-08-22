@@ -12,12 +12,14 @@ import {
   set_loading_end,
   set_loading_start,
 } from "../../redux/slices/loadingSlice";
+import { getAccountInfo } from "../../redux/slices/userSlice";
 
 const Home = () => {
   const [course, setCourse] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(set_loading_start());
+    dispatch(getAccountInfo());
     courseService
       .getAllCourses()
       .then((res) => {
