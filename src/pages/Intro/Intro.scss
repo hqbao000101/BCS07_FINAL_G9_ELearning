@@ -1,0 +1,49 @@
+#about {
+  .about_content {
+    // background-image: url("intro-img1.png");
+    p:first-of-type {
+      font-size: 20px;
+      font-weight: 500;
+    }
+    p:last-of-type {
+      font-size: 18px;
+    }
+    h6 {
+      font-size: 40px;
+      font-weight: 600;
+      color: #f6ba35;
+    }
+  }
+  .about_items {
+    // padding-bottom: 300px;
+    padding: 0 50px 0 50px;
+    h6{
+      font-size: 20px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    h5{
+      font-size: 40px;
+      font-weight: bold;
+    }
+    p{
+      line-height: 2.2;
+      color: #8c8c8c;
+    }
+    p::first-letter{
+      font-size: calc(60px + .75vw);
+      line-height: 40px;
+      color: #cd5c5c;
+      float: left;
+      padding-top: 10px;
+      padding-right: 5px;
+      font-family: Sansita One;
+    }
+    img {
+      //   object-fit: contain;
+      width: 100%;
+      height: 384px;
+      border-radius: 30%;
+    }
+  }
+}
