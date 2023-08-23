@@ -2,7 +2,7 @@
 @import '../../utils/variable.scss';
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
-button {
+#blog button {
     animation: 1.5s ease infinite alternate running shimmer;
     background: linear-gradient(90deg, #FFE27D 0%, #64E3FF 30%, #9192FF 85%);
     background-size: 200% 100%;
