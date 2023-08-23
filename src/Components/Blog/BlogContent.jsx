@@ -83,7 +83,7 @@ const BlogContent = (props) => {
           <div className="flex items-center px-10 mb-5 lg:px-5">
             <NotificationOutlined className="flex items-center justify-center text-xl text-main animate-bounce" />
             <p className="text-lg font-semibold text-black ms-2">
-              Phù hợp với bạn
+              Phù hợp với bạn!
             </p>
           </div>
           <Row>
