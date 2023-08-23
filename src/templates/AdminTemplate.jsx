@@ -7,7 +7,7 @@ const AdminTemplate = () => {
   return (
     <Fragment>
       {isLoading ? <Loading /> : <></>}
-      <div>AdminTemplate</div>
+      <div>Admin Page</div>
     </Fragment>
   );
 };
