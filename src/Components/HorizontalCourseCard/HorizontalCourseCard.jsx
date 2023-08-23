@@ -69,7 +69,7 @@ const HorizontalCourseCard = ({ item, flag = false }) => {
         <img
           src={hinhAnh}
           alt="Course Banner"
-          className="object-cover w-full h-full duration-500 group-hover:scale-110"
+          className="object-cover w-full duration-500 h-80 sm:h-full group-hover:scale-110"
           onError={({ currentTarget }) => {
             currentTarget.onerror = null;
             currentTarget.src = ReactSample;

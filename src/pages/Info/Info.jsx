@@ -135,8 +135,8 @@ const Info = () => {
   return (
     <div>
       {contextHolder}
-      <div className="py-16 text-white bg-orange-400">
-        <div className="px-4 mx-auto max-w-screen-2xl">
+      <div className="px-4 py-16 text-white bg-orange-400 lg:px-6">
+        <div className="mx-auto max-w-screen-2xl">
           <h1 className="mb-2 text-4xl font-bold uppercase sm:text-5xl">
             Tài khoản
           </h1>
@@ -147,10 +147,10 @@ const Info = () => {
         </div>
       </div>
       <div className="mx-auto py-14 max-w-screen-2xl">
-        <div className="flex gap-10 px-4 lg:px-0">
-          <div className="w-2/5 ">
+        <div className="flex flex-col gap-10 px-4 lg:flex-row lg:px-6">
+          <div className="w-full mx-auto lg:w-2/5 sm:w-2/3">
             <form
-              className="sticky px-20 py-10 shadow-2xl top-5 rounded-2xl"
+              className="sticky px-5 py-10 shadow-2xl sm:px-20 top-5 rounded-2xl"
               onSubmit={formik.handleSubmit}
             >
               <div className="relative">
@@ -173,9 +173,13 @@ const Info = () => {
                 <input
                   id="matKhau"
                   type="password"
-                  className={`py-3 text-right outline-none ${
+                  className={`py-3 text-right outline-none w-1/2 ${
                     card
-                      ? "bg-gray-100 border-b-2 border-orange-400 duration-300"
+                      ? `bg-gray-100 border-b-2 duration-300 ${
+                        formik.errors.matKhau && formik.touched.matKhau
+                          ? "border-red-500"
+                          : "border-orange-400"
+                      }`
                       : "cursor-default"
                   }`}
                   value={formik.values.matKhau || ""}
@@ -193,11 +197,11 @@ const Info = () => {
               )}
               <div className="flex items-center justify-between py-3 my-5 border-b-2">
                 <div className="font-medium">Loại người dùng</div>
-                <div>
+                <div className="text-right">
                   {account.maLoaiNguoiDung === "HV" ? "Học viên" : "Giáo vụ"}
                 </div>
               </div>
-              <div className="flex items-center justify-between py-3 my-5 border-b-2">
+              <div className="flex items-center justify-between py-3 mt-5 mb-10 border-b-2">
                 <div className="font-medium">Mã nhóm</div>
                 <div className="uppercase">{account.maNhom}</div>
               </div>
@@ -220,7 +224,7 @@ const Info = () => {
               </div>
             </form>
           </div>
-          <div className="w-3/5">
+          <div className="w-full mx-auto lg:w-3/5 sm:w-2/3">
             <Tabs items={items} />
           </div>
         </div>
