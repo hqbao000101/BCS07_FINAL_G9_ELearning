@@ -43,11 +43,11 @@ const InfoCourse = () => {
 
   return (
     <div>
-      <div className="flex justify-between pb-2 mb-5 border-b-2 border-orange-400">
-        <h2 className="w-2/3 text-xl font-semibold text-orange-400 uppercase">
-          Danh Sách Ghi Danh
+      <div className="flex items-center justify-between pb-2 mb-5 border-b-2 border-orange-400">
+        <h2 className="flex w-1/2 text-base font-semibold text-orange-400 uppercase sm:w-2/3 sm:text-xl">
+          <span className="min-[400px]:block hidden me-1">Danh Sách</span>Ghi Danh
         </h2>
-        <div className="w-1/3">
+        <div className="w-1/2 sm:w-1/3">
           <Search
             className="flex items-center"
             placeholder="Tìm kiếm khóa học..."
@@ -59,8 +59,8 @@ const InfoCourse = () => {
       {list.length === 0 && key === "" ? (
         accountInfo.chiTietKhoaHocGhiDanh?.length === 0 ? (
           <div>
-            <p>Bạn chưa ghi danh khóa học nào!</p>
-            <Lottie options={defaultOptions} width={"70%"} />
+            <p className="text-lg">Bạn chưa ghi danh khóa học nào!</p>
+            <Lottie options={defaultOptions} width={"80%"} />
           </div>
         ) : (
           accountInfo.chiTietKhoaHocGhiDanh?.map((item, index) => {
@@ -83,8 +83,8 @@ const InfoCourse = () => {
         </div>
       ) : (
         <div>
-          <p>Không tìm thấy khóa học liên quan</p>
-          <Lottie options={defaultOptions} width={"70%"} />
+          <p className="text-lg">Không tìm thấy khóa học liên quan!</p>
+          <Lottie options={defaultOptions} width={"80%"} />
         </div>
       )}
     </div>

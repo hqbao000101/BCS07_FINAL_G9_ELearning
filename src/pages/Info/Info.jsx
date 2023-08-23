@@ -148,7 +148,7 @@ const Info = () => {
       </div>
       <div className="mx-auto py-14 max-w-screen-2xl">
         <div className="flex flex-col gap-10 px-4 lg:flex-row lg:px-6">
-          <div className="w-full mx-auto lg:w-2/5 sm:w-2/3">
+          <div className="w-full mx-auto lg:w-2/5 sm:w-4/5">
             <form
               className="sticky px-5 py-10 shadow-2xl sm:px-20 top-5 rounded-2xl"
               onSubmit={formik.handleSubmit}
@@ -224,7 +224,7 @@ const Info = () => {
               </div>
             </form>
           </div>
-          <div className="w-full mx-auto lg:w-3/5 sm:w-2/3">
+          <div className="w-full mx-auto lg:w-3/5 sm:w-4/5">
             <Tabs items={items} />
           </div>
         </div>
