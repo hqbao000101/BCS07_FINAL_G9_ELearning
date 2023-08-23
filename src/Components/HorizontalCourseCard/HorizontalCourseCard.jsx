@@ -1,20 +1,75 @@
 import React from "react";
 import ReactSample from "../../assets/imgs/card_react_sample.jpg";
 import { NavLink } from "react-router-dom";
-import { FileSearchOutlined, StarFilled } from "@ant-design/icons";
+import {
+  DisconnectOutlined,
+  FileSearchOutlined,
+  SafetyCertificateOutlined,
+  StarFilled,
+} from "@ant-design/icons";
 import userIcon from "../../assets/imgs/user_icon.png";
-import { Divider } from "antd";
+import { Divider, notification } from "antd";
 import "./HorizontalCourseCard.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { courseService } from "../../services/courseServices";
+import { getAccountInfo } from "../../redux/slices/userSlice";
 
-const HorizontalCourseCard = ({ item }) => {
+const HorizontalCourseCard = ({ item, flag = false }) => {
   const { maKhoaHoc, tenKhoaHoc, moTa, luotXem, hinhAnh } = item;
+  const accountInfo = useSelector((state) => state.user.accountInfo);
+  const dispatch = useDispatch();
+  const [api, contextHolder] = notification.useNotification();
+
+  const unRegisterCourses = () => {
+    courseService
+      .unRegisterCourses({ maKhoaHoc, taiKhoan: accountInfo.taiKhoan })
+      .then(() => {
+        api.open({
+          message: (
+            <h1 className="text-lg font-semibold">Hủy Ghi Danh</h1>
+          ),
+          description:
+            "Thành công hủy ghi danh khóa học. Bạn có thể đăng ký khóa học mới bất kỳ lúc nào!",
+          icon: (
+            <SafetyCertificateOutlined
+              style={{
+                color: "#41b294",
+              }}
+            />
+          ),
+          className: "border-l-8 border-[#41b294]",
+        });
+        setTimeout(() => {
+          dispatch(getAccountInfo());
+        }, [2000])
+      })
+      .catch(() => {
+        api.open({
+          message: (
+            <h1 className="text-lg font-semibold">Hủy Ghi Danh</h1>
+          ),
+          description:
+            "Có lỗi xảy ra. Không thể hủy ghi danh khóa học này!",
+          icon: (
+            <SafetyCertificateOutlined
+              style={{
+                color: "red",
+              }}
+            />
+          ),
+          className: "border-l-8 border-red-500",
+        });
+      });
+  };
+
   return (
-    <div className="flex flex-col items-center mb-10 shadow-lg sm:flex-row sm:h-64 group sm:pe-3 pe-0 relative">
+    <div className="relative flex flex-col items-center mb-10 shadow-lg sm:flex-row sm:h-64 group sm:pe-3 pe-0">
+      {contextHolder}
       <div className="w-full h-full overflow-hidden sm:w-2/5">
         <img
           src={hinhAnh}
           alt="Course Banner"
-          className="object-cover w-full h-full duration-500 group-hover:scale-110"
+          className="object-cover w-full duration-500 h-80 sm:h-full group-hover:scale-110"
           onError={({ currentTarget }) => {
             currentTarget.onerror = null;
             currentTarget.src = ReactSample;
@@ -72,15 +127,30 @@ const HorizontalCourseCard = ({ item }) => {
               <img src={userIcon} alt="User Icon" className="w-10 me-2" />
               <span>Elon Mush</span>
             </div>
-            <NavLink to={`/detail/${maKhoaHoc}`}>
-              <button className="hidden px-3 py-2 text-white duration-500 bg-orange-400 rounded-md sm:items-center sm:gap-1 hover:bg-orange-500 hover:scale-90 sm:flex">
-                <FileSearchOutlined />
-                Xem Chi Tiết
-              </button>
-              <button className="flex px-3 py-2 text-white duration-500 bg-orange-400 rounded-md hover:bg-orange-500 hover:scale-90 sm:hidden">
-                <FileSearchOutlined />
-              </button>
-            </NavLink>
+            {flag ? (
+              <>
+                <button
+                  className="hidden px-3 py-2 text-white duration-500 bg-red-400 rounded-md sm:items-center sm:gap-1 hover:bg-red-500 hover:scale-90 sm:flex"
+                  onClick={unRegisterCourses}
+                >
+                  <DisconnectOutlined />
+                  Huỷ Ghi Danh
+                </button>
+                <button className="flex px-3 py-2 text-white duration-500 bg-red-400 rounded-md hover:bg-red-500 hover:scale-90 sm:hidden">
+                  <DisconnectOutlined />
+                </button>
+              </>
+            ) : (
+              <NavLink to={`/detail/${maKhoaHoc}`}>
+                <button className="hidden px-3 py-2 text-white duration-500 bg-orange-400 rounded-md sm:items-center sm:gap-1 hover:bg-orange-500 hover:scale-90 sm:flex">
+                  <FileSearchOutlined />
+                  Xem Chi Tiết
+                </button>
+                <button className="flex px-3 py-2 text-white duration-500 bg-orange-400 rounded-md hover:bg-orange-500 hover:scale-90 sm:hidden">
+                  <FileSearchOutlined />
+                </button>
+              </NavLink>
+            )}
           </div>
         </div>
       </div>
