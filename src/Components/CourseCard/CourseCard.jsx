@@ -28,7 +28,8 @@ const CourseCard = ({
             onError={({ currentTarget }) => {
               currentTarget.onerror = null;
               currentTarget.src = ReactSample;
-            }} />
+            }}
+          />
         </div>
         {isPopular ? (
           <span
@@ -42,8 +43,30 @@ const CourseCard = ({
         )}
         <span className="absolute bottom-0 left-0 px-3 py-1 text-white bg-main translate-y-[50%] shadow-lg">
           {tenDanhMucKhoaHoc}
-          </span>
+        </span>
+      </div>
+      <div className="p-5">
+        <NavLink
+          to={`/detail/${maKhoaHoc}`}
+          className="font-medium duration-500 line-clamp-2 hover:text-orange-400"
+        >
+          {moTa + tempContent}
+        </NavLink>
+        <div className="flex flex-wrap items-center justify-between pt-3 text-gray-500">
+          <div>
+            <i className="text-red-400 fa-regular fa-clock me-2"></i>
+            <span>72 giờ</span>
+          </div>
+          <div>
+            <i className="text-orange-400 fa-solid fa-calendar-days me-2"></i>
+            <span>12 tuần</span>
+          </div>
+          <div>
+            <i className="text-blue-500 fa-regular fa-eye me-2"></i>
+            <span>{luotXem}</span>
+          </div>
         </div>
+      </div>
       <Divider className="m-0" />
       <div className="flex flex-wrap items-center justify-between px-5 py-3">
         <div className="flex items-center">
