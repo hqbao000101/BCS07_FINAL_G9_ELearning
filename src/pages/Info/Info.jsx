@@ -146,7 +146,7 @@ const Info = () => {
           </p>
         </div>
       </div>
-      <div className="mx-auto py-14 max-w-screen-2xl">
+      <div className="py-5 mx-auto sm:py-14 max-w-screen-2xl">
         <div className="flex flex-col gap-10 px-4 lg:flex-row lg:px-6">
           <div className="w-full mx-auto lg:w-2/5 sm:w-4/5">
             <form

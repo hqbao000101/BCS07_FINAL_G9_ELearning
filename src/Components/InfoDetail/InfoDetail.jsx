@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import InfoSkill from "../InfoSkill/InfoSkill";
 import { useDispatch, useSelector } from "react-redux";
-import { message, notification } from "antd";
+import { notification } from "antd";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import {
@@ -10,6 +10,8 @@ import {
 } from "@ant-design/icons";
 import { userService } from "../../services/userServices";
 import { getAccountInfo } from "../../redux/slices/userSlice";
+import "./InfoDetail.scss";
+import { removeLocal } from "../../utils/localStorage";
 
 const InfoDetail = () => {
   const [card, setCard] = useState(false);
@@ -105,8 +107,8 @@ const InfoDetail = () => {
         formik.values.maNhom = res.data.maNhom;
         formik.values.maLoaiNguoiDung = res.data.maLoaiNguoiDung;
       })
-      .catch(() => {
-        message.error("Không thể lấy thông tin tài khoản!");
+      .catch((err) => {
+        console.log(err);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -121,7 +123,7 @@ const InfoDetail = () => {
         <h3 className="text-xl font-semibold text-orange-400 uppercase border-b-2 border-orange-400">
           Chi tiết
         </h3>
-        <div className="flex flex-col items-start justify-between py-3 mt-3 min-[400px]:mt-5 min-[400px]:items-center min-[400px]:flex-row">
+        <div className="flex flex-col items-start justify-between py-1 mt-3 min-[400px]:items-center min-[400px]:flex-row">
           <div className="font-bold">Họ tên</div>
           <input
             id="hoTen"
@@ -148,7 +150,7 @@ const InfoDetail = () => {
         ) : (
           ""
         )}
-        <div className="flex flex-col flex-wrap items-start justify-between py-3 min-[400px]:mt-5 min-[400px]:items-center min-[400px]:flex-row">
+        <div className="flex flex-col flex-wrap items-start justify-between py-1 mt-2 min-[400px]:items-center min-[400px]:flex-row">
           <div className="font-bold">Địa chỉ email</div>
           <input
             id="email"
@@ -156,10 +158,10 @@ const InfoDetail = () => {
             className={`py-3 min-[400px]:text-right outline-none min-[400px]:w-1/2 w-full min-[400px]:mt-0 mt-3 ${
               card
                 ? `bg-gray-100 border-b-2 duration-300 ${
-                  formik.errors.email && formik.touched.email
-                    ? "border-red-500"
-                    : "border-orange-400"
-                }`
+                    formik.errors.email && formik.touched.email
+                      ? "border-red-500"
+                      : "border-orange-400"
+                  }`
                 : "cursor-default"
             }`}
             value={formik.values.email || ""}
@@ -175,7 +177,7 @@ const InfoDetail = () => {
         ) : (
           ""
         )}
-        <div className="flex flex-col items-start justify-between py-3 min-[400px]:mt-5 min-[400px]:items-center min-[400px]:flex-row">
+        <div className="flex flex-col items-start justify-between py-1 mt-2 min-[400px]:items-center min-[400px]:flex-row">
           <div className="font-bold">Số điện thoại</div>
           <input
             id="soDT"
@@ -183,10 +185,10 @@ const InfoDetail = () => {
             className={`py-3 min-[400px]:text-right outline-none min-[400px]:w-1/2 w-full min-[400px]:mt-0 mt-3 ${
               card
                 ? `bg-gray-100 border-b-2 duration-300 ${
-                  formik.errors.soDT && formik.touched.soDT
-                    ? "border-red-500"
-                    : "border-orange-400"
-                }`
+                    formik.errors.soDT && formik.touched.soDT
+                      ? "border-red-500"
+                      : "border-orange-400"
+                  }`
                 : "cursor-default"
             }`}
             value={formik.values.soDT || ""}
@@ -221,6 +223,83 @@ const InfoDetail = () => {
         </div>
       </form>
       <InfoSkill />
+      <div className="p-10 mt-10 shadow-2xl rounded-2xl">
+        <h3 className="text-xl font-semibold text-orange-400 uppercase border-b-2 border-orange-400">
+          Tích Lũy
+        </h3>
+        <div className="grid gap-5 xl:grid-cols-3 pt-7 lg:grid-cols-2 md:grid-cols-3 min-[476px]:grid-cols-2">
+          <div className="info__badge flex items-center justify-center cursor-default duration-300 gap-5 p-3 text-white rounded-lg hover:scale-105 bg-[#f39c12]">
+            <div>
+              <i className="text-xl fa-solid fa-user-clock"></i>
+            </div>
+            <div>
+              <h4 className="text-xl font-bold">Giờ Học</h4>
+              <p>80 tiếng</p>
+            </div>
+          </div>
+          <div className="info__badge flex items-center justify-center cursor-default duration-300 gap-5 p-3 text-white bg-[#e74c3c] rounded-lg hover:scale-105">
+            <div>
+              <i className="text-xl fa-solid fa-school"></i>
+            </div>
+            <div>
+              <h4 className="text-xl font-bold">Buổi Học</h4>
+              <p>80 buổi</p>
+            </div>
+          </div>
+          <div className="info__badge flex items-center justify-center cursor-default duration-300 gap-5 p-3 text-white bg-[#9b59b6] rounded-lg hover:scale-105">
+            <div>
+              <i className="text-xl fa-solid fa-dumbbell"></i>
+            </div>
+            <div>
+              <h4 className="text-xl font-bold">Bài Tập</h4>
+              <p>100 bài</p>
+            </div>
+          </div>
+          <div className="info__badge flex items-center justify-center cursor-default duration-300 gap-5 p-3 text-white bg-[#1abc9c] rounded-lg hover:scale-105">
+            <div>
+              <i className="text-xl fa-solid fa-graduation-cap"></i>
+            </div>
+            <div>
+              <h4 className="text-xl font-bold">Học Lực</h4>
+              <p>Trung bình</p>
+            </div>
+          </div>
+          <div className="info__badge flex items-center justify-center cursor-default duration-300 gap-5 p-3 text-white bg-[#2ecc71] rounded-lg hover:scale-105">
+            <div>
+              <i className="text-xl fa-solid fa-layer-group"></i>
+            </div>
+            <div>
+              <h4 className="text-xl font-bold">Cấp Độ</h4>
+              <p>Trung cấp</p>
+            </div>
+          </div>
+          <div className="info__badge flex items-center justify-center cursor-default duration-300 gap-5 p-3 text-white bg-[#3498db] rounded-lg hover:scale-105">
+            <div>
+              <i className="text-xl fa-solid fa-trophy"></i>
+            </div>
+            <div>
+              <h4 className="text-xl font-bold">Tổng</h4>
+              <p>120 điểm</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="p-5 mt-10 shadow-2xl rounded-2xl">
+        <div className="flex justify-end">
+          <div
+            className="flex items-center justify-center cursor-pointer group"
+            onClick={() => {
+              removeLocal("user");
+              window.location.href = "/login";
+            }}
+          >
+            <p className="duration-300 me-2 group-hover:text-orange-400">
+              Đăng Xuất
+            </p>
+            <i className="duration-300 fa-solid fa-arrow-right-from-bracket group-hover:text-orange-400"></i>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
