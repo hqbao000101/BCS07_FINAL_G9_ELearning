@@ -1,0 +1,19 @@
+#like__tag--search::before {
+  content: "";
+  border: 6px solid transparent;
+  border-bottom-color: #7e1717;
+  position: absolute;
+  bottom: -5.5px;
+  left: 2.5px;
+  transform: rotate(45deg);
+}
+
+#like__tag--search::after {
+  content: "";
+  border: 16px solid #dc2626;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  position: absolute;
+  top: 0;
+  right: -15px;
+}
