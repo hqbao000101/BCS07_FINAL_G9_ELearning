@@ -62,7 +62,7 @@ const CourseCard = ({
             <span>12 tuần</span>
           </div>
           <div>
-            <i className="fa-regular fa-eye text-blue-500 me-2"></i>
+            <i className="text-blue-500 fa-regular fa-eye me-2"></i>
             <span>{luotXem}</span>
           </div>
         </div>

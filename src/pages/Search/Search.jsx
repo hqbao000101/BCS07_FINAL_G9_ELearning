@@ -59,7 +59,7 @@ const Search = () => {
       </div>
       <div className="py-10 mx-auto max-w-screen-2xl">
         <div className="flex items-start">
-          <div className="hidden w-1/4 px-4 lg:block sticky top-5">
+          <div className="sticky hidden w-1/4 px-4 lg:block top-5">
             <div className="flex items-center text-4xl font-semibold text-black">
               <ControlFilled className="text-orange-400 me-2" />
               <h2>Lọc</h2>
@@ -318,11 +318,11 @@ const Search = () => {
             {error === "" ? (
               <>
                 <div className="flex items-center justify-between mb-8">
-                  <div className="text-xl font-medium sm:text-2xl flex items-center">
+                  <div className="flex items-center text-xl font-medium sm:text-2xl">
                     Trang
                     <span className="text-orange-400 ms-2">{pagination}</span>
-                    <i className="fas fa-angle-double-right text-sm ms-2"></i>
-                    <span className="ms-2 sm:inline hidden">Hiển thị</span>
+                    <i className="text-sm fas fa-angle-double-right ms-2"></i>
+                    <span className="hidden ms-2 sm:inline">Hiển thị</span>
                     <div>
                       <span className="text-orange-400 ms-2">
                         {searchList.count}
