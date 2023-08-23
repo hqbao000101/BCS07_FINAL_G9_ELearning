@@ -89,11 +89,18 @@ const Info = () => {
   });
 
   useEffect(() => {
+    dispatch(getAccountInfo());
     userService
       .accountInfo()
       .then((res) => {
         setAccount(res.data);
+        formik.values.hoTen = res.data.hoTen;
+        formik.values.email = res.data.email;
+        formik.values.soDT = res.data.soDT;
+        formik.values.taiKhoan = res.data.taiKhoan;
         formik.values.matKhau = res.data.matKhau;
+        formik.values.maNhom = res.data.maNhom;
+        formik.values.maLoaiNguoiDung = res.data.maLoaiNguoiDung;
       })
       .catch(() => {
         message.info("Vui lòng đăng nhập tài khoản của bạn!");
@@ -171,7 +178,7 @@ const Info = () => {
                       ? "bg-gray-100 border-b-2 border-orange-400 duration-300"
                       : "cursor-default"
                   }`}
-                  value={formik.values.matKhau}
+                  value={formik.values.matKhau || ""}
                   readOnly={card ? "" : "readonly"}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}

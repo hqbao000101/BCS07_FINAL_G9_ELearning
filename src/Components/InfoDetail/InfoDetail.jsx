@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InfoSkill from "../InfoSkill/InfoSkill";
 import { useDispatch, useSelector } from "react-redux";
-import { notification } from "antd";
+import { message, notification } from "antd";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import {
@@ -49,7 +49,7 @@ const InfoDetail = () => {
             className: "border-l-8 border-[#41b294]",
           });
         })
-        .catch(() => {
+        .catch((err) => {
           setCard(false);
           formik.values.hoTen = accountInfo.hoTen;
           formik.values.email = accountInfo.email;
@@ -58,8 +58,11 @@ const InfoDetail = () => {
             message: (
               <h1 className="text-lg font-semibold">Cập Nhật Thông Tin</h1>
             ),
-            description:
-              "Thay đổi thông tin thất bại. Hệ thống đã xảy ra lỗi khi cập nhật!",
+            description: `Thay đổi thông tin thất bại. ${
+              err.response.data
+                ? err.response.data
+                : "Hệ thống đã xảy ra lỗi khi cập nhật!"
+            }`,
             icon: (
               <FileExcelOutlined
                 style={{
@@ -90,6 +93,24 @@ const InfoDetail = () => {
     }),
   });
 
+  useEffect(() => {
+    userService
+      .accountInfo()
+      .then((res) => {
+        formik.values.hoTen = res.data.hoTen;
+        formik.values.email = res.data.email;
+        formik.values.soDT = res.data.soDT;
+        formik.values.taiKhoan = res.data.taiKhoan;
+        formik.values.matKhau = res.data.matKhau;
+        formik.values.maNhom = res.data.maNhom;
+        formik.values.maLoaiNguoiDung = res.data.maLoaiNguoiDung;
+      })
+      .catch(() => {
+        message.error("Không thể lấy thông tin tài khoản!");
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div>
       {contextHolder}
@@ -110,7 +131,7 @@ const InfoDetail = () => {
                 ? "bg-gray-100 border-b-2 border-orange-400 duration-300"
                 : "cursor-default"
             }`}
-            value={formik.values.hoTen}
+            value={formik.values.hoTen || ""}
             readOnly={card ? "" : "readonly"}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -133,7 +154,7 @@ const InfoDetail = () => {
                 ? "bg-gray-100 border-b-2 border-orange-400 duration-300"
                 : "cursor-default"
             }`}
-            value={formik.values.email}
+            value={formik.values.email || ""}
             readOnly={card ? "" : "readonly"}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -156,7 +177,7 @@ const InfoDetail = () => {
                 ? "bg-gray-100 border-b-2 border-orange-400 duration-300"
                 : "cursor-default"
             }`}
-            value={formik.values.soDT}
+            value={formik.values.soDT || ""}
             readOnly={card ? "" : "readonly"}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
