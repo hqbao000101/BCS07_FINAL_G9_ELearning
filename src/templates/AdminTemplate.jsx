@@ -1,14 +1,19 @@
 import React, { Fragment, useState } from "react";
 import { useSelector } from "react-redux";
 import Loading from "../pages/Loading/Loading";
+import "./AdminTemplate.scss";
 import {
+  CodeSandboxOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
+  ScheduleOutlined,
+  TeamOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, Button, theme } from "antd";
+import { NavLink, Outlet } from "react-router-dom";
+import { Footer } from "antd/es/layout/layout";
+import favicon from "../assets/imgs/favicon.png";
+
 const { Header, Sider, Content } = Layout;
 
 const AdminTemplate = () => {
@@ -23,26 +28,37 @@ const AdminTemplate = () => {
       {isLoading ? <Loading /> : <></>}
       <Layout className="min-h-screen">
         <Sider trigger={null} collapsible collapsed={collapsed}>
-          <div className="demo-logo-vertical" />
+          <div className="demo-logo-vertical bg-main" />
           <Menu
             theme="dark"
             mode="inline"
             defaultSelectedKeys={["1"]}
             items={[
               {
+                key: "0",
+                icon: (
+                  <img src={favicon} alt="Favicon" width={30} height={30} />
+                ),
+                label: (
+                  <NavLink to="/" className="text-sm text-black">
+                    Cyber E-Learning
+                  </NavLink>
+                ),
+              },
+              {
                 key: "1",
-                icon: <UserOutlined />,
-                label: "nav 1",
+                icon: <TeamOutlined />,
+                label: <NavLink to="/admin">Người dùng</NavLink>,
               },
               {
                 key: "2",
-                icon: <VideoCameraOutlined />,
-                label: "nav 2",
+                icon: <CodeSandboxOutlined />,
+                label: <NavLink to="/admin/course">Khóa học</NavLink>,
               },
               {
                 key: "3",
-                icon: <UploadOutlined />,
-                label: "nav 3",
+                icon: <ScheduleOutlined />,
+                label: <NavLink to="/admin/enroll">Ghi danh</NavLink>,
               },
             ]}
           />
@@ -73,8 +89,16 @@ const AdminTemplate = () => {
               background: colorBgContainer,
             }}
           >
-            Content
+            <Outlet />
           </Content>
+          <Footer
+            style={{
+              textAlign: "right",
+            }}
+            className="py-3 bg-white"
+          >
+            Cyber E-Learning © 2023 by BCS07 | G9. All Rights Reserved.
+          </Footer>
         </Layout>
       </Layout>
     </Fragment>
