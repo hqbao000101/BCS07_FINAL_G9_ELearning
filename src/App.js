@@ -13,6 +13,10 @@ import Event from "./pages/Event/Event";
 import Intro from "./pages/Intro/Intro";
 import Detail from "./pages/Detail/Detail";
 import Info from "./pages/Info/Info";
+import AdminLogin from "./pages/AdminLogin/AdminLogin";
+import AdminUser from "./pages/AdminUser/AdminUser";
+import AdminCourse from "./pages/AdminCourse/AdminCourse";
+import AdminEnroll from "./pages/AdminEnroll/AdminEnroll";
 
 function App() {
   return (
@@ -30,7 +34,12 @@ function App() {
           <Route path="/detail/:tenKhoaHoc" element={<Detail />} />
         </Route>
         <Route path="/login" element={<Login />} />
-        <Route path="/admin" element={<AdminTemplate />}></Route>
+        <Route path="/admin" element={<AdminTemplate />}>
+          <Route index element={<AdminUser />} />
+          <Route path="/admin/course" element={<AdminCourse />} />
+          <Route path="/admin/enroll" element={<AdminEnroll />} />
+        </Route>
+        <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
     </BrowserRouter>
