@@ -11,7 +11,7 @@ const initialState = {
 
 export const getAllUsers = createAsyncThunk("user/getAllUsers", async () => {
   const res = await userService.getAllUsers();
-  return res.data.content;
+  return res.data;
 });
 
 export const getAccountInfo = createAsyncThunk(
