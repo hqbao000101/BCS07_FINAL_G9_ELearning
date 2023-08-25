@@ -1,35 +1,48 @@
-.ant-btn.ant-btn-icon-only {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+#admin__template {
+  .ant-btn.ant-btn-icon-only {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.ant-menu-item:first-child {
-  background-color: #1677fb;
-  margin-inline: 0;
-  margin-block: 0;
-  border-radius: 0;
-  width: 100%;
-  margin-bottom: 20px !important;
-  span {
-    a {
-      color: black;
+  .ant-menu-item:first-child {
+    background-color: #1677fb;
+    margin-inline: 0;
+    margin-block: 0;
+    border-radius: 0;
+    width: 100%;
+    margin-bottom: 20px !important;
+    span {
+      a {
+        color: black;
+      }
     }
   }
-}
-.ant-menu-item.ant-menu-item-selected {
-  background-color: red;
-}
+  .ant-menu-item.ant-menu-item-selected {
+    background-color: red;
+  }
 
-.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item:not(.ant-menu-item-selected):hover {
-  background-color: orangered;
-  span {
-    a {
-      color: green;
+  .ant-menu-dark:not(.ant-menu-horizontal)
+    .ant-menu-item:not(.ant-menu-item-selected):hover {
+    background-color: orangered;
+    span {
+      a {
+        color: white;
+      }
     }
   }
-}
 
-.ant-layout-sider-children {
-  box-shadow: 2px 0px 20px black;
+  .ant-menu-dark:not(.ant-menu-horizontal)
+    .ant-menu-item:first-child:not(.ant-menu-item-selected):hover {
+    background-color: green;
+    span {
+      a {
+        color: white;
+      }
+    }
+  }
+
+  .ant-layout-sider-children {
+    box-shadow: 2px 0px 20px black;
+  }
 }

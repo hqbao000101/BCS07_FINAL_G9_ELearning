@@ -26,7 +26,7 @@ const AdminTemplate = () => {
   return (
     <Fragment>
       {isLoading ? <Loading /> : <></>}
-      <Layout className="min-h-screen">
+      <Layout id="admin__template" className="min-h-screen">
         <Sider trigger={null} collapsible collapsed={collapsed}>
           <div className="demo-logo-vertical bg-main" />
           <Menu
