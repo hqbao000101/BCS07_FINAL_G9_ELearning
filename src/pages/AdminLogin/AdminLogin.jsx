@@ -1,7 +1,8 @@
 import React from "react";
 import Lottie from "react-lottie";
 import * as animationAdminLogin from "../../assets/animations/admin_login.json";
-import loginBG from "../../assets/imgs/login_bg.png";
+import loginBG from "../../assets/imgs/login_overlay.png";
+import loginFormBG from "../../assets/imgs/login_bg.png";
 import FormInput from "../../Components/FormInput/FormInput";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -65,16 +66,26 @@ const AdminLogin = () => {
         backgroundPosition: "center",
       }}
     >
-      <div className="flex items-center justify-center h-screen gap-10 mx-auto max-w-screen-2xl">
-        <div className="w-1/2">
+      <div className="flex items-center justify-center h-screen gap-10 px-5 mx-auto max-w-screen-2xl">
+        <div className="hidden w-1/2 lg:block">
           <Lottie options={defaultOptions} width={"100%"} />;
         </div>
-        <div className="w-1/2 px-10 py-16 text-center bg-white shadow-2xl rounded-xl">
+        <div
+          className="w-full px-3 py-16 text-center shadow-2xl sm:w-3/4 lg:px-10 lg:w-1/2 rounded-xl sm:px-0"
+          style={{
+            backgroundImage: `url(${loginFormBG})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center right",
+          }}
+        >
           <h1 className="mb-2 text-4xl font-semibold">Đăng Nhập</h1>
-          <p className="mb-8 text-sm text-gray-400">
+          <p className="mb-8 text-sm text-gray-600">
             {"("}Đăng nhập bằng tài khoản giáo vụ để tới trang quản lý{")"}
           </p>
-          <form className="w-3/4 mx-auto" onSubmit={formik.handleSubmit}>
+          <form
+            className="w-full px-5 mx-auto sm:w-3/4 sm:px-0"
+            onSubmit={formik.handleSubmit}
+          >
             <FormInput
               id="taiKhoan"
               type="text"
@@ -93,7 +104,17 @@ const AdminLogin = () => {
               touched={formik.touched.matKhau}
               value={formik.values.matKhau}
             />
-            <div className="mb-3 sm:mt-8">
+            <div className="flex items-center justify-center mb-3 sm:mt-8">
+              <div
+                className="me-5"
+                onClick={() => {
+                  window.location.href = "/";
+                }}
+              >
+                <span className="text-sm italic text-blue-500 duration-300 cursor-pointer hover:text-orange-400 hover:underline">
+                  Đi tới trang chủ
+                </span>
+              </div>
               <NavLink to="/admin/login">
                 <span className="text-sm italic duration-300 cursor-pointer hover:text-orange-400 hover:underline">
                   Quên mật khẩu?

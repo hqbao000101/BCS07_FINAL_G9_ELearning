@@ -2,8 +2,15 @@ import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import FormInput from "../FormInput/FormInput";
+import { userService } from "../../services/userServices";
+import { Select, message } from "antd";
+import { useDispatch } from "react-redux";
+import { getAllUsers } from "../../redux/slices/userSlice";
+import "./DrawerAddUser.scss";
 
-const DrawerAddUser = () => {
+const DrawerAddUser = ({ setClose }) => {
+  const dispatch = useDispatch();
+
   const formik = useFormik({
     initialValues: {
       hoTen: "",
@@ -12,9 +19,20 @@ const DrawerAddUser = () => {
       taiKhoan: "",
       matKhau: "",
       maNhom: "GP09",
+      maLoaiNguoiDung: "HV",
     },
     onSubmit: (values) => {
-      console.log(values);
+      userService
+        .addUsers(values)
+        .then(() => {
+          message.success("Thêm người dùng thành công!");
+          dispatch(getAllUsers());
+          setClose();
+          formik.resetForm();
+        })
+        .catch((err) => {
+          message.error(err.response.data);
+        });
     },
     validationSchema: yup.object({
       hoTen: yup
@@ -41,7 +59,7 @@ const DrawerAddUser = () => {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form id="drawer__user--add" onSubmit={formik.handleSubmit}>
       <p className="mb-5 text-sm text-gray-400">
         Vui lòng điền các trường sau để thêm người dùng mới vào hệ thống!
       </p>
@@ -89,6 +107,19 @@ const DrawerAddUser = () => {
         errors={formik.errors.matKhau}
         touched={formik.touched.matKhau}
         value={formik.values.matKhau}
+      />
+      <Select
+        id="maLoaiNguoiDung"
+        defaultValue={formik.values.maLoaiNguoiDung}
+        style={{ width: "100%" }}
+        onChange={(value) => {
+          formik.values.maLoaiNguoiDung = value;
+        }}
+        options={[
+          { value: "HV", label: "Học Viên" },
+          { value: "GV", label: "Giáo Vụ" },
+        ]}
+        className="mb-5 shadow-md"
       />
       <div className="text-right">
         <button className="px-10 py-3 text-sm font-semibold text-white uppercase duration-300 bg-orange-400 rounded-lg shadow-lg hover:bg-orange-600 hover:scale-90">
