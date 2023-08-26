@@ -4,15 +4,19 @@ import Loading from "../pages/Loading/Loading";
 import "./AdminTemplate.scss";
 import {
   CodeSandboxOutlined,
+  LogoutOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   ScheduleOutlined,
+  SettingOutlined,
   TeamOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, Button, theme } from "antd";
+import { Layout, Menu, Button, theme, message, Dropdown } from "antd";
 import { NavLink, Outlet } from "react-router-dom";
 import { Footer } from "antd/es/layout/layout";
 import favicon from "../assets/imgs/favicon.png";
+import tempUser from "../assets/imgs/home_carousel_01.jpg";
+import { getLocal, removeLocal } from "../utils/localStorage";
 
 const { Header, Sider, Content } = Layout;
 
@@ -22,6 +26,36 @@ const AdminTemplate = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
+  const items = [
+    {
+      key: "1",
+      icon: <SettingOutlined />,
+      label: <div>Cài Đặt</div>,
+    },
+    {
+      type: "divider",
+    },
+    {
+      key: "2",
+      icon: <LogoutOutlined />,
+      label: (
+        <div
+          onClick={() => {
+            removeLocal("user");
+            window.location.href = "/admin/login";
+          }}
+        >
+          Đăng Xuất
+        </div>
+      ),
+    },
+  ];
+
+  if (getLocal("user")) {
+    const user = getLocal("user");
+    message.success(`Chào mừng ${user.hoTen} đã quay lại!`);
+  }
 
   return (
     <Fragment>
@@ -69,6 +103,7 @@ const AdminTemplate = () => {
               padding: 0,
               background: colorBgContainer,
             }}
+            className="flex items-center justify-between"
           >
             <Button
               type="text"
@@ -80,6 +115,24 @@ const AdminTemplate = () => {
                 height: 64,
               }}
             />
+            <Dropdown
+              menu={{
+                items,
+              }}
+              placement="bottomRight"
+              trigger={"click"}
+            >
+              <div className="flex items-center justify-center cursor-pointer group">
+                <p>Chào! <span className="duration-300 group-hover:text-orange-400">Bảo</span></p>
+                <div className="ms-2 me-4">
+                  <img
+                    src={tempUser}
+                    alt="User Logo"
+                    className="object-cover w-10 h-10 duration-300 rounded-full group-hover:shadow-lg"
+                  />
+                </div>
+              </div>
+            </Dropdown>
           </Header>
           <Content
             style={{

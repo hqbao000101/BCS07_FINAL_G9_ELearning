@@ -2,4 +2,10 @@
   .ant-tag {
     display: inline !important;
   }
+  .ant-pagination .ant-pagination-prev .ant-pagination-item-link,
+  .ant-pagination .ant-pagination-next .ant-pagination-item-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
