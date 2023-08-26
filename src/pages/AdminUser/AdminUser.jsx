@@ -173,8 +173,17 @@ const AdminUser = () => {
         scroll={{ x: "1280" }}
         pagination={{ pageSize: 7 }}
       />
-      <Drawer title="Thêm Người Dùng" placement="right" onClose={onClose} open={add}>
-        <DrawerAddUser />
+      <Drawer
+        title="Thêm Người Dùng"
+        placement="right"
+        onClose={onClose}
+        open={add}
+      >
+        <DrawerAddUser
+          setClose={() => {
+            onClose();
+          }}
+        />
       </Drawer>
       <Drawer
         title="Update Drawer"
