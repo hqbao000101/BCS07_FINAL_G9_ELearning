@@ -1,13 +1,31 @@
-import React, { useEffect } from "react";
-import { Space, Table, Tag } from "antd";
+import React, { useEffect, useState } from "react";
+import { Drawer, Popconfirm, Space, Table, Tag } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import "./AdminUser.scss";
 import { getAllUsers } from "../../redux/slices/userSlice";
-import { SettingFilled } from "@ant-design/icons";
+import { QuestionCircleOutlined, SettingFilled } from "@ant-design/icons";
+import DrawerAddUser from "../../Components/DrawerAddUser/DrawerAddUser";
+import DrawerUpdateUser from "../../Components/DrawerUpdateUser/DrawerUpdateUser";
+import "./AdminUser.scss";
 
 const AdminUser = () => {
   const users = useSelector((state) => state.user.users);
   const dispatch = useDispatch();
+  const [add, setAdd] = useState(false);
+  const [update, setUpdate] = useState(false);
+
+  const showDrawer = () => {
+    setAdd(true);
+  };
+  const onClose = () => {
+    setAdd(false);
+  };
+
+  const showUpdateDrawer = () => {
+    setUpdate(true);
+  };
+  const onCloseUpdate = () => {
+    setUpdate(false);
+  };
 
   useEffect(() => {
     dispatch(getAllUsers());
@@ -58,12 +76,36 @@ const AdminUser = () => {
       align: "center",
       render: (_, record, index) => (
         <Space size="small">
-          <button className="px-3 py-2 text-white duration-300 bg-yellow-400 rounded-lg hover:bg-yellow-500">
+          <button
+            className="px-3 py-2 text-white duration-300 bg-orange-400 rounded-lg hover:bg-orange-500"
+            onClick={showUpdateDrawer}
+          >
             Cập nhật
           </button>
-          <button className="px-3 py-2 text-white duration-300 bg-red-500 rounded-lg hover:bg-red-600">
-            Xóa
-          </button>
+          <Popconfirm
+            title="Xóa Người Dùng"
+            description={
+              <>
+                <p>Bạn có chắc muốn xóa người dùng này?</p>
+                <p>Hành động sẽ không được hoàn tác!</p>
+              </>
+            }
+            icon={
+              <QuestionCircleOutlined
+                style={{
+                  color: "red",
+                }}
+              />
+            }
+            okType="danger"
+            placement="topRight"
+            cancelText="Hủy"
+            okText="Xóa"
+          >
+            <button className="px-3 py-2 text-white duration-300 bg-red-500 rounded-lg hover:bg-red-600">
+              Xóa
+            </button>
+          </Popconfirm>
         </Space>
       ),
     },
@@ -75,12 +117,15 @@ const AdminUser = () => {
     };
   });
   return (
-    <>
+    <div id="admin__user--table">
       <div className="mb-5 text-3xl font-semibold uppercase">
         Quản Lý <span className="text-orange-400">Người dùng</span>
       </div>
       <div className="flex items-center justify-between mb-5">
-        <button className="px-3 py-2 text-white duration-300 bg-blue-500 rounded-lg hover:bg-blue-600">
+        <button
+          className="px-3 py-2 text-white duration-300 bg-blue-500 rounded-lg hover:bg-blue-600"
+          onClick={showDrawer}
+        >
           Thêm người dùng
         </button>
         <input
@@ -93,13 +138,24 @@ const AdminUser = () => {
         />
       </div>
       <Table
-        id="admin__user--table"
         rowKey="stt"
         columns={columns}
         dataSource={data}
         scroll={{ x: "1280" }}
+        pagination={{ pageSize: 7 }}
       />
-    </>
+      <Drawer title="Add Drawer" placement="right" onClose={onClose} open={add}>
+        <DrawerAddUser />
+      </Drawer>
+      <Drawer
+        title="Update Drawer"
+        placement="right"
+        onClose={onCloseUpdate}
+        open={update}
+      >
+        <DrawerUpdateUser />
+      </Drawer>
+    </div>
   );
 };
 
