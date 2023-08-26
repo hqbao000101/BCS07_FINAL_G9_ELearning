@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Loading from "../pages/Loading/Loading";
 import "./AdminTemplate.scss";
@@ -26,6 +26,7 @@ const AdminTemplate = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  const [admin, setAdmin] = useState({});
 
   const items = [
     {
@@ -52,10 +53,13 @@ const AdminTemplate = () => {
     },
   ];
 
-  if (getLocal("user")) {
-    const user = getLocal("user");
-    message.success(`Chào mừng ${user.hoTen} đã quay lại!`);
-  }
+  useEffect(() => {
+    if (getLocal("user")) {
+      const user = getLocal("user");
+      setAdmin(user);
+      message.success(`Chào mừng ${user.hoTen} đã quay lại!`);
+    }
+  }, []);
 
   return (
     <Fragment>
@@ -119,11 +123,16 @@ const AdminTemplate = () => {
               menu={{
                 items,
               }}
-              placement="bottomRight"
+              placement="bottomLeft"
               trigger={"click"}
             >
               <div className="flex items-center justify-center cursor-pointer group">
-                <p>Chào! <span className="duration-300 group-hover:text-orange-400">Bảo</span></p>
+                <p>
+                  Chào!{" "}
+                  <span className="duration-300 group-hover:text-orange-400">
+                    {admin.hoTen}
+                  </span>
+                </p>
                 <div className="ms-2 me-4">
                   <img
                     src={tempUser}
