@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Drawer, Popconfirm, Space, Table, Tag } from "antd";
+import { Drawer, Popconfirm, Space, Table, Tag, message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../redux/slices/userSlice";
 import { QuestionCircleOutlined, SettingFilled } from "@ant-design/icons";
 import DrawerAddUser from "../../Components/DrawerAddUser/DrawerAddUser";
 import DrawerUpdateUser from "../../Components/DrawerUpdateUser/DrawerUpdateUser";
 import "./AdminUser.scss";
+import { userService } from "../../services/userServices";
+import { getLocal } from "../../utils/localStorage";
 
 const AdminUser = () => {
   const users = useSelector((state) => state.user.users);
@@ -27,8 +29,30 @@ const AdminUser = () => {
     setUpdate(false);
   };
 
+  const deleteConfirm = (taiKhoan) => {
+    userService
+      .deleteUsers(taiKhoan)
+      .then(() => {
+        const searchInput = document.getElementById("user__search").value;
+        message.success("Xóa người dùng thành công!");
+        searchInput
+          ? dispatch(getAllUsers(searchInput))
+          : dispatch(getAllUsers());
+      })
+      .catch((err) => {
+        message.error(
+          `${err ? err.response.data : "Không tìm thấy tài khoản này!"}`
+        );
+      });
+  };
+
   useEffect(() => {
-    dispatch(getAllUsers());
+    const localUser = getLocal("user");
+    if (localUser) {
+      dispatch(getAllUsers());
+    } else {
+      window.location.href = "/admin/login";
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -74,7 +98,7 @@ const AdminUser = () => {
       title: <SettingFilled />,
       key: "action",
       align: "center",
-      render: (_, record, index) => (
+      render: (_, record) => (
         <Space size="small">
           <button
             className="px-3 py-2 text-white duration-300 bg-orange-400 rounded-lg hover:bg-orange-500"
@@ -101,6 +125,7 @@ const AdminUser = () => {
             placement="topRight"
             cancelText="Hủy"
             okText="Xóa"
+            onConfirm={() => deleteConfirm(record.taiKhoan)}
           >
             <button className="px-3 py-2 text-white duration-300 bg-red-500 rounded-lg hover:bg-red-600">
               Xóa
@@ -129,12 +154,16 @@ const AdminUser = () => {
           Thêm người dùng
         </button>
         <input
+          id="user__search"
           type="text"
-          placeholder="Tìm kiếm người dùng..."
+          placeholder="Tìm kiếm tên người dùng..."
           onChange={(e) => {
-            console.log(e.target.value);
+            dispatch(getAllUsers(e.target.value));
           }}
           className="w-1/2 p-2 border-2"
+          onFocus={(e) => {
+            e.target.select();
+          }}
         />
       </div>
       <Table
@@ -144,7 +173,7 @@ const AdminUser = () => {
         scroll={{ x: "1280" }}
         pagination={{ pageSize: 7 }}
       />
-      <Drawer title="Add Drawer" placement="right" onClose={onClose} open={add}>
+      <Drawer title="Thêm Người Dùng" placement="right" onClose={onClose} open={add}>
         <DrawerAddUser />
       </Drawer>
       <Drawer
