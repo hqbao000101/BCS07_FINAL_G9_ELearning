@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import InfoSkill from "../InfoSkill/InfoSkill";
 import { useDispatch, useSelector } from "react-redux";
-import { notification } from "antd";
+import { message, notification } from "antd";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import {
@@ -107,8 +107,8 @@ const InfoDetail = () => {
         formik.values.maNhom = res.data.maNhom;
         formik.values.maLoaiNguoiDung = res.data.maLoaiNguoiDung;
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        message.error("Không tìm thấy thông tin người dùng!");
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

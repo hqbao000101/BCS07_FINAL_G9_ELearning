@@ -9,35 +9,57 @@
     background-color: #1677fb;
     margin-inline: 0;
     margin-block: 0;
+    height: 60px;
     border-radius: 0;
     width: 100%;
     margin-bottom: 20px !important;
     span {
       a {
+        color: white;
+        line-height: 60px;
+      }
+    }
+  }
+
+  .ant-menu-dark:not(.ant-menu-horizontal)
+    .ant-menu-item:first-child:not(.ant-menu-item-selected) {
+    &:hover {
+      background-color: #1164d7;
+      img {
+        transition: all 0.5s;
+        transform: scale(1.5);
+      }
+      span {
+        a {
+          color: white;
+        }
+      }
+    }
+  }
+
+  .ant-menu-item:not(:first-child) {
+    margin-inline-start: 8px !important;
+    margin-inline-end: 0 !important;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    &:hover {
+      .ant-menu-item-icon {
         color: black;
       }
     }
   }
+
   .ant-menu-item.ant-menu-item-selected {
-    background-color: red;
+    background-color: #eee;
+    color: black;
   }
 
   .ant-menu-dark:not(.ant-menu-horizontal)
     .ant-menu-item:not(.ant-menu-item-selected):hover {
-    background-color: orangered;
+    background-color: #eee;
     span {
       a {
-        color: white;
-      }
-    }
-  }
-
-  .ant-menu-dark:not(.ant-menu-horizontal)
-    .ant-menu-item:first-child:not(.ant-menu-item-selected):hover {
-    background-color: green;
-    span {
-      a {
-        color: white;
+        color: black;
       }
     }
   }

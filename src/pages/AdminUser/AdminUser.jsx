@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Drawer, Popconfirm, Space, Table, Tag, message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllUsers } from "../../redux/slices/userSlice";
+import { getAllUsers, setSelectedUser } from "../../redux/slices/userSlice";
 import { QuestionCircleOutlined, SettingFilled } from "@ant-design/icons";
 import DrawerAddUser from "../../Components/DrawerAddUser/DrawerAddUser";
 import DrawerUpdateUser from "../../Components/DrawerUpdateUser/DrawerUpdateUser";
@@ -22,7 +22,8 @@ const AdminUser = () => {
     setAdd(false);
   };
 
-  const showUpdateDrawer = () => {
+  const showUpdateDrawer = (user) => {
+    dispatch(setSelectedUser(user));
     setUpdate(true);
   };
   const onCloseUpdate = () => {
@@ -66,6 +67,7 @@ const AdminUser = () => {
       title: "Tài Khoản",
       dataIndex: "taiKhoan",
       key: "taiKhoan",
+      render: (text) => <>{text ? text : "UNKNOWN"}</>,
     },
     {
       title: "Họ Tên",
@@ -99,39 +101,47 @@ const AdminUser = () => {
       key: "action",
       align: "center",
       render: (_, record) => (
-        <Space size="small">
-          <button
-            className="px-3 py-2 text-white duration-300 bg-orange-400 rounded-lg hover:bg-orange-500"
-            onClick={showUpdateDrawer}
-          >
-            Cập nhật
-          </button>
-          <Popconfirm
-            title="Xóa Người Dùng"
-            description={
-              <>
-                <p>Bạn có chắc muốn xóa người dùng này?</p>
-                <p>Hành động sẽ không được hoàn tác!</p>
-              </>
-            }
-            icon={
-              <QuestionCircleOutlined
-                style={{
-                  color: "red",
+        <>
+          {record.taiKhoan ? (
+            <Space size="small">
+              <button
+                className="px-3 py-2 text-white duration-300 bg-orange-400 rounded-lg hover:bg-orange-500"
+                onClick={() => {
+                  showUpdateDrawer(record);
                 }}
-              />
-            }
-            okType="danger"
-            placement="topRight"
-            cancelText="Hủy"
-            okText="Xóa"
-            onConfirm={() => deleteConfirm(record.taiKhoan)}
-          >
-            <button className="px-3 py-2 text-white duration-300 bg-red-500 rounded-lg hover:bg-red-600">
-              Xóa
-            </button>
-          </Popconfirm>
-        </Space>
+              >
+                Cập nhật
+              </button>
+              <Popconfirm
+                title="Xóa Người Dùng"
+                description={
+                  <>
+                    <p>Bạn có chắc muốn xóa người dùng này?</p>
+                    <p>Hành động sẽ không được hoàn tác!</p>
+                  </>
+                }
+                icon={
+                  <QuestionCircleOutlined
+                    style={{
+                      color: "red",
+                    }}
+                  />
+                }
+                okType="danger"
+                placement="topRight"
+                cancelText="Hủy"
+                okText="Xóa"
+                onConfirm={() => deleteConfirm(record.taiKhoan)}
+              >
+                <button className="px-3 py-2 text-white duration-300 bg-red-500 rounded-lg hover:bg-red-600">
+                  Xóa
+                </button>
+              </Popconfirm>
+            </Space>
+          ) : (
+            <></>
+          )}
+        </>
       ),
     },
   ];
@@ -156,11 +166,11 @@ const AdminUser = () => {
         <input
           id="user__search"
           type="text"
-          placeholder="Tìm kiếm tên người dùng..."
+          placeholder="Tìm kiếm người dùng..."
           onChange={(e) => {
             dispatch(getAllUsers(e.target.value));
           }}
-          className="w-1/2 p-2 border-2"
+          className="w-1/3 p-2 duration-300 border-2 rounded-tl-lg rounded-tr-lg outline-none focus:border-b-main"
           onFocus={(e) => {
             e.target.select();
           }}
@@ -170,7 +180,7 @@ const AdminUser = () => {
         rowKey="stt"
         columns={columns}
         dataSource={data}
-        scroll={{ x: "1280" }}
+        scroll={{ x: "1024px" }}
         pagination={{ pageSize: 7 }}
       />
       <Drawer
@@ -186,12 +196,16 @@ const AdminUser = () => {
         />
       </Drawer>
       <Drawer
-        title="Update Drawer"
+        title="Cập Nhật Người Dùng"
         placement="right"
         onClose={onCloseUpdate}
         open={update}
       >
-        <DrawerUpdateUser />
+        <DrawerUpdateUser
+          setClose={() => {
+            onCloseUpdate();
+          }}
+        />
       </Drawer>
     </div>
   );

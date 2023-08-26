@@ -49,7 +49,7 @@ const HorizontalCourseCard = ({
           dispatch(getAccountInfo());
         }, [1000]);
       })
-      .catch((err) => {
+      .catch(() => {
         api.open({
           message: <h1 className="text-lg font-semibold">Hủy Ghi Danh</h1>,
           description: "Có lỗi xảy ra. Không thể hủy ghi danh khóa học này!",
@@ -62,7 +62,6 @@ const HorizontalCourseCard = ({
           ),
           className: "border-l-8 border-red-500",
         });
-        console.log(err);
       });
   };
 
