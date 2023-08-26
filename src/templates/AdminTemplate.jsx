@@ -75,7 +75,11 @@ const AdminTemplate = () => {
               {
                 key: "0",
                 icon: (
-                  <img src={favicon} alt="Favicon" width={30} height={30} />
+                  <img
+                    src={favicon}
+                    alt="Favicon"
+                    className={`${collapsed ? "w-20" : "w-10"}`}
+                  />
                 ),
                 label: (
                   <NavLink to="/" className="text-sm text-black">
@@ -129,7 +133,7 @@ const AdminTemplate = () => {
               <div className="flex items-center justify-center cursor-pointer group">
                 <p>
                   Chào!{" "}
-                  <span className="duration-300 group-hover:text-orange-400">
+                  <span className="font-bold uppercase duration-300 group-hover:text-orange-400">
                     {admin.hoTen}
                   </span>
                 </p>
