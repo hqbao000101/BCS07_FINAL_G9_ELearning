@@ -22,7 +22,7 @@ const Details = () => {
               <i className="text-xl sm:text-4xl fa-solid text-main me-5 animate-pulse"></i>
               <div>
                 <p className="text-sm leading-8 sm:leading-10 sm:text-base">
-                Khóa học này dạy cho bạn cách lập trình hiện đại với các hướng dẫn tùy chỉnh cho cả người mới học và người lập trình có kinh nghiệm. Nội dung sẽ bao gồm React, Golang, Python và C. Học viên  sẽ có cơ hội tiếp cận với những người cố vấn, những người sẽ giúp bạn vượt trội trong sự nghiệp và nó sẽ đem đến cho ban bạn những kết quả tuyệt vời mà bạn chưa từng nghĩ đến.
+                Khóa học này dạy cho bạn cách lập trình hiện đại, học viên sẽ định hướng đúng đắn và chính xác ,được tiếp cận với môi trường học tập ,phù hợp với nhiều đối tượng học viên muốn tham gia như người mới học và người lập trình có kinh nghiệm muốn  nâng cao tay nghề . Nội dung sẽ bao gồm React, Golang, Python và C. Học viên  sẽ có cơ hội tiếp cận với những người cố vấn, những người sẽ giúp bạn vượt trội trong sự nghiệp và nó sẽ đem đến cho ban bạn những kết quả tuyệt vời mà bạn chưa từng nghĩ đến.
                 </p>
                 <div className="mt-5">
                   <h4 className="font-medium text-main md:text-xl"> <button>MUA KHÓA HỌC</button> </h4>
