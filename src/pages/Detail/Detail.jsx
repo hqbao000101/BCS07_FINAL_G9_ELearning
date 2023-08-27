@@ -13,7 +13,7 @@ const Details = () => {
                 src={ReactBanner}
                 alt="Course Details"
                 className="object-cover w-full"
-                style={{ maxHeight: '40vh', maxWidth: '100%' }}
+                style={{ maxHeight: '40vh', maxWidth: '100%', borderRadius: 150 / 2, overflow: "hidden", borderWidth: 3, borderColor: "orange"}}
               />
             </div>
           </div>
@@ -22,7 +22,7 @@ const Details = () => {
               <i className="text-xl sm:text-4xl fa-solid text-main me-5 animate-pulse"></i>
               <div>
                 <p className="text-sm leading-8 sm:leading-10 sm:text-base">
-                Khóa học này dạy cho bạn cách lập trình hiện đại với các hướng dẫn tùy chỉnh cho cả người mới học và người lập trình có kinh nghiệm. Nội dung sẽ bao gồm React, Golang, Python và C. Học viên  sẽ có cơ hội tiếp cận với những người cố vấn, những người sẽ giúp bạn vượt trội trong sự nghiệp và nó sẽ đem đến cho ban bạn những kết quả tuyệt vời mà bạn chưa từng nghĩ đến đế.
+                Khóa học này dạy cho bạn cách lập trình hiện đại với các hướng dẫn tùy chỉnh cho cả người mới học và người lập trình có kinh nghiệm. Nội dung sẽ bao gồm React, Golang, Python và C. Học viên  sẽ có cơ hội tiếp cận với những người cố vấn, những người sẽ giúp bạn vượt trội trong sự nghiệp và nó sẽ đem đến cho ban bạn những kết quả tuyệt vời mà bạn chưa từng nghĩ đến.
                 </p>
                 <div className="mt-5">
                   <h4 className="font-medium text-main md:text-xl"> <button>MUA KHÓA HỌC</button> </h4>
