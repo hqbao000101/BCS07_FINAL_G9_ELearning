@@ -54,10 +54,13 @@ const AdminTemplate = () => {
   ];
 
   useEffect(() => {
-    if (getLocal("user")) {
-      const user = getLocal("user");
+    const user = getLocal("user");
+    if (user && user.maLoaiNguoiDung === "GV") {
       setAdmin(user);
       message.success(`Chào mừng ${user.hoTen} đã quay lại!`);
+    } else {
+      removeLocal("user");
+      window.location.href = "/admin/login";
     }
   }, []);
 
