@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -11,7 +11,8 @@ import { getAllUsers } from "../../redux/slices/userSlice";
 const DrawerUpdateUser = ({ setClose }) => {
   const selectedUser = useSelector((state) => state.user.selectedUser);
   const dispatch = useDispatch();
-
+  const [maLoaiNguoiDung, setMaLoaiNguoiDung] = useState("");
+  
   const formik = useFormik({
     initialValues: {
       hoTen: "",
@@ -60,6 +61,7 @@ const DrawerUpdateUser = ({ setClose }) => {
   });
 
   useEffect(() => {
+    setMaLoaiNguoiDung(selectedUser.maLoaiNguoiDung);
     userService
       .searchUsers(selectedUser.taiKhoan)
       .then((res) => {
@@ -129,10 +131,11 @@ const DrawerUpdateUser = ({ setClose }) => {
       />
       <Select
         id="maLoaiNguoiDung"
-        defaultValue={formik.values.maLoaiNguoiDung}
+        value={maLoaiNguoiDung}
         style={{ width: "100%" }}
         onChange={(value) => {
           formik.values.maLoaiNguoiDung = value;
+          setMaLoaiNguoiDung(value);
         }}
         options={[
           { value: "HV", label: "Học Viên" },
