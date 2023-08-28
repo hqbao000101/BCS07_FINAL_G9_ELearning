@@ -1,7 +1,7 @@
 import React from "react";
-import "./Details.scss";
 import ReactBanner from "../../assets/imgs/card_react_sample.jpg";
 import UserComment from "../../assets/imgs/user_feedback.png";
+import styles from './Details.scss';
 
 const Details = () => {
   return (
@@ -25,7 +25,9 @@ const Details = () => {
                 Khóa học này dạy cho bạn cách lập trình hiện đại, học viên sẽ định hướng đúng đắn và chính xác ,được tiếp cận với môi trường học tập ,phù hợp với nhiều đối tượng học viên muốn tham gia như người mới học và người lập trình có kinh nghiệm muốn  nâng cao tay nghề . Nội dung sẽ bao gồm React, Golang, Python và C. Học viên  sẽ có cơ hội tiếp cận với những người cố vấn, những người sẽ giúp bạn vượt trội trong sự nghiệp và nó sẽ đem đến cho ban bạn những kết quả tuyệt vời mà bạn chưa từng nghĩ đến.
                 </p>
                 <div className="mt-5">
-                  <h4 className="font-medium text-main md:text-xl"> <button>MUA KHÓA HỌC</button> </h4>
+                  <div className={styles.detailBtn}>
+                    <button>MUA KHÓA HỌC</button>
+                    </div>
                   <p className="text-sm text-gray-400 md:text-base">
                   120.000đ
                   </p>
