@@ -11,7 +11,7 @@ import {
 import { userService } from "../../services/userServices";
 import { getAccountInfo } from "../../redux/slices/userSlice";
 import "./InfoDetail.scss";
-import { removeLocal } from "../../utils/localStorage";
+import { getLocal, removeLocal, saveLocal } from "../../utils/localStorage";
 
 const InfoDetail = () => {
   const [card, setCard] = useState(false);
@@ -30,9 +30,16 @@ const InfoDetail = () => {
       maLoaiNguoiDung: accountInfo.maLoaiNguoiDung,
     },
     onSubmit: (values) => {
+      const user = getLocal("user");
       userService
         .updateUsers({ ...values, matKhau: accountInfo.matKhau })
         .then(() => {
+          saveLocal("user", {
+            ...user,
+            hoTen: values.hoTen,
+            email: values.email,
+            soDT: values.soDT,
+          });
           dispatch(getAccountInfo());
           setCard(false);
           api.open({
