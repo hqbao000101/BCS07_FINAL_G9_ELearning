@@ -11,7 +11,7 @@ export const getAllCourses = createAsyncThunk(
   "course/getAllCourses",
   async (tenKhoaHoc = "") => {
     const res = await courseService.getAllCourses(tenKhoaHoc);
-    return res.data.content;
+    return res.data;
   }
 );
 

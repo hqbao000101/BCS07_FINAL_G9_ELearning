@@ -62,6 +62,7 @@ const AdminUser = () => {
       title: "STT",
       dataIndex: "stt",
       key: "stt",
+      align: "center",
     },
     {
       title: "Tài Khoản",
