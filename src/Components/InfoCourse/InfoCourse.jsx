@@ -43,7 +43,7 @@ const InfoCourse = () => {
   };
 
   return (
-    <div>
+    <div id="info__course">
       <div className="flex items-center justify-between pb-2 mb-5 border-b-2 border-orange-400">
         <h2 className="flex w-1/2 text-base font-semibold text-orange-400 uppercase sm:w-2/3 sm:text-xl">
           <span className="min-[400px]:block hidden me-1">Danh Sách</span>Ghi
@@ -85,13 +85,17 @@ const InfoCourse = () => {
       )}
       {(list.length === 0 && key === "") ||
       (list.length !== 0 && key !== "") ? (
-        <div className="text-right">
-          <Pagination
-            defaultCurrent={1}
-            total={accountInfo.chiTietKhoaHocGhiDanh?.length}
-            pageSize={10}
-          />
-        </div>
+        accountInfo.chiTietKhoaHocGhiDanh?.length !== 0 ? (
+          <div className="text-right">
+            <Pagination
+              defaultCurrent={1}
+              total={accountInfo.chiTietKhoaHocGhiDanh?.length}
+              pageSize={10}
+            />
+          </div>
+        ) : (
+          <></>
+        )
       ) : (
         <div>
           <p className="text-lg">Không tìm thấy khóa học liên quan!</p>
