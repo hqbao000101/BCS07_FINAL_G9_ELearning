@@ -6,6 +6,7 @@ const Sponsors = () => {
   return (
     <div className='container mx-auto py-20'>
         <h1 className='text-center font-bold text-yellow-500 text-3xl mb-5'>NHÀ TÀI TRỢ CHƯƠNG TRÌNH</h1>
+        <br />
         <Row>
             <Col className={styles.sponsorsItem} xs={24} md={12} lg={6}>
                 <img src={require('../../assets/imgs/viettel.jpg')} alt="..." />
