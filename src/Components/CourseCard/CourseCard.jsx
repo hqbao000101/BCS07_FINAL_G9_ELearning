@@ -15,7 +15,7 @@ const CourseCard = ({
   hinhAnh = ReactSample,
   maKhoaHoc = "1636364364967",
   moTa = tempContent,
-  luotXem = "100",
+  luotXem = 100,
 }) => {
   return (
     <div className="duration-300 shadow-md hover:shadow-xl group">

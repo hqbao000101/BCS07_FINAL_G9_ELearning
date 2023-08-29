@@ -9,9 +9,9 @@ const initialState = {
   accountInfo: {},
 };
 
-export const getAllUsers = createAsyncThunk("user/getAllUsers", async () => {
-  const res = await userService.getAllUsers();
-  return res.data.content;
+export const getAllUsers = createAsyncThunk("user/getAllUsers", async (tuKhoa = "") => {
+  const res = await userService.getAllUsers(tuKhoa);
+  return res.data;
 });
 
 export const getAccountInfo = createAsyncThunk(

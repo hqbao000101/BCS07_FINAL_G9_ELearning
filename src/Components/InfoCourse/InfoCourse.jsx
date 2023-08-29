@@ -7,6 +7,7 @@ import "./InfoCourse.scss";
 import { getAccountInfo } from "../../redux/slices/userSlice";
 import Lottie from "react-lottie";
 import * as animationNoData from "../../assets/animations/no_data.json";
+import removeAccents from "../../utils/removeAccent";
 
 const { Search } = Input;
 
@@ -28,7 +29,7 @@ const InfoCourse = () => {
   const onSearch = async (value) => {
     await dispatch(getAccountInfo());
     const newList = accountInfo.chiTietKhoaHocGhiDanh?.filter((item) =>
-      item.tenKhoaHoc.toLowerCase().includes(value.toLowerCase())
+      removeAccents(item.tenKhoaHoc).includes(removeAccents(value))
     );
     setKey(value);
     setList(newList);
@@ -42,10 +43,11 @@ const InfoCourse = () => {
   };
 
   return (
-    <div>
+    <div id="info__course">
       <div className="flex items-center justify-between pb-2 mb-5 border-b-2 border-orange-400">
         <h2 className="flex w-1/2 text-base font-semibold text-orange-400 uppercase sm:w-2/3 sm:text-xl">
-          <span className="min-[400px]:block hidden me-1">Danh Sách</span>Ghi Danh
+          <span className="min-[400px]:block hidden me-1">Danh Sách</span>Ghi
+          Danh
         </h2>
         <div className="w-1/2 sm:w-1/3">
           <Search
@@ -69,18 +71,31 @@ const InfoCourse = () => {
         )
       ) : (
         list.map((item, index) => {
-          return <HorizontalCourseCard item={item} flag={true} key={index} />;
+          return (
+            <HorizontalCourseCard
+              item={item}
+              flag={true}
+              key={index}
+              index={index}
+              list={list}
+              setList={setList}
+            />
+          );
         })
       )}
       {(list.length === 0 && key === "") ||
       (list.length !== 0 && key !== "") ? (
-        <div className="text-right">
-          <Pagination
-            defaultCurrent={1}
-            total={accountInfo.chiTietKhoaHocGhiDanh?.length}
-            pageSize={10}
-          />
-        </div>
+        accountInfo.chiTietKhoaHocGhiDanh?.length !== 0 ? (
+          <div className="text-right">
+            <Pagination
+              defaultCurrent={1}
+              total={accountInfo.chiTietKhoaHocGhiDanh?.length}
+              pageSize={10}
+            />
+          </div>
+        ) : (
+          <></>
+        )
       ) : (
         <div>
           <p className="text-lg">Không tìm thấy khóa học liên quan!</p>

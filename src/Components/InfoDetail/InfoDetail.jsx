@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import InfoSkill from "../InfoSkill/InfoSkill";
 import { useDispatch, useSelector } from "react-redux";
-import { notification } from "antd";
+import { message, notification } from "antd";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import {
@@ -11,7 +11,7 @@ import {
 import { userService } from "../../services/userServices";
 import { getAccountInfo } from "../../redux/slices/userSlice";
 import "./InfoDetail.scss";
-import { removeLocal } from "../../utils/localStorage";
+import { getLocal, removeLocal, saveLocal } from "../../utils/localStorage";
 
 const InfoDetail = () => {
   const [card, setCard] = useState(false);
@@ -30,9 +30,16 @@ const InfoDetail = () => {
       maLoaiNguoiDung: accountInfo.maLoaiNguoiDung,
     },
     onSubmit: (values) => {
+      const user = getLocal("user");
       userService
         .updateUsers({ ...values, matKhau: accountInfo.matKhau })
         .then(() => {
+          saveLocal("user", {
+            ...user,
+            hoTen: values.hoTen,
+            email: values.email,
+            soDT: values.soDT,
+          });
           dispatch(getAccountInfo());
           setCard(false);
           api.open({
@@ -107,8 +114,8 @@ const InfoDetail = () => {
         formik.values.maNhom = res.data.maNhom;
         formik.values.maLoaiNguoiDung = res.data.maLoaiNguoiDung;
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        message.error("Không tìm thấy thông tin người dùng!");
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

@@ -19,7 +19,6 @@ const CategoryContent = () => {
       .getCoursesByCategory(maDanhMuc)
       .then((res) => {
         setCourse(res.data);
-        console.log(res.data);
         dispatch(set_loading_end());
       })
       .catch(() => {
@@ -32,10 +31,10 @@ const CategoryContent = () => {
   return (
     <div>
       <div className="container">
-        <div className="title mb-5 text-base font-semibold clear-both">
-          <span className="rounded-full border-2 border-zinc-300 m-5 px-3 py-3">
+        <div className="clear-both mb-5 text-base font-semibold title">
+          <span className="px-3 py-3 m-5 border-2 rounded-full border-zinc-300">
             <i class="fa-solid fa-desktop mr-2 text-yellow-400"></i>
-            {course[0].danhMucKhoaHoc.tenDanhMucKhoaHoc}
+            {course[0]?.danhMucKhoaHoc.tenDanhMucKhoaHoc}
           </span>
         </div>
         <div className="px-5">

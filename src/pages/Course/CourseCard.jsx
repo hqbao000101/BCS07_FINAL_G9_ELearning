@@ -15,7 +15,7 @@ const CourseCard = ({
   hinhAnh = ReactSample,
   maKhoaHoc = "1636364364967",
   moTa = tempContent,
-  luotXem = "100",
+  luotXem = 100,
 }) => {
   return (
     <NavLink to={`/detail/${maKhoaHoc}`} className="card" href="#">
@@ -30,11 +30,11 @@ const CourseCard = ({
       <span className="stiker">{info}</span>
       <div className="card_body">
         <h6 className="line-clamp-2">{moTa}</h6>
-        <div className="title_maker items-center grid grid-cols-5">
+        <div className="grid items-center grid-cols-5 title_maker">
           <div className="img_footer">
             <img src={AdImg} alt="people" />
           </div>
-          <span className="name_maker col-span-4">Elon Musk</span>
+          <span className="col-span-4 name_maker">Elon Musk</span>
         </div>
       </div>
       <div className="card_footer">

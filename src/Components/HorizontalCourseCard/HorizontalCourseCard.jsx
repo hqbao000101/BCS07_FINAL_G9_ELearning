@@ -14,7 +14,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { courseService } from "../../services/courseServices";
 import { getAccountInfo } from "../../redux/slices/userSlice";
 
-const HorizontalCourseCard = ({ item, flag = false }) => {
+const HorizontalCourseCard = ({
+  item,
+  flag = false,
+  index,
+  list,
+  setList = () => {},
+}) => {
   const { maKhoaHoc, tenKhoaHoc, moTa, luotXem, hinhAnh } = item;
   const accountInfo = useSelector((state) => state.user.accountInfo);
   const dispatch = useDispatch();
@@ -24,10 +30,10 @@ const HorizontalCourseCard = ({ item, flag = false }) => {
     courseService
       .unRegisterCourses({ maKhoaHoc, taiKhoan: accountInfo.taiKhoan })
       .then(() => {
+        list && list.splice(index, 1);
+        setList(list);
         api.open({
-          message: (
-            <h1 className="text-lg font-semibold">Hủy Ghi Danh</h1>
-          ),
+          message: <h1 className="text-lg font-semibold">Hủy Ghi Danh</h1>,
           description:
             "Thành công hủy ghi danh khóa học. Bạn có thể đăng ký khóa học mới bất kỳ lúc nào!",
           icon: (
@@ -41,15 +47,12 @@ const HorizontalCourseCard = ({ item, flag = false }) => {
         });
         setTimeout(() => {
           dispatch(getAccountInfo());
-        }, [2000])
+        }, [1000]);
       })
       .catch(() => {
         api.open({
-          message: (
-            <h1 className="text-lg font-semibold">Hủy Ghi Danh</h1>
-          ),
-          description:
-            "Có lỗi xảy ra. Không thể hủy ghi danh khóa học này!",
+          message: <h1 className="text-lg font-semibold">Hủy Ghi Danh</h1>,
+          description: "Có lỗi xảy ra. Không thể hủy ghi danh khóa học này!",
           icon: (
             <SafetyCertificateOutlined
               style={{
