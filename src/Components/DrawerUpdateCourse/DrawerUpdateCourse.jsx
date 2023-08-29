@@ -41,6 +41,7 @@ const DrawerUpdateCourse = ({ setClose }) => {
           message.success("Cập nhật khóa học thành công!");
           dispatch(getAllCourses());
           setClose();
+          setImg("");
           formik.resetForm();
         })
         .catch(() => {
