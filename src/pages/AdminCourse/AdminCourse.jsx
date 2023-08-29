@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCourses } from "../../redux/slices/courseSlice";
+import { getAllCourses, setSelectedCourse } from "../../redux/slices/courseSlice";
 import { Drawer, Popconfirm, Table, message } from "antd";
 import DrawerAddCourse from "../../Components/DrawerAddCourse/DrawerAddCourse";
 import "./AdminCourse.scss";
@@ -12,11 +12,13 @@ import {
 } from "@ant-design/icons";
 import ReactSample from "../../assets/imgs/card_react_sample.jpg";
 import { courseService } from "../../services/courseServices";
+import DrawerUpdateCourse from "../../Components/DrawerUpdateCourse/DrawerUpdateCourse";
 
 const AdminCourse = () => {
   const courses = useSelector((state) => state.course.courses);
   const dispatch = useDispatch();
   const [add, setAdd] = useState(false);
+  const [update, setUpdate] = useState(false);
 
   useEffect(() => {
     dispatch(getAllCourses());
@@ -26,8 +28,17 @@ const AdminCourse = () => {
   const showDrawer = () => {
     setAdd(true);
   };
+
   const onClose = () => {
     setAdd(false);
+  };
+
+  const showUpdateDrawer = () => {
+    setUpdate(true);
+  };
+
+  const onUpdateClose = () => {
+    setUpdate(false);
   };
 
   const deleteConfirm = (maKhoaHoc) => {
@@ -111,7 +122,13 @@ const AdminCourse = () => {
       align: "center",
       render: (_, record) => (
         <div className="flex items-center justify-center gap-2">
-          <button className="px-3 py-2 text-white duration-300 bg-yellow-400 rounded-md hover:bg-yellow-500">
+          <button
+            className="px-3 py-2 text-white duration-300 bg-yellow-400 rounded-md hover:bg-yellow-500"
+            onClick={() => {
+              showUpdateDrawer();
+              dispatch(setSelectedCourse(record));
+            }}
+          >
             <EditFilled />
           </button>
           <Popconfirm
@@ -185,6 +202,19 @@ const AdminCourse = () => {
         <DrawerAddCourse
           setClose={() => {
             onClose();
+          }}
+        />
+      </Drawer>
+      <Drawer
+        title="Cập Nhật Khóa Học"
+        placement="right"
+        onClose={onUpdateClose}
+        open={update}
+        size="large"
+      >
+        <DrawerUpdateCourse
+          setClose={() => {
+            onUpdateClose();
           }}
         />
       </Drawer>
