@@ -61,5 +61,5 @@
 - eslint-disable-next-line react-hooks/exhaustive-deps
 
 # Accounts for testing
-- GV: { "taiKhoan": "huycan4mat", "matKhau": "123456" }
+- GV: { "taiKhoan": "admin0001", "matKhau": "123" }
 - HV: { "taiKhoan": "user0001", "matKhau": "123" }
