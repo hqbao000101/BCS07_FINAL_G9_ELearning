@@ -19,7 +19,6 @@ const CategoryContent = () => {
       .getCoursesByCategory(maDanhMuc)
       .then((res) => {
         setCourse(res.data);
-        console.log(res.data);
         dispatch(set_loading_end());
       })
       .catch(() => {
