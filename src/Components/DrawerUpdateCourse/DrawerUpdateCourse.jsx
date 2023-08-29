@@ -1,18 +1,19 @@
-import React, { useState } from "react";
-import FormInput from "../FormInput/FormInput";
+import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { Select, message } from "antd";
-import "./DraweAddCourse.scss";
-import moment from "moment";
-import { getLocal } from "../../utils/localStorage";
 import { UploadOutlined } from "@ant-design/icons";
+import FormInput from "../FormInput/FormInput";
+import { Select, message } from "antd";
+import "./DrawerUpdateCourse.scss";
+import { useDispatch, useSelector } from "react-redux";
+import ReactSample from "../../assets/imgs/card_react_sample.jpg";
 import { courseService } from "../../services/courseServices";
-import { useDispatch } from "react-redux";
 import { getAllCourses } from "../../redux/slices/courseSlice";
 
-const DrawerAddCourse = ({setClose}) => {
+const DrawerUpdateCourse = ({ setClose }) => {
   const [img, setImg] = useState("");
+  const [maDanhMucKhoaHoc, setMaDanhMucKhoaHoc] = useState("");
+  const selectedCourse = useSelector((state) => state.course.selectedCourse);
   const dispatch = useDispatch();
 
   const formik = useFormik({
@@ -30,28 +31,21 @@ const DrawerAddCourse = ({setClose}) => {
       taiKhoanNguoiTao: "",
     },
     onSubmit: (values) => {
-      const date = new Date();
-      const formatDate = moment(date).format("DD/MM/YYYY");
-      const { taiKhoan } = getLocal("user");
-      values = {
-        ...values,
-        ngayTao: formatDate,
-        taiKhoanNguoiTao: taiKhoan,
-      };
       let formData = new FormData();
       for (let key in values) {
         formData.append(key, values[key]);
       }
       courseService
-        .addCoursesUploadImg(formData)
+        .updateCoursesUploadImg(formData)
         .then(() => {
-          message.success("Thêm khóa học mới thành công!");
+          message.success("Cập nhật khóa học thành công!");
           dispatch(getAllCourses());
           setClose();
           formik.resetForm();
         })
-        .catch((err) => {
-          message.error(err.response.data);
+        .catch(() => {
+          message.error("Cập nhật khóa học thất bại!");
+          setImg("");
         });
     },
     validationSchema: yup.object({
@@ -78,21 +72,37 @@ const DrawerAddCourse = ({setClose}) => {
     }
   };
 
+  useEffect(() => {
+    setMaDanhMucKhoaHoc(selectedCourse.danhMucKhoaHoc.maDanhMucKhoahoc);
+    formik.setValues({
+      maKhoaHoc: selectedCourse.maKhoaHoc,
+      biDanh: selectedCourse.biDanh,
+      tenKhoaHoc: selectedCourse.tenKhoaHoc,
+      moTa: selectedCourse.moTa,
+      luotXem: selectedCourse.luotXem,
+      danhGia: 0,
+      hinhAnh: selectedCourse.hinhAnh,
+      maNhom: selectedCourse.maNhom,
+      ngayTao: selectedCourse.ngayTao,
+      maDanhMucKhoaHoc: selectedCourse.danhMucKhoaHoc.maDanhMucKhoahoc,
+      taiKhoanNguoiTao: selectedCourse.nguoiTao.taiKhoan,
+    });
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedCourse]);
+
   return (
-    <form id="admin__course--add" onSubmit={formik.handleSubmit}>
+    <form id="admin__course--update" onSubmit={formik.handleSubmit}>
       <p className="mb-5 text-sm text-gray-400">
         Vui lòng điền các trường sau để thêm khóa học mới vào hệ thống!
       </p>
       <div className="grid grid-cols-2 gap-x-5">
         <div>
-          <FormInput
+          <input
             id="maKhoaHoc"
             type="text"
-            placeholder="Mã Khóa Học"
-            formik={formik}
-            errors={formik.errors.maKhoaHoc}
-            touched={formik.touched.maKhoaHoc}
             value={formik.values.maKhoaHoc}
+            className="bg-[#eee] w-full shadow-md rounded-md mb-5 p-3 cursor-not-allowed text-gray-500"
+            disabled
           />
         </div>
         <div>
@@ -120,10 +130,11 @@ const DrawerAddCourse = ({setClose}) => {
         <div>
           <Select
             id="maDanhMucKhoaHoc"
-            defaultValue="TuDuy"
+            value={maDanhMucKhoaHoc}
             style={{ width: "100%" }}
             onChange={(value) => {
               formik.values.maDanhMucKhoaHoc = value;
+              setMaDanhMucKhoaHoc(value);
             }}
             options={[
               { value: "TuDuy", label: "Tư Duy Lập Trình" },
@@ -149,6 +160,7 @@ const DrawerAddCourse = ({setClose}) => {
             }`}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
+            value={formik.values.moTa}
           ></textarea>
           {formik.errors.moTa && formik.touched.moTa ? (
             <p className="mt-2 text-xs italic text-left text-red-500 sm:text-sm">
@@ -184,7 +196,15 @@ const DrawerAddCourse = ({setClose}) => {
             ""
           )}
           {formik.values.hinhAnh ? (
-            <img src={img} alt="Course Pic" className="object-cover w-full h-56 mt-3" />
+            <img
+              src={img !== "" ? img : formik.values.hinhAnh}
+              alt="Course Pic"
+              className="object-cover w-full h-56 mt-3"
+              onError={({ currentTarget }) => {
+                currentTarget.onerror = null;
+                currentTarget.src = ReactSample;
+              }}
+            />
           ) : (
             <></>
           )}
@@ -199,4 +219,4 @@ const DrawerAddCourse = ({setClose}) => {
   );
 };
 
-export default DrawerAddCourse;
+export default DrawerUpdateCourse;
