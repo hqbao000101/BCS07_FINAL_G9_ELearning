@@ -12,11 +12,11 @@ const Category = () => {
           </h1>
           <p className="flex items-center text-black sm:text-lg">
             <CaretRightOutlined className="me-1 animate-pulse" />
-            Hãy chọn lấy khóa học mong muốn!!!
+            Hãy chọn lấy khóa học mong muốn!
           </p>
         </div>
       </div>
-      <div className="">
+      <div className="py-10 mx-auto max-w-screen-2xl">
         <CategoryContent />
       </div>
     </section>

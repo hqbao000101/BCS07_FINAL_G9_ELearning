@@ -4,8 +4,8 @@ import styles from './Sponsors.module.scss'
 
 const Sponsors = () => {
   return (
-    <div className='container mx-auto py-20'>
-        <h1 className='text-center font-bold text-yellow-500 text-3xl mb-5'>NHÀ TÀI TRỢ CHƯƠNG TRÌNH</h1>
+    <div className='py-20 mx-auto max-w-screen-2xl'>
+        <h1 className='mb-5 text-3xl font-bold text-center text-yellow-500'>NHÀ TÀI TRỢ CHƯƠNG TRÌNH</h1>
         <br />
         <Row>
             <Col className={styles.sponsorsItem} xs={24} md={12} lg={6}>

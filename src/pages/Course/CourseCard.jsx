@@ -18,18 +18,23 @@ const CourseCard = ({
   luotXem = 100,
 }) => {
   return (
-    <NavLink to={`/detail/${maKhoaHoc}`} className="card" href="#">
-      <img
-        src={hinhAnh}
-        alt="info"
-        onError={({ currentTarget }) => {
-          currentTarget.onerror = null;
-          currentTarget.src = ReactSample;
-        }}
-      />
-      <span className="stiker">{info}</span>
+    <NavLink to={`/detail/${maKhoaHoc}`} className="card group" href="#">
+      <div className="overflow-hidden">
+        <img
+          src={hinhAnh}
+          alt="info"
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null;
+            currentTarget.src = ReactSample;
+          }}
+          className="object-cover w-full h-48 duration-300 group-hover:scale-110"
+        />
+      </div>
+      <span className="text-white shadow-md stiker">{info}</span>
       <div className="card_body">
-        <h6 className="line-clamp-2">{moTa}</h6>
+        <h6 className="mb-3 duration-300 line-clamp-2 group-hover:text-orange-400">
+          {moTa}
+        </h6>
         <div className="grid items-center grid-cols-5 title_maker">
           <div className="img_footer">
             <img src={AdImg} alt="people" />
@@ -47,7 +52,7 @@ const CourseCard = ({
           </p>
         </div>
         <div className="danh_gia">
-          <i class="fa-solid fa-star"></i>
+          <i className="fa-solid fa-star"></i>
           <span className="text_star">4.9</span>
           <span className="number_people">({luotXem})</span>
         </div>

@@ -7,8 +7,8 @@ const Details = () => {
   return (
     <div>
       <div className="flex flex-col items-center justify-between mt-10 sm:mt-20 md:flex-row">
-          <div class="margin">
-            <div class="img-margin" style={{ width: '40vw' }}>
+          <div className="margin">
+            <div className="img-margin" style={{ width: '40vw' }}>
               <img
                 src={ReactBanner}
                 alt="Course Details"
@@ -17,7 +17,7 @@ const Details = () => {
               />
             </div>
           </div>
-          <div class="text-margin">
+          <div className="text-margin">
             <div className="flex text-lg">
               <i className="text-xl sm:text-4xl fa-solid text-main me-5 animate-pulse"></i>
               <div>

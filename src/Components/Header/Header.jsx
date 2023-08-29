@@ -193,7 +193,7 @@ const Header = () => {
   };
 
   return (
-    <header>
+    <header className="sticky top-0 z-50">
       <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5">
         <div className="flex items-center justify-between mx-auto max-w-screen-2xl">
           <NavLink

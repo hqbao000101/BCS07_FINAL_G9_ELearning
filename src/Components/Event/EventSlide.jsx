@@ -4,7 +4,7 @@ import styles from './EventSlide.module.scss';
 const EventSlide = () => {
   return (
     <div className={styles.eventSlide}>
-        <div className="container mx-auto">
+        <div className="mx-auto max-w-screen-2xl">
             <div className='flex items-center w-full'>
                 <div className='mr-5 text-center lg:mr-10'>
                     <h1 className='text-5xl font-bold text-yellow-500 lg:text-6xl'>11</h1>

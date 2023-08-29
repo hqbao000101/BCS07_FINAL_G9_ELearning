@@ -11,9 +11,10 @@ const Intro = () => {
     <section id="about" className="mb-10">
       <div className="about_content ">
         <div
-          className="about_title text-center text-white py-24 min-h-[40vh] flex items-center justify-center bg-fixed bg-center"
+          className="about_title text-center text-white py-24 min-h-[53vh] flex items-center justify-center bg-fixed bg-center"
           style={{
             backgroundImage: `url(${IntroBg})`,
+            backgroundSize: "cover",
           }}
         >
           <div>
@@ -23,10 +24,10 @@ const Intro = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-rows-4 gap-10 mt-10">
+      <div className="grid grid-rows-4 gap-10 mx-auto mt-10 max-w-screen-2xl">
         <div className="about_items">
           <div className="grid max-h-full md:grid-cols-2">
-            <div className="">
+            <div className="row-start-2 md:row-start-1">
               <h6 className="text-main">V LEARNING ?</h6>
               <h5>Nơi hội tụ kiến thức</h5>
               <p>
@@ -38,7 +39,7 @@ const Intro = () => {
                 tạo nên một lớp học trực tuyến thú vị và hấp dẫn.
               </p>
             </div>
-            <div className="img">
+            <div className="row-start-1 img">
               <img
                 src={IntroImg3}
                 alt="img-3"
@@ -73,7 +74,7 @@ const Intro = () => {
         </div>
         <div className="about_items">
           <div className="grid max-h-full md:grid-cols-2">
-            <div className="">
+            <div className="row-start-2 md:row-start-1">
               <h6 className="text-main">TẦM NHÌN V LEARNING</h6>
               <h5>Đào tạo lập trình chuyên sâu</h5>
               <p>
@@ -86,7 +87,7 @@ const Intro = () => {
                 đời, sẵn sàng đáp ứng mọi nhu cầu của doanh nghiệp.
               </p>
             </div>
-            <div className="img">
+            <div className="row-start-1 img">
               <img
                 src={IntroImg5}
                 alt="img-3"

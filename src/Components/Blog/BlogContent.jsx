@@ -55,7 +55,7 @@ const BlogContent = (props) => {
     },
     {
       hinhAnh: asyncAwait,
-      tieuDe: "Xử lý bất đồng bộ trong Javascript (phần 2)",
+      tieuDe: "Xử lý bất đồng bộ async - await trong Javascript (phần 2)",
       noiDung:
         "Async/await là cơ chế giúp bạn thực thi các thao tác bất đồng bộ một cách tuần tự hơn , giúp đoạn code nhìn qua tưởng như đồng...",
       tacGia: "Thái Khang",
@@ -77,7 +77,7 @@ const BlogContent = (props) => {
   ];
 
   return (
-    <div id="blog" className="container py-20 mx-auto">
+    <div id="blog" className="py-10 mx-auto max-w-screen-2xl">
       <Row>
         <Col xs={24} lg={17} className="mx-auto">
           <div className="flex items-center px-10 mb-5 lg:px-5">

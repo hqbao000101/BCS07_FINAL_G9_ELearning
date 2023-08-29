@@ -1,29 +1,20 @@
 import React, { useEffect, useState } from "react";
 import CourseCard from "../CourseCard/CourseCard";
-import { useDispatch } from "react-redux";
 import { courseService } from "./../../services/courseServices";
 import { message } from "antd";
-import {
-  set_loading_end,
-  set_loading_start,
-} from "../../redux/slices/loadingSlice";
 import { useParams } from "react-router-dom";
 
 const CategoryContent = () => {
   const [course, setCourse] = useState([]);
-  const dispatch = useDispatch();
   const { maDanhMuc } = useParams();
   useEffect(() => {
-    dispatch(set_loading_start());
     courseService
       .getCoursesByCategory(maDanhMuc)
       .then((res) => {
         setCourse(res.data);
-        dispatch(set_loading_end());
       })
       .catch(() => {
         message.error("Không thể lấy dữ liệu khóa học!");
-        dispatch(set_loading_end());
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [maDanhMuc]);
@@ -31,14 +22,14 @@ const CategoryContent = () => {
   return (
     <div>
       <div className="container">
-        <div className="clear-both mb-5 text-base font-semibold title">
+        <div className="clear-both mb-10 text-base font-semibold title">
           <span className="px-3 py-3 m-5 border-2 rounded-full border-zinc-300">
-            <i class="fa-solid fa-desktop mr-2 text-yellow-400"></i>
+            <i className="mr-2 text-yellow-400 fa-solid fa-desktop"></i>
             {course[0]?.danhMucKhoaHoc.tenDanhMucKhoaHoc}
           </span>
         </div>
         <div className="px-5">
-          <div className="grid gap-6 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 sm:place-items-center">
+          <div className="grid gap-10 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 sm:place-items-center">
             {course.map((item, index) => {
               return (
                 <CourseCard
