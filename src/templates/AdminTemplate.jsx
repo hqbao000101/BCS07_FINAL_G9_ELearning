@@ -69,11 +69,11 @@ const AdminTemplate = () => {
       {isLoading ? <Loading /> : <></>}
       <Layout id="admin__template" className="min-h-screen">
         <Sider trigger={null} collapsible collapsed={collapsed}>
-          <div className="demo-logo-vertical bg-main" />
           <Menu
             theme="dark"
             mode="inline"
             defaultSelectedKeys={["1"]}
+            className="sticky top-0"
             items={[
               {
                 key: "0",
@@ -85,7 +85,7 @@ const AdminTemplate = () => {
                   />
                 ),
                 label: (
-                  <NavLink to="/" className="text-sm text-black">
+                  <NavLink to="/" className="text-sm text-black" target="_blank">
                     Cyber E-Learning
                   </NavLink>
                 ),

@@ -49,7 +49,7 @@
     }
   }
 
-  .ant-menu-item.ant-menu-item-selected {
+  .ant-menu-item:not(:first-child).ant-menu-item-selected {
     background-color: #eee;
     color: black;
   }

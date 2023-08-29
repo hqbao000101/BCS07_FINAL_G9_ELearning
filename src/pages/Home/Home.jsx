@@ -40,7 +40,7 @@ const Home = () => {
         </h3>
         <div className="grid gap-20 mt-8 xl:gap-12 sm:grid-cols-2 xl:grid-cols-4">
           {course.map((item, index) => {
-            return item.luotXem > 4500 ? (
+            return item.luotXem >= 3000 ? (
               <CourseCard
                 key={index}
                 tenDanhMucKhoaHoc={item.danhMucKhoaHoc.tenDanhMucKhoaHoc}
