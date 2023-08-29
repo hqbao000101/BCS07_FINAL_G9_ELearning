@@ -2,7 +2,7 @@ import React from 'react'
 
 const AdminEnroll = () => {
   return (
-    <div>AdminEnroll</div>
+    <div>Chức năng này vẫn đang trong quá trình phát triển. Hãy quay lại sau!</div>
   )
 }
 

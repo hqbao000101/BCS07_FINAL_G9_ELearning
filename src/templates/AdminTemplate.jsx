@@ -7,7 +7,6 @@ import {
   LogoutOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  ScheduleOutlined,
   SettingOutlined,
   TeamOutlined,
 } from "@ant-design/icons";
@@ -85,7 +84,11 @@ const AdminTemplate = () => {
                   />
                 ),
                 label: (
-                  <NavLink to="/" className="text-sm text-black" target="_blank">
+                  <NavLink
+                    to="/"
+                    className="text-sm text-black"
+                    target="_blank"
+                  >
                     Cyber E-Learning
                   </NavLink>
                 ),
@@ -99,12 +102,7 @@ const AdminTemplate = () => {
                 key: "2",
                 icon: <CodeSandboxOutlined />,
                 label: <NavLink to="/admin/course">Khóa học</NavLink>,
-              },
-              {
-                key: "3",
-                icon: <ScheduleOutlined />,
-                label: <NavLink to="/admin/enroll">Ghi danh</NavLink>,
-              },
+              }
             ]}
           />
         </Sider>

@@ -67,4 +67,13 @@
   .ant-layout-sider-children {
     box-shadow: 2px 0px 20px black;
   }
+
+  .ant-table-wrapper .ant-table-thead >tr>th {
+    background-color: #1e90ff;
+    color: white;
+  }
+
+  .ant-table-wrapper .ant-table-tbody >tr:nth-child(odd) {
+    background-color: #f1f2f6;
+  }
 }

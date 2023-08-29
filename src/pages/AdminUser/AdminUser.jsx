@@ -8,6 +8,7 @@ import DrawerUpdateUser from "../../Components/DrawerUpdateUser/DrawerUpdateUser
 import "./AdminUser.scss";
 import { userService } from "../../services/userServices";
 import { getLocal } from "../../utils/localStorage";
+import { NavLink } from "react-router-dom";
 
 const AdminUser = () => {
   const users = useSelector((state) => state.user.users);
@@ -84,11 +85,19 @@ const AdminUser = () => {
       title: "Số Điện Thoại",
       dataIndex: "soDt",
       key: "soDt",
+      align: "center",
+    },
+    {
+      title: "Danh Sách",
+      key: "danhSach",
+      align: "center",
+      render: () => <NavLink to="/admin/enroll" className="italic text-blue-400 hover:underline">Các Khóa Học Ghi Danh</NavLink>
     },
     {
       title: "Người Dùng",
       dataIndex: "maLoaiNguoiDung",
       key: "maLoaiNguoiDung",
+      align: "center",
       render: (_, { maLoaiNguoiDung }, index) => (
         <div key={index}>
           <Tag color={maLoaiNguoiDung === "HV" ? "blue" : "volcano"}>
@@ -181,7 +190,7 @@ const AdminUser = () => {
         rowKey="stt"
         columns={columns}
         dataSource={data}
-        scroll={{ x: "1024px" }}
+        scroll={{ x: 1280 }}
         pagination={{ pageSize: 7 }}
       />
       <Drawer

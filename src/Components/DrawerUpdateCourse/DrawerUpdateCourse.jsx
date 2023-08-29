@@ -94,7 +94,7 @@ const DrawerUpdateCourse = ({ setClose }) => {
   return (
     <form id="admin__course--update" onSubmit={formik.handleSubmit}>
       <p className="mb-5 text-sm text-gray-400">
-        Vui lòng điền các trường sau để thêm khóa học mới vào hệ thống!
+        Bạn có thể thay đổi các thông tin khóa học ngoại trừ mã khóa học!
       </p>
       <div className="grid grid-cols-2 gap-x-5">
         <div>

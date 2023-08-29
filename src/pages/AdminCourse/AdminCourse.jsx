@@ -13,6 +13,7 @@ import {
 import ReactSample from "../../assets/imgs/card_react_sample.jpg";
 import { courseService } from "../../services/courseServices";
 import DrawerUpdateCourse from "../../Components/DrawerUpdateCourse/DrawerUpdateCourse";
+import { NavLink } from "react-router-dom";
 
 const AdminCourse = () => {
   const courses = useSelector((state) => state.course.courses);
@@ -76,13 +77,13 @@ const AdminCourse = () => {
       dataIndex: "tenKhoaHoc",
       key: "tenKhoaHoc",
       align: "center",
-      width: 200,
+      width: 150,
     },
     {
       title: "Hình Ảnh",
       dataIndex: "hinhAnh",
       key: "hinhAnh",
-      width: 300,
+      width: 250,
       align: "center",
       render: (text) => (
         <img
@@ -92,7 +93,7 @@ const AdminCourse = () => {
             currentTarget.onerror = null;
             currentTarget.src = ReactSample;
           }}
-          className="object-cover w-2/3 h-full mx-auto"
+          className="object-cover w-4/5 h-full mx-auto"
         />
       ),
     },
@@ -115,6 +116,12 @@ const AdminCourse = () => {
       key: "ngayTao",
       dataIndex: "ngayTao",
       align: "center",
+    },
+    {
+      title: "Danh Sách",
+      key: "danhSach",
+      align: "center",
+      render: () => <NavLink to="/admin/enroll" className="italic text-blue-400 hover:underline">Các Học Viên Ghi Danh</NavLink>
     },
     {
       title: <SettingFilled />,
@@ -222,7 +229,7 @@ const AdminCourse = () => {
         rowKey={"stt"}
         columns={columns}
         dataSource={data}
-        scroll={{ x: 1280 }}
+        scroll={{ x: 1480 }}
         pagination={{ pageSize: 5 }}
       />
     </div>
