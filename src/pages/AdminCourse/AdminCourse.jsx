@@ -229,7 +229,7 @@ const AdminCourse = () => {
         rowKey={"stt"}
         columns={columns}
         dataSource={data}
-        scroll={{ x: 1480 }}
+        scroll={{ x: 1400 }}
         pagination={{ pageSize: 5 }}
       />
     </div>
