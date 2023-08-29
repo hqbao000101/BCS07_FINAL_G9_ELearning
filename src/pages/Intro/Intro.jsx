@@ -24,7 +24,7 @@ const Intro = () => {
         </div>
       </div>
       <div className="about_items mt-10">
-        <div className="grid max-h-32 md:grid-cols-2">
+        <div className="grid max-h-full md:grid-cols-2">
           <div className="">
             <h6 className="text-main">V LEARNING ?</h6>
             <h5>Nơi hội tụ kiến thức</h5>
@@ -46,8 +46,8 @@ const Intro = () => {
           </div>
         </div>
       </div>
-      <div className="about_items mt-80">
-        <div className="grid max-h-32 md:grid-cols-2">
+      <div className="about_items mt-10">
+        <div className="grid max-h-full md:grid-cols-2">
           <div className="img">
             <img
               src={IntroImg4}
@@ -70,8 +70,8 @@ const Intro = () => {
           </div>
         </div>
       </div>
-      <div className="about_items mt-80">
-        <div className="grid max-h-32 md:grid-cols-2">
+      <div className="about_items mt-10">
+        <div className="grid max-h-full md:grid-cols-2">
           <div className="">
             <h6 className="text-main">TẦM NHÌN V LEARNING</h6>
             <h5>Đào tạo lập trình chuyên sâu</h5>
@@ -94,8 +94,8 @@ const Intro = () => {
           </div>
         </div>
       </div>
-      <div className="about_items mt-80">
-        <div className="grid max-h-32 md:grid-cols-2">
+      <div className="about_items mt-10">
+        <div className="grid max-h-full md:grid-cols-2">
           <div className="img">
             <img
               src={IntroImg6}
