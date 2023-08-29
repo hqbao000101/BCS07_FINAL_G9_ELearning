@@ -11,7 +11,6 @@ const AdminCourse = () => {
   const courses = useSelector((state) => state.course.courses);
   const dispatch = useDispatch();
   const [add, setAdd] = useState(false);
-  console.log(courses);
 
   useEffect(() => {
     dispatch(getAllCourses());
@@ -138,9 +137,14 @@ const AdminCourse = () => {
         open={add}
         size="large"
       >
-        <DrawerAddCourse />
+        <DrawerAddCourse
+          setClose={() => {
+            onClose();
+          }}
+        />
       </Drawer>
       <Table
+        rowKey={"stt"}
         columns={columns}
         dataSource={data}
         scroll={{ x: 1280 }}
