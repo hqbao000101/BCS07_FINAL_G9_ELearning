@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCourses } from "../../redux/slices/courseSlice";
-import { Drawer, Table } from "antd";
+import { Drawer, Popconfirm, Table, message } from "antd";
 import DrawerAddCourse from "../../Components/DrawerAddCourse/DrawerAddCourse";
 import "./AdminCourse.scss";
-import { DeleteFilled, EditFilled, SettingFilled } from "@ant-design/icons";
+import {
+  DeleteFilled,
+  EditFilled,
+  QuestionCircleOutlined,
+  SettingFilled,
+} from "@ant-design/icons";
 import ReactSample from "../../assets/imgs/card_react_sample.jpg";
+import { courseService } from "../../services/courseServices";
 
 const AdminCourse = () => {
   const courses = useSelector((state) => state.course.courses);
@@ -22,6 +28,23 @@ const AdminCourse = () => {
   };
   const onClose = () => {
     setAdd(false);
+  };
+
+  const deleteConfirm = (maKhoaHoc) => {
+    courseService
+      .deleteCourses(maKhoaHoc)
+      .then(() => {
+        const searchInput = document.getElementById("course__search").value;
+        message.success("Xóa khóa học thành công!");
+        searchInput
+          ? dispatch(getAllCourses(searchInput))
+          : dispatch(getAllCourses());
+      })
+      .catch((err) => {
+        message.error(
+          `${err ? err.response.data : "Không tìm thấy khóa học này!"}`
+        );
+      });
   };
 
   const columns = [
@@ -91,9 +114,31 @@ const AdminCourse = () => {
           <button className="px-3 py-2 text-white duration-300 bg-yellow-400 rounded-md hover:bg-yellow-500">
             <EditFilled />
           </button>
-          <button className="px-3 py-2 text-white duration-300 bg-red-500 rounded-md hover:bg-red-600">
-            <DeleteFilled />
-          </button>
+          <Popconfirm
+            title="Xóa Khóa Học"
+            description={
+              <>
+                <p>Bạn có chắc muốn xóa khóa học này?</p>
+                <p>Hành động sẽ không được hoàn tác!</p>
+              </>
+            }
+            icon={
+              <QuestionCircleOutlined
+                style={{
+                  color: "red",
+                }}
+              />
+            }
+            okType="danger"
+            placement="topRight"
+            cancelText="Hủy"
+            okText="Xóa"
+            onConfirm={() => deleteConfirm(record.maKhoaHoc)}
+          >
+            <button className="px-3 py-2 text-white duration-300 bg-red-500 rounded-md hover:bg-red-600">
+              <DeleteFilled />
+            </button>
+          </Popconfirm>
         </div>
       ),
     },
