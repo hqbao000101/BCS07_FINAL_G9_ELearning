@@ -213,7 +213,7 @@ const DrawerUpdateCourse = ({ setClose }) => {
       </div>
       <div className="mt-5">
         <button className="w-full px-10 py-3 text-sm font-semibold text-white uppercase duration-300 bg-orange-400 rounded-lg shadow-lg hover:bg-orange-600 hover:scale-90">
-          Tạo
+          Cập nhật
         </button>
       </div>
     </form>
