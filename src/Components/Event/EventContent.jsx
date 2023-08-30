@@ -1,6 +1,6 @@
+import React from "react";
 import { Col, Row } from "antd";
 import clsx from "clsx";
-import React from "react";
 import styles from "./EventContent.module.scss";
 import Sponsors from "./Sponsors";
 
