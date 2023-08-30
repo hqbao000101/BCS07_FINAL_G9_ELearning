@@ -14,10 +14,10 @@ const Course = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    window.scrollTo({
-      top: 400,
-      behavior: "smooth",
-    });
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     courseService
       .getCoursesPagination("", pagination, 12)
       .then((res) => {
@@ -118,6 +118,11 @@ const Course = () => {
               total={total}
               onChange={(page) => {
                 dispatch(setPagination(page));
+                window.scroll({
+                  top: 400,
+                  left: 0,
+                  behavior: "smooth",
+                });
               }}
               pageSize={12}
             />

@@ -180,10 +180,12 @@ const Header = () => {
       navigate(`/search/${e.target.value}`);
       e.target.value = "";
       dispatch(setPagination(1));
+      window.scrollTo(0, 0);
     }
     if (e.code === "SearchIcon" && searchKey) {
       navigate(`/search/${searchKey}`);
       dispatch(setPagination(1));
+      window.scrollTo(0, 0);
     }
   };
 
@@ -251,7 +253,7 @@ const Header = () => {
                 placement="bottomRight"
                 arrow={true}
               >
-                <div className="flex items-center justify-center p-3 text-white duration-300 bg-orange-400 rounded-full shadow-[2px_2px_5px_#999] hover:bg-orange-500">
+                <div className="flex items-center justify-center p-3 text-white duration-300 bg-orange-400 rounded-full shadow-[2px_2px_5px_#999] hover:bg-orange-500 me-2">
                   <UserOutlined />
                 </div>
               </Dropdown>

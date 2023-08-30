@@ -16,6 +16,8 @@ import {
 const Home = () => {
   const [course, setCourse] = useState([]);
   const dispatch = useDispatch();
+  let count = 0;
+
   useEffect(() => {
     window.scroll(0, 0);
     dispatch(set_loading_start());
@@ -85,16 +87,23 @@ const Home = () => {
         </h3>
         <div className="grid gap-20 mt-8 xl:gap-12 sm:grid-cols-2 xl:grid-cols-4">
           {course.map((item, index) => {
+            if (item.danhMucKhoaHoc.maDanhMucKhoahoc === "FrontEnd") {
+              count++;
+            }
             return item.danhMucKhoaHoc.maDanhMucKhoahoc === "FrontEnd" ? (
-              <CourseCard
-                key={index}
-                tenDanhMucKhoaHoc={item.danhMucKhoaHoc.tenDanhMucKhoaHoc}
-                hinhAnh={item.hinhAnh}
-                maKhoaHoc={item.maKhoaHoc}
-                moTa={item.moTa}
-                luotXem={item.luotXem}
-                isPopular={item.luotXem >= 3000 ? true : false}
-              />
+              count <= 4 ? (
+                <CourseCard
+                  key={index}
+                  tenDanhMucKhoaHoc={item.danhMucKhoaHoc.tenDanhMucKhoaHoc}
+                  hinhAnh={item.hinhAnh}
+                  maKhoaHoc={item.maKhoaHoc}
+                  moTa={item.moTa}
+                  luotXem={item.luotXem}
+                  isPopular={item.luotXem >= 3000 ? true : false}
+                />
+              ) : (
+                ""
+              )
             ) : (
               ""
             );

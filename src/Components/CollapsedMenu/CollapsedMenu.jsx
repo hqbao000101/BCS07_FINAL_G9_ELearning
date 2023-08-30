@@ -172,16 +172,18 @@ const CollapsedMenu = () => {
   };
 
   const searchCourse = (e, searchKey) => {
-    if (e.code === "Enter" && e.target.value) {
+    if ((e.code === "Enter" || e.code === 13) && e.target.value) {
       navigate(`/search/${e.target.value}`);
       e.target.value = "";
       dispatch(setPagination(1));
       setOpen(false);
+      window.scrollTo(0, 0);
     }
     if (e.code === "SearchIcon" && searchKey) {
       navigate(`/search/${searchKey}`);
       dispatch(setPagination(1));
       setOpen(false);
+      window.scrollTo(0, 0);
     }
   };
 
@@ -231,10 +233,10 @@ const CollapsedMenu = () => {
                 placeholder="Input search course here..."
                 onFocus={handleOnFocus}
                 onKeyDown={searchCourse}
-                className="w-full xl:w-32 lg:w-56"
+                className="w-full p-2 outline-none xl:w-32 lg:w-56"
               />
               <SearchOutlined
-                className="absolute right-0 text-gray-300 duration-500 -translate-y-1/2 top-1/2 group-focus-within:text-black hover:scale-150 hover:text-black"
+                className="absolute text-gray-300 duration-500 -translate-y-1/2 right-2 top-1/2 group-focus-within:text-black hover:scale-150 hover:text-black"
                 onClick={clickSearch}
               />
             </div>
