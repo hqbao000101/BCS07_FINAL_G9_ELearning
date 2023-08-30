@@ -97,7 +97,7 @@ const BlogContent = (props) => {
           xs={24}
           lg={7}
         >
-          <div className="sticky left-0 pb-10 top-5">
+          <div className="sticky left-0 pb-10 top-28">
             <Row>
               <Col
                 className="border-t-2 md:px-5 lg:px-0 border-main"

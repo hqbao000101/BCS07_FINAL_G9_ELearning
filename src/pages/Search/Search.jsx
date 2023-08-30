@@ -60,7 +60,7 @@ const Search = () => {
       </div>
       <div className="py-10 mx-auto max-w-screen-2xl">
         <div className="flex items-start">
-          <div className="sticky hidden w-1/4 px-4 lg:block top-5">
+          <div className="sticky hidden w-1/4 px-4 lg:block top-28">
             <div className="flex items-center text-4xl font-semibold text-black">
               <ControlFilled className="text-orange-400 me-2" />
               <h2>Lọc</h2>

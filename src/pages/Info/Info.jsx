@@ -89,6 +89,7 @@ const Info = () => {
   });
 
   useEffect(() => {
+    window.scroll(0, 0);
     dispatch(getAccountInfo());
     userService
       .accountInfo()
@@ -150,7 +151,7 @@ const Info = () => {
         <div className="flex flex-col gap-10 px-4 lg:flex-row lg:px-6">
           <div className="w-full mx-auto lg:w-2/5 sm:w-4/5">
             <form
-              className="sticky px-5 py-10 shadow-2xl sm:px-20 top-5 rounded-2xl"
+              className="sticky px-5 py-10 shadow-2xl sm:px-20 top-28 rounded-2xl"
               onSubmit={formik.handleSubmit}
             >
               <div className="relative">
@@ -176,10 +177,10 @@ const Info = () => {
                   className={`py-3 text-right outline-none w-1/2 ${
                     card
                       ? `bg-gray-100 border-b-2 duration-300 ${
-                        formik.errors.matKhau && formik.touched.matKhau
-                          ? "border-red-500"
-                          : "border-orange-400"
-                      }`
+                          formik.errors.matKhau && formik.touched.matKhau
+                            ? "border-red-500"
+                            : "border-orange-400"
+                        }`
                       : "cursor-default"
                   }`}
                   value={formik.values.matKhau || ""}
