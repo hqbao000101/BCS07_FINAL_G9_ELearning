@@ -52,6 +52,7 @@ const DrawerAddCourse = ({ setClose }) => {
         })
         .catch((err) => {
           message.error(err.response.data);
+          formik.resetForm();
         });
     },
     validationSchema: yup.object({

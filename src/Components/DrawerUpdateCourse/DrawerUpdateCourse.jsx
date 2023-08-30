@@ -6,7 +6,6 @@ import FormInput from "../FormInput/FormInput";
 import { Select, message } from "antd";
 import "./DrawerUpdateCourse.scss";
 import { useDispatch, useSelector } from "react-redux";
-import ReactSample from "../../assets/imgs/card_react_sample.jpg";
 import { courseService } from "../../services/courseServices";
 import { getAllCourses } from "../../redux/slices/courseSlice";
 
@@ -45,7 +44,7 @@ const DrawerUpdateCourse = ({ setClose }) => {
           formik.resetForm();
         })
         .catch(() => {
-          message.error("Cập nhật khóa học thất bại!");
+          message.error("Cập nhật khóa học thất bại. File hình không phù hợp!");
           setImg("");
         });
     },
@@ -85,7 +84,7 @@ const DrawerUpdateCourse = ({ setClose }) => {
       hinhAnh: selectedCourse.hinhAnh,
       maNhom: selectedCourse.maNhom,
       ngayTao: selectedCourse.ngayTao,
-      maDanhMucKhoaHoc: selectedCourse.danhMucKhoaHoc.maDanhMucKhoahoc,
+      maDanhMucKhoaHoc: selectedCourse.danhMucKhoaHoc?.maDanhMucKhoahoc,
       taiKhoanNguoiTao: selectedCourse.nguoiTao.taiKhoan,
     });
     //eslint-disable-next-line react-hooks/exhaustive-deps
@@ -198,12 +197,12 @@ const DrawerUpdateCourse = ({ setClose }) => {
           )}
           {formik.values.hinhAnh ? (
             <img
-              src={img !== "" ? img : formik.values.hinhAnh}
+              src={img ? img : formik.values.hinhAnh}
               alt="Course Pic"
               className="object-cover w-full h-56 mt-3"
               onError={({ currentTarget }) => {
                 currentTarget.onerror = null;
-                currentTarget.src = ReactSample;
+                currentTarget.src = formik.values.hinhAnh;
               }}
             />
           ) : (
