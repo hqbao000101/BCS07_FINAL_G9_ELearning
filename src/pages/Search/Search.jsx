@@ -32,7 +32,10 @@ const Search = () => {
   };
 
   useEffect(() => {
-    window.scroll(0, 0);
+    window.scrollTo({
+      top: 300,
+      behavior: "smooth",
+    });
     courseService
       .getCoursesPagination(tuKhoa, pagination)
       .then((res) => {
@@ -212,19 +215,7 @@ const Search = () => {
                     type="radio"
                   />
                   <span className="checkmark"></span>
-                  4000 - 5000
-                </label>
-              </li>
-              <li className="mb-3">
-                <label htmlFor="eye6" className="container">
-                  <input
-                    className="eyeInput"
-                    id="eye6"
-                    name="eye"
-                    type="radio"
-                  />
-                  <span className="checkmark"></span>
-                  5000 +
+                  4000 - 5000+
                 </label>
               </li>
             </ul>

@@ -5,6 +5,8 @@ import user from "../../assets/imgs/user_icon.png";
 import { BellOutlined } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 import ReactSample from "../../assets/imgs/card_react_sample.jpg";
+import { useDispatch } from "react-redux";
+import { setNavbarActive } from "../../redux/slices/navbarSlice";
 
 const tempContent =
   "Lập trình Frontend là công việc sử dụng các ngôn ngữ HTML, CSS và JavaScript để thiết kế và xây dựng giao diện cho một trang web hoặc ứng dụng web mà người dùng có thể xem và tương tác trực tiếp";
@@ -17,6 +19,8 @@ const CourseCard = ({
   moTa = tempContent,
   luotXem = 100,
 }) => {
+  const dispatch = useDispatch();
+
   return (
     <div className="duration-300 shadow-md hover:shadow-xl group">
       <div className="relative">
@@ -49,6 +53,9 @@ const CourseCard = ({
         <NavLink
           to={`/detail/${maKhoaHoc}`}
           className="font-medium duration-500 line-clamp-2 hover:text-orange-400"
+          onClick={() => {
+            dispatch(setNavbarActive(false));
+          }}
         >
           {moTa + tempContent}
         </NavLink>

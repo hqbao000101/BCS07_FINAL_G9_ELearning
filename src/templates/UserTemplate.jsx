@@ -5,6 +5,7 @@ import Footer from "../Components/Footer/Footer";
 import Loading from "../pages/Loading/Loading";
 import { useSelector } from "react-redux";
 import { UpSquareFilled } from "@ant-design/icons";
+import "./UserTemplate.scss";
 
 const UserTemplate = () => {
   const isLoading = useSelector((state) => state.loading.isLoading);

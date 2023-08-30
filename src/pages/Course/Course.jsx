@@ -1,22 +1,27 @@
 import React, { useEffect, useState } from "react";
 import "./Course.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CourseCard from "./CourseCard";
 import { courseService } from "./../../services/courseServices";
 import { message, Pagination } from "antd";
 import { CaretRightOutlined } from "@ant-design/icons";
+import { setPagination } from "../../redux/slices/courseSlice";
 
 const Course = () => {
   const [course, setCourse] = useState([]);
   const [total, setTotal] = useState(0);
   const pagination = useSelector((state) => state.course.pagination);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    window.scroll(0, 0);
+    window.scrollTo({
+      top: 400,
+      behavior: "smooth",
+    });
     courseService
-      .getAllCourses()
+      .getCoursesPagination("", pagination, 12)
       .then((res) => {
-        setCourse(res.data);
+        setCourse(res.data.items);
         setTotal(res.data.totalCount);
       })
       .catch(() => {
@@ -107,12 +112,14 @@ const Course = () => {
               );
             })}
           </div>
-          <div className="text-right">
+          <div className="mt-10 text-center">
             <Pagination
               current={pagination}
               total={total}
-              onChange={total}
-              pageSize={10}
+              onChange={(page) => {
+                dispatch(setPagination(page));
+              }}
+              pageSize={12}
             />
           </div>
         </div>

@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { CaretRightOutlined } from "@ant-design/icons";
 import CategoryContent from "../../Components/Category/CategoryContent";
+import { Pagination } from "antd";
 
 const Category = () => {
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
-  
+
   return (
     <section className="category">
       <div className="py-16 text-white bg-orange-400">
@@ -22,6 +23,9 @@ const Category = () => {
       </div>
       <div className="py-10 mx-auto max-w-screen-2xl">
         <CategoryContent />
+      </div>
+      <div className="mb-10 text-center">
+        <Pagination current={1} total={12} pageSize={12} />
       </div>
     </section>
   );
