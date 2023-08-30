@@ -186,12 +186,12 @@ const CollapsedMenu = () => {
   };
 
   const clickSearch = () => {
-    const searchKey = document.getElementById("search").value;
+    const searchKey = document.getElementById("collapsedSearch").value;
     const e = {
       code: "SearchIcon",
     };
     searchCourse(e, searchKey);
-    document.getElementById("search").value = "";
+    document.getElementById("collapsedSearch").value = "";
   };
 
   return (
@@ -226,7 +226,7 @@ const CollapsedMenu = () => {
           <div>
             <div className="relative block mx-2 mb-6 duration-500 border-b-2 border-b-gray-400 pe-3 focus-within:border-b-orange-400 group md:hidden">
               <input
-                id="search"
+                id="collapsedSearch"
                 type="text"
                 placeholder="Input search course here..."
                 onFocus={handleOnFocus}
