@@ -11,7 +11,7 @@ import { courseService } from "../../services/courseServices";
 import { useDispatch } from "react-redux";
 import { getAllCourses } from "../../redux/slices/courseSlice";
 
-const DrawerAddCourse = ({setClose}) => {
+const DrawerAddCourse = ({ setClose }) => {
   const [img, setImg] = useState("");
   const dispatch = useDispatch();
 
@@ -184,14 +184,21 @@ const DrawerAddCourse = ({setClose}) => {
             ""
           )}
           {formik.values.hinhAnh ? (
-            <img src={img} alt="Course Pic" className="object-cover w-full h-56 mt-3" />
+            <img
+              src={img}
+              alt="Course Pic"
+              className="object-cover w-full h-56 mt-3"
+            />
           ) : (
             <></>
           )}
         </div>
       </div>
       <div className="mt-5">
-        <button className="w-full px-10 py-3 text-sm font-semibold text-white uppercase duration-300 bg-orange-400 rounded-lg shadow-lg hover:bg-orange-600 hover:scale-90">
+        <button
+          type="submit"
+          className="w-full px-10 py-3 text-sm font-semibold text-white uppercase duration-300 bg-orange-400 rounded-lg shadow-lg hover:bg-orange-600 hover:scale-90"
+        >
           Tạo
         </button>
       </div>

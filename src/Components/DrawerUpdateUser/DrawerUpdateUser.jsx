@@ -12,7 +12,7 @@ const DrawerUpdateUser = ({ setClose }) => {
   const selectedUser = useSelector((state) => state.user.selectedUser);
   const dispatch = useDispatch();
   const [maLoaiNguoiDung, setMaLoaiNguoiDung] = useState("");
-  
+
   const formik = useFormik({
     initialValues: {
       hoTen: "",
@@ -144,7 +144,10 @@ const DrawerUpdateUser = ({ setClose }) => {
         className="mb-5 shadow-md"
       />
       <div className="text-right">
-        <button className="px-10 py-3 text-sm font-semibold text-white uppercase duration-300 bg-orange-400 rounded-lg shadow-lg hover:bg-orange-600 hover:scale-90">
+        <button
+          type="submit"
+          className="px-10 py-3 text-sm font-semibold text-white uppercase duration-300 bg-orange-400 rounded-lg shadow-lg hover:bg-orange-600 hover:scale-90"
+        >
           Cập Nhật
         </button>
       </div>
