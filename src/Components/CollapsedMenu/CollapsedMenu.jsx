@@ -37,6 +37,7 @@ const CollapsedMenu = () => {
         onClick={() => {
           dispatch(setNavbarActive(false));
         }}
+        style={({ isActive }) => (isActive ? { color: "#1e90ff" } : {})}
       >
         Trang chủ
       </NavLink>,
@@ -49,6 +50,7 @@ const CollapsedMenu = () => {
         onClick={() => {
           dispatch(setNavbarActive(false));
         }}
+        style={({ isActive }) => (isActive ? { color: "#1e90ff" } : {})}
       >
         Thông tin
       </NavLink>,
@@ -62,6 +64,7 @@ const CollapsedMenu = () => {
           onClick={() => {
             dispatch(setNavbarActive(true));
           }}
+          style={({ isActive }) => (isActive ? { color: "#1e90ff" } : {})}
         >
           Tư Duy Lập Trình
         </NavLink>,
@@ -74,6 +77,7 @@ const CollapsedMenu = () => {
           onClick={() => {
             dispatch(setNavbarActive(true));
           }}
+          style={({ isActive }) => (isActive ? { color: "#1e90ff" } : {})}
         >
           Lập Trình Mobile
         </NavLink>,
@@ -86,6 +90,7 @@ const CollapsedMenu = () => {
           onClick={() => {
             dispatch(setNavbarActive(true));
           }}
+          style={({ isActive }) => (isActive ? { color: "#1e90ff" } : {})}
         >
           Thiết Kế Website
         </NavLink>,
@@ -98,6 +103,7 @@ const CollapsedMenu = () => {
           onClick={() => {
             dispatch(setNavbarActive(true));
           }}
+          style={({ isActive }) => (isActive ? { color: "#1e90ff" } : {})}
         >
           Lập Trình Front-end
         </NavLink>,
@@ -110,6 +116,7 @@ const CollapsedMenu = () => {
           onClick={() => {
             dispatch(setNavbarActive(true));
           }}
+          style={({ isActive }) => (isActive ? { color: "#1e90ff" } : {})}
         >
           Lập Trình Back-end
         </NavLink>,
@@ -122,6 +129,7 @@ const CollapsedMenu = () => {
           onClick={() => {
             dispatch(setNavbarActive(true));
           }}
+          style={({ isActive }) => (isActive ? { color: "#1e90ff" } : {})}
         >
           Lập Trình Fullstack
         </NavLink>,
@@ -135,6 +143,7 @@ const CollapsedMenu = () => {
         onClick={() => {
           dispatch(setNavbarActive(false));
         }}
+        style={({ isActive }) => (isActive ? { color: "#1e90ff" } : {})}
       >
         Khóa Học
       </NavLink>,
@@ -147,6 +156,7 @@ const CollapsedMenu = () => {
         onClick={() => {
           dispatch(setNavbarActive(false));
         }}
+        style={({ isActive }) => (isActive ? { color: "#1e90ff" } : {})}
       >
         Blog
       </NavLink>,
@@ -159,6 +169,7 @@ const CollapsedMenu = () => {
         onClick={() => {
           dispatch(setNavbarActive(false));
         }}
+        style={({ isActive }) => (isActive ? { color: "#1e90ff" } : {})}
       >
         Sự kiện
       </NavLink>,
