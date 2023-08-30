@@ -329,7 +329,7 @@ const Search = () => {
                     return <HorizontalCourseCard key={index} item={item} />;
                   })}
                 </div>
-                <div className="text-right">
+                <div className="text-center lg:text-right">
                   <Pagination
                     current={pagination}
                     total={total}
