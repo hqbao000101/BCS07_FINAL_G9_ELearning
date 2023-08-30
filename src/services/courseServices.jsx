@@ -62,7 +62,7 @@ export const courseService = {
     return https.delete(`/api/QuanLyKhoaHoc/XoaKhoaHoc?MaKhoaHoc=${maKhoaHoc}`);
   },
   registerCourses: (data) => {
-    return https.post("/api/QuanLyKhoaHoc/GhiDanhKhoaHoc", data);
+    return https.post("/api/QuanLyKhoaHoc/DangKyKhoaHoc", data);
   },
   unRegisterCourses: (data) => {
     return https.post("/api/QuanLyKhoaHoc/HuyGhiDanh", data);

@@ -31,7 +31,7 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/event" element={<Event />} />
           <Route path="/intro" element={<Intro />} />
-          <Route path="/detail/:tenKhoaHoc" element={<Detail />} />
+          <Route path="/detail/:maKhoaHoc" element={<Detail />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<AdminTemplate />}>
