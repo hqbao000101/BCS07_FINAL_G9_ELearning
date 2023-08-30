@@ -44,7 +44,7 @@ const Course = () => {
             </p>
           </div>
         </div>
-        <div className="m-10 mx-auto course_container max-w-screen-2xl">
+        <div className="px-4 m-10 mx-auto course_container max-w-screen-2xl">
           <div className="container">
             <div className="grid xl:grid-cols-6 xl:grid-rows-1 md:grid-rows-2 md:grid-cols-3 sm:grid-rows-6 min-h-48">
               <div className="course_box bgs-1 min-h-30 max-h-48">
@@ -92,13 +92,13 @@ const Course = () => {
             </div>
           </div>
         </div>
-        <div className="m-10 mx-auto course_list max-w-screen-2xl">
+        <div className="px-4 m-10 mx-auto course_list max-w-screen-2xl">
           <div className="list_info">
             <h6>
               <i className="fa-solid fa-bookmark"></i>Danh sách khóa học
             </h6>
           </div>
-          <div className="grid items-center gap-10 mt-4 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 sm:place-items-center place-items-stretch">
+          <div className="grid items-center mt-4 gap-y-10 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 place-items-center">
             {course.map((item, index) => {
               return (
                 <CourseCard

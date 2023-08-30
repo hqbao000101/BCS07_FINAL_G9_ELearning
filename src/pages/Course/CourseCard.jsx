@@ -35,8 +35,8 @@ const CourseCard = ({
         <h6 className="mb-3 duration-300 line-clamp-2 group-hover:text-orange-400">
           {moTa}
         </h6>
-        <div className="grid items-center grid-cols-5 title_maker">
-          <div className="img_footer">
+        <div className="flex items-center title_maker">
+          <div className="img_footer me-2">
             <img src={AdImg} alt="people" />
           </div>
           <span className="col-span-4 name_maker">Elon Musk</span>
