@@ -32,6 +32,7 @@ const Search = () => {
   };
 
   useEffect(() => {
+    window.scroll(0, 0);
     courseService
       .getCoursesPagination(tuKhoa, pagination)
       .then((res) => {
@@ -343,7 +344,6 @@ const Search = () => {
                     total={total}
                     onChange={(page) => {
                       dispatch(setPagination(page));
-                      window.scrollTo({ top: 0, left: 0 });
                     }}
                     pageSize={10}
                   />

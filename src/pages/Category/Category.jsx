@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { CaretRightOutlined } from "@ant-design/icons";
 import CategoryContent from "../../Components/Category/CategoryContent";
 
 const Category = () => {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
+  
   return (
     <section className="category">
       <div className="py-16 text-white bg-orange-400">

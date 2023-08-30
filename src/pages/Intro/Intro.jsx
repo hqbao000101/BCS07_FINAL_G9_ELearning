@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Intro.scss";
 import IntroBg from "../../assets/imgs/intro-img1.png";
 import IntroImg3 from "../../assets/imgs/intro-img3.png";
@@ -7,6 +7,10 @@ import IntroImg5 from "../../assets/imgs/intro-img6.png";
 import IntroImg6 from "../../assets/imgs/intro-img7.png";
 
 const Intro = () => {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
+
   return (
     <section id="about" className="mb-10">
       <div className="about_content ">

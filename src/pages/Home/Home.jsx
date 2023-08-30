@@ -17,6 +17,7 @@ const Home = () => {
   const [course, setCourse] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
+    window.scroll(0, 0);
     dispatch(set_loading_start());
     courseService
       .getAllCourses()

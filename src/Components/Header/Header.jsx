@@ -30,12 +30,16 @@ const Header = () => {
   const [windowSize, setWindowSize] = useState(getWindowSize());
   const navigate = useNavigate();
   const loggedUser = useSelector((state) => state.user.loggedUser);
+  const [scroll, setScroll] = useState(0);
 
   useEffect(() => {
     function handleWindowResize() {
       setWindowSize(getWindowSize());
     }
     window.addEventListener("resize", handleWindowResize);
+    window.addEventListener("scroll", () => {
+      setScroll(window.scrollY);
+    });
     return () => {
       window.removeEventListener("resize", handleWindowResize);
     };
@@ -193,8 +197,16 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50">
-      <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5">
+    <header
+      className={`${
+        scroll >= 400
+          ? "top-0 opacity-100 sticky duration-500 visible shadow-md"
+          : scroll >= 200
+          ? "opacity-0 top-0 sticky invisible"
+          : ""
+      } z-50`}
+    >
+      <nav className="border-gray-200 px-4 lg:px-6 py-2.5 bg-white">
         <div className="flex items-center justify-between mx-auto max-w-screen-2xl">
           <NavLink
             to="/"

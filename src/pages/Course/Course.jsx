@@ -7,12 +7,12 @@ import { message, Pagination } from "antd";
 import { CaretRightOutlined } from "@ant-design/icons";
 
 const Course = () => {
-  // eslint-disable-next-line no-undef
   const [course, setCourse] = useState([]);
   const [total, setTotal] = useState(0);
   const pagination = useSelector((state) => state.course.pagination);
 
   useEffect(() => {
+    window.scroll(0, 0);
     courseService
       .getAllCourses()
       .then((res) => {
