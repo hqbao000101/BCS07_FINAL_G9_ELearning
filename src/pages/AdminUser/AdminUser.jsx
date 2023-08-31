@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Drawer, Popconfirm, Space, Table, Tag, message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllUsers, setSelectedUser } from "../../redux/slices/userSlice";
+import {
+  getAllUsers,
+  setSearchUser,
+  setSelectedUser,
+} from "../../redux/slices/userSlice";
 import { QuestionCircleOutlined, SettingFilled } from "@ant-design/icons";
 import DrawerAddUser from "../../Components/DrawerAddUser/DrawerAddUser";
 import DrawerUpdateUser from "../../Components/DrawerUpdateUser/DrawerUpdateUser";
@@ -91,7 +95,14 @@ const AdminUser = () => {
       title: "Danh Sách",
       key: "danhSach",
       align: "center",
-      render: () => <NavLink to="/admin/enroll" className="italic text-blue-400 hover:underline">Các Khóa Học Ghi Danh</NavLink>
+      render: () => (
+        <NavLink
+          to="/admin/enroll"
+          className="italic text-blue-400 hover:underline"
+        >
+          Các Khóa Học Ghi Danh
+        </NavLink>
+      ),
     },
     {
       title: "Người Dùng",
@@ -155,12 +166,25 @@ const AdminUser = () => {
       ),
     },
   ];
+
   const data = users.map((item, index) => {
     return {
       ...item,
       stt: index + 1,
     };
   });
+
+  const handleSearchUser = (e) => {
+    userService
+      .searchUsers(e.target.value)
+      .then((res) => {
+        dispatch(setSearchUser(res.data));
+      })
+      .catch(() => {
+        message.error("Không thể tìm kiếm người dùng!");
+      });
+  };
+
   return (
     <div id="admin__user--table">
       <div className="mb-5 text-3xl font-semibold uppercase">
@@ -177,9 +201,7 @@ const AdminUser = () => {
           id="user__search"
           type="text"
           placeholder="Tìm kiếm người dùng..."
-          onChange={(e) => {
-            dispatch(getAllUsers(e.target.value));
-          }}
+          onChange={handleSearchUser}
           className="w-1/3 p-2 duration-300 border-2 rounded-tl-lg rounded-tr-lg outline-none focus:border-b-main"
           onFocus={(e) => {
             e.target.select();

@@ -34,6 +34,9 @@ export const userSlice = createSlice({
     setSelectedUser: (state, action) => {
       state.selectedUser = action.payload;
     },
+    setSearchUser: (state, action) => {
+      state.users = action.payload;
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(getAllUsers.fulfilled, (state, action) => {
@@ -45,5 +48,5 @@ export const userSlice = createSlice({
   },
 });
 
-export const { setLoggedUser, setSelectedUser } = userSlice.actions;
+export const { setLoggedUser, setSelectedUser, setSearchUser } = userSlice.actions;
 export default userSlice.reducer;
