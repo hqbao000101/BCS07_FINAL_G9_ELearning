@@ -73,4 +73,7 @@ export const courseService = {
   addCoursesUploadImg: (formData) => {
     return https.post("/api/QuanLyKhoaHoc/ThemKhoaHocUploadHinh", formData);
   },
+  uploadCourseImg: (formData) => {
+    return https.post("/api/QuanLyKhoaHoc/UploadHinhAnhKhoaHoc", formData);
+  },
 };

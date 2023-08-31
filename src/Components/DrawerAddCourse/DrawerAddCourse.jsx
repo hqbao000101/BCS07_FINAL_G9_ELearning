@@ -14,6 +14,7 @@ import { getAllCourses } from "../../redux/slices/courseSlice";
 const DrawerAddCourse = ({ setClose }) => {
   const [img, setImg] = useState("");
   const dispatch = useDispatch();
+  const [file, setFile] = useState();
 
   const formik = useFormik({
     initialValues: {
@@ -26,7 +27,7 @@ const DrawerAddCourse = ({ setClose }) => {
       hinhAnh: "",
       maNhom: "GP09",
       ngayTao: "",
-      maDanhMucKhoaHoc: "",
+      maDanhMucKhoaHoc: "TuDuy",
       taiKhoanNguoiTao: "",
     },
     onSubmit: (values) => {
@@ -38,21 +39,28 @@ const DrawerAddCourse = ({ setClose }) => {
         ngayTao: formatDate,
         taiKhoanNguoiTao: taiKhoan,
       };
-      let formData = new FormData();
-      for (let key in values) {
-        formData.append(key, values[key]);
-      }
       courseService
-        .addCoursesUploadImg(formData)
-        .then(() => {
-          message.success("Thêm khóa học mới thành công!");
-          dispatch(getAllCourses());
-          setClose();
-          formik.resetForm();
+        .addCourses(values)
+        .then((res) => {
+          let frm = new FormData();
+          frm.append("file", file);
+          frm.append("tenKhoaHoc", res.data.tenKhoaHoc);
+          courseService
+            .uploadCourseImg(frm)
+            .then(() => {
+              message.success("Thêm khóa học mới thành công!");
+              dispatch(getAllCourses());
+              setClose();
+              formik.resetForm();
+            })
+            .catch(() => {
+              message.error("Thêm khóa học thất bại!");
+            });
         })
         .catch((err) => {
-          message.error(err.response.data);
-          formik.resetForm();
+          err.response.data
+            ? message.error(err.response.data)
+            : message.error("Thêm khóa học thất bại!");
         });
     },
     validationSchema: yup.object({
@@ -68,14 +76,15 @@ const DrawerAddCourse = ({ setClose }) => {
   });
 
   const handleChangeFile = (e) => {
-    if (e) {
+    if (e.target.files[0]) {
       let file = e.target.files[0];
       let reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = (e) => {
         setImg(e.target.result);
       };
-      formik.setFieldValue("hinhAnh", file);
+      formik.setFieldValue("hinhAnh", e.target.files[0].name);
+      setFile(e.target.files[0]);
     }
   };
 
@@ -121,7 +130,7 @@ const DrawerAddCourse = ({ setClose }) => {
         <div>
           <Select
             id="maDanhMucKhoaHoc"
-            defaultValue="TuDuy"
+            defaultValue={formik.values.maDanhMucKhoaHoc}
             style={{ width: "100%" }}
             onChange={(value) => {
               formik.values.maDanhMucKhoaHoc = value;
@@ -150,6 +159,7 @@ const DrawerAddCourse = ({ setClose }) => {
             }`}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
+            value={formik.values.moTa}
           ></textarea>
           {formik.errors.moTa && formik.touched.moTa ? (
             <p className="mt-2 text-xs italic text-left text-red-500 sm:text-sm">
