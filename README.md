@@ -33,7 +33,7 @@
 - Task Distribution - Excel File: https://docs.google.com/spreadsheets/d/1CIVkPK2hTssnkHWOtpBPQUI7wh80vzKMYiAkQG7fDu8/edit?usp=sharing
 - Github: https://github.com/hqbao000101/BCS07_FINAL_G9_ELearning.git
 - Deploy: https://bcs-07-final-g9-e-learning.vercel.app/
-- Youtube: ...
+- Youtube: https://www.youtube.com/watch?v=jRO5sl8GAvI&ab_channel=NewbieDevHuynh 
 
 # Các thư mục cần tạo
 - Components
