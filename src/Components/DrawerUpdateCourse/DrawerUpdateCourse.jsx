@@ -14,6 +14,8 @@ const DrawerUpdateCourse = ({ setClose }) => {
   const [maDanhMucKhoaHoc, setMaDanhMucKhoaHoc] = useState("");
   const selectedCourse = useSelector((state) => state.course.selectedCourse);
   const dispatch = useDispatch();
+  const [file, setFile] = useState();
+  const [isChange, setIsChange] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -30,22 +32,41 @@ const DrawerUpdateCourse = ({ setClose }) => {
       taiKhoanNguoiTao: "",
     },
     onSubmit: (values) => {
-      let formData = new FormData();
-      for (let key in values) {
-        formData.append(key, values[key]);
-      }
       courseService
-        .updateCoursesUploadImg(formData)
-        .then(() => {
-          message.success("Cập nhật khóa học thành công!");
-          dispatch(getAllCourses());
-          setClose();
-          setImg("");
-          formik.resetForm();
+        .updateCourses(values)
+        .then((res) => {
+          if (isChange) {
+            let frm = new FormData();
+            frm.append("file", file);
+            frm.append("tenKhoaHoc", res.data.tenKhoaHoc);
+            courseService
+              .uploadCourseImg(frm)
+              .then(() => {
+                message.success("Cập nhật khóa học thành công!");
+                dispatch(getAllCourses());
+                setClose();
+                formik.resetForm();
+                setIsChange(false);
+              })
+              .catch((err) => {
+                err.response.data
+                  ? message.error(err.response.data)
+                  : message.error("Cập nhật khóa học thất bại!");
+                setImg(selectedCourse.hinhAnh);
+                setIsChange(false);
+                setClose();
+              });
+          } else {
+            message.success("Cập nhật khóa học thành công!");
+            dispatch(getAllCourses());
+            setClose();
+            formik.resetForm();
+          }
         })
-        .catch(() => {
-          message.error("Cập nhật khóa học thất bại. File hình không phù hợp!");
-          setImg("");
+        .catch((err) => {
+          err.response.data
+            ? message.error(err.response.data)
+            : message.error("Cập nhật khóa học thất bại!");
         });
     },
     validationSchema: yup.object({
@@ -61,14 +82,16 @@ const DrawerUpdateCourse = ({ setClose }) => {
   });
 
   const handleChangeFile = (e) => {
-    if (e) {
+    if (e.target.files[0]) {
       let file = e.target.files[0];
       let reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = (e) => {
         setImg(e.target.result);
       };
-      formik.setFieldValue("hinhAnh", file);
+      formik.setFieldValue("hinhAnh", e.target.files[0].name);
+      setFile(e.target.files[0]);
+      setIsChange(true);
     }
   };
 
@@ -87,6 +110,7 @@ const DrawerUpdateCourse = ({ setClose }) => {
       maDanhMucKhoaHoc: selectedCourse.danhMucKhoaHoc?.maDanhMucKhoahoc,
       taiKhoanNguoiTao: selectedCourse.nguoiTao.taiKhoan,
     });
+    setImg(selectedCourse.hinhAnh);
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCourse]);
 

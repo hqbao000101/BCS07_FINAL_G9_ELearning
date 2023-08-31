@@ -93,7 +93,7 @@ const AdminCourse = () => {
             currentTarget.onerror = null;
             currentTarget.src = ReactSample;
           }}
-          className="object-cover w-4/5 h-full mx-auto"
+          className="object-cover w-4/5 mx-auto h-28"
         />
       ),
     },
