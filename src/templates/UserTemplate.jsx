@@ -40,7 +40,7 @@ const UserTemplate = () => {
         {showButton && (
           <button
             onClick={scrollToTop}
-            className="fixed z-50 text-4xl duration-500 text-[#1dd1a1] sm:text-5xl back-to-top right-5 bottom-5 hover:scale-105 hover:text-[#10ac84] hover:shadow-2xl"
+            className="fixed z-50 text-4xl duration-300 text-[#1dd1a1] sm:text-5xl back-to-top right-5 bottom-5 hover:scale-90 hover:text-[#10ac84] shadow-[3px_3px_6px_#333] flex items-center justify-center"
           >
             <UpSquareFilled />
           </button>
