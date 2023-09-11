@@ -69,7 +69,7 @@ const BlogContent = (props) => {
     },
     {
       hinhAnh: antd,
-      tieuDe: "Làm việc Front-end dễ dàng hơn với antd?",
+      tieuDe: "Làm việc với Front-end dễ dàng hơn cùng Ant Design?",
       noiDung:
         "Một thư viện mở cho phép các anh em developer tiết kiệm thời gian trong việc xây dựng...",
       tacGia: "Mỹ Hạnh",
